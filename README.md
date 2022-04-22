@@ -1,5 +1,8 @@
 # GRAT
-Create SmartPy using interlocking blocks. 
+![grat](https://user-images.githubusercontent.com/2120817/164582200-30d66d80-50c7-4a4a-9bda-0aa06dd36370.png)
+
+Create SmartPy using interlocking blocks.
+
 
 # Origin Story
 This project was inspired by [Scratch](https://scratch.mit.edu/)

@@ -29,6 +29,7 @@ import logo from './logo.svg';
 import BlocklyComponent, { Block, Value, Field, Shadow } from './Blockly';
 
 import BlocklyJS from 'blockly/javascript';
+import BlocklyPy from 'blockly/python';
 
 import './blocks/customblocks';
 import './generator/generator';
@@ -44,6 +45,11 @@ class App extends React.Component {
       this.simpleWorkspace.current.workspace
     );
     console.log(code);
+
+    var python = BlocklyPy.workspaceToCode(
+      this.simpleWorkspace.current.workspace
+    );
+    console.log(python);
   }
 
   render() {
@@ -79,7 +85,7 @@ class App extends React.Component {
             <Block type="logic_operation" />
             <Block type="logic_negate" />
             <Block type="logic_boolean" />
-            <Block type="logic_null" disabled="true" />
+            <Block type="logic_null" />
             <Block type="logic_ternary" />
             <Block type="text_charAt">
               <Value name="VALUE">

@@ -32,6 +32,7 @@ import BlocklyJS from 'blockly/javascript';
 import BlocklyPy from 'blockly/python';
 
 import './blocks/customblocks';
+import './blocks/contract';
 import './generator/generator';
 
 class App extends React.Component {
@@ -56,7 +57,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <button onClick={this.generateCode}>Convert</button>
           <BlocklyComponent ref={this.simpleWorkspace}
           readOnly={false} trashcan={true} media={'media/'}
@@ -70,8 +71,10 @@ class App extends React.Component {
 <block type="controls_ifelse" x="0" y="0"></block>
 </xml>
       `}>
+            <Block type="contract" />
             <Block type="test_react_field" />
             <Block type="test_react_date_field" />
+            <Block type="lists_create_with" />
             <Block type="controls_ifelse" />
             <Block type="logic_compare" />
             <Block type="logic_operation" />

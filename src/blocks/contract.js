@@ -15,7 +15,7 @@ Blockly.defineBlocksWithJsonArray([
         name: "EMPTY",
       },
     ],
-    output: '',
+    output: null,
     style: "list_blocks",
     helpUrl: "%{BKY_LISTS_CREATE_WITH_HELPURL}",
     tooltip: "Add an entry point.",
@@ -99,7 +99,7 @@ const contractMutator = {
    * and updates the state of the minus.
    */
   minus: function () {
-    if (this.itemCount_ == 0) {
+    if (this.itemCount_ === 0) {
       return;
     }
     this.removePart_();

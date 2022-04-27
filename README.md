@@ -1,23 +1,28 @@
-# GRAT
-![grat](https://user-images.githubusercontent.com/2120817/164582200-30d66d80-50c7-4a4a-9bda-0aa06dd36370.png)
+[Home](../README.md)
 
-Create Tezos Smart Contracts using interlocking blocks.
+# blockly-react-sample [![Built on Blockly](https://tinyurl.com/built-on-blockly)](https://github.com/google/blockly)
 
+This sample shows how to load Blockly in a [React](https://reactjs.org/) project.
 
-# Origin Story
-This project was inspired by [Scratch](https://scratch.mit.edu/)
-> Scratch is the world’s largest coding community for children and a coding language with a simple visual interface that allows young people to create digital stories, games, and animations. Scratch is designed, developed, and moderated by the Scratch Foundation, a nonprofit organization.
-> 
-> Scratch promotes computational thinking and problem solving skills; creative teaching and learning; self-expression and collaboration; and equity in computing.
-> 
-> Scratch is always free and is available in more than 70 languages.
+## Running the sample
 
-It combines the core values of Scratch and brings them to [Tezos](https://tezos.com/) 
+### Installation
 
-**Grat** is from "gratter" - the french verb for scracth. It will allow cretors of all ages to create Tezos Smart Contracts with the same simple visual interface.
+```
+npm install
+```
 
-# Using
-[Blockly](https://developers.google.com/blockly)
+### Running
 
-[Taqueria](https://taqueria.io/)
+```
+npm run start
+```
 
+### Browse
+
+Open [http://localhost:3000/](http://localhost:3000/)
+
+## Community projects
+
+[react-blockly](https://github.com/nbudin/react-blockly):
+A React component that embeds Blockly. It uses the official [Blockly npm package](https://www.npmjs.com/package/blockly).

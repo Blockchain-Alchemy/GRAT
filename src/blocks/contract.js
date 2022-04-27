@@ -1,5 +1,8 @@
 import Blockly from "blockly/core";
-import { createPlusField, createMinusField } from '@blockly/block-plus-minus';
+import {createPlusField} from './field_plus';
+import {createMinusField} from './field_minus';
+
+delete Blockly.Blocks['contract'];
 
 /* eslint-disable quotes */
 Blockly.defineBlocksWithJsonArray([
@@ -12,16 +15,16 @@ Blockly.defineBlocksWithJsonArray([
         name: "EMPTY",
       },
     ],
-    output: "Array",
+    output: '',
     style: "list_blocks",
     helpUrl: "%{BKY_LISTS_CREATE_WITH_HELPURL}",
-    tooltip: "%{BKY_LISTS_CREATE_WITH_TOOLTIP}",
-    mutator: "new_list_create_with_mutator",
+    tooltip: "Add an entry point.",
+    mutator: "contract_mutator",
   },
 ]);
 /* eslint-enable quotes */
 
-const listCreateMutator = {
+const contractMutator = {
   /**
    * Number of item inputs the block has.
    * @type {number}
@@ -114,11 +117,11 @@ const listCreateMutator = {
    * @private
    */
   addPart_: function () {
-    if (this.itemCount_ == 0) {
+    if (this.itemCount_ === 0) {
       this.removeInput("EMPTY");
       this.topInput_ = this.appendValueInput("ADD" + this.itemCount_)
         .appendField(createPlusField(), "PLUS")
-        .appendField(Blockly.Msg["LISTS_CREATE_WITH_INPUT_WITH"]);
+        .appendField("Contract");
     } else {
       this.appendValueInput("ADD" + this.itemCount_);
     }
@@ -134,10 +137,10 @@ const listCreateMutator = {
   removePart_: function () {
     this.itemCount_--;
     this.removeInput("ADD" + this.itemCount_);
-    if (this.itemCount_ == 0) {
+    if (this.itemCount_ === 0) {
       this.topInput_ = this.appendDummyInput("EMPTY")
         .appendField(createPlusField(), "PLUS")
-        .appendField(Blockly.Msg["LISTS_CREATE_EMPTY_TITLE"]);
+        .appendField("Contract");
     }
   },
 
@@ -159,13 +162,13 @@ const listCreateMutator = {
  * Updates the shape of the block to have 3 inputs if no mutation is provided.
  * @this {Blockly.Block}
  */
-const listCreateHelper = function () {
+const contractHelper = function () {
   this.getInput("EMPTY").insertFieldAt(0, createPlusField(), "PLUS");
   this.updateShape_(3);
 };
 
 Blockly.Extensions.registerMutator(
   "contract_mutator",
-  listCreateMutator,
-  listCreateHelper
+  contractMutator,
+  contractHelper
 );

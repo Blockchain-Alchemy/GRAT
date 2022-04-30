@@ -12,3 +12,7 @@ Blockly.Python['test_react_date_field'] = function (block) {
 Blockly.Python['contract'] = function (block) {
     return 'console.log("python.contract");\n';
 };
+
+Blockly.Python['entrypoint_defnoreturn'] = function (block) {
+    return 'console.log("python.entrypoint");\n';
+};

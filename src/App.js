@@ -1,70 +1,76 @@
-/**
- * @license
- *
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-/**
- * @fileoverview Main React component that includes the Blockly component.
- * @author samelh@google.com (Sam El-Husseini)
- */
-
-import React from "react";
+import React, { useRef, useState } from "react";
 import "./App.css";
-import BlocklyComponent, { Block, Value, Field, Shadow } from "./Blockly";
+import BlocklyComponent, { Block, Category, Value, Field, Shadow } from "./Blockly";
 import BlocklyJS from "blockly/javascript";
 import "./blocks/customblocks";
 import "./blocks/contract";
 import "./generator/generator";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.simpleWorkspace = React.createRef();
-  }
+//class App extends React.Component {
+const App = () => {
+  const simpleWorkspace = useRef();
+  const [textVariable, setTextVariable] = useState('');
+  const [listVariable, setListVariable] = useState('');
 
-  generateCode = () => {
-    var code = BlocklyJS.workspaceToCode(
-      this.simpleWorkspace.current.workspace
+  const generateCode = () => {
+    const code = BlocklyJS.workspaceToCode(
+      simpleWorkspace.current.workspace
     );
     console.log(code);
   };
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <button onClick={this.generateCode}>Convert</button>
-          <BlocklyComponent
-            ref={this.simpleWorkspace}
-            readOnly={false}
-            trashcan={true}
-            media={"media/"}
-            move={{
-              scrollbars: true,
-              drag: true,
-              wheel: true,
-            }}
-          >
-            <Block type="contract" />
-            <Block type="test_react_field" />
-            <Block type="test_react_date_field" />
-            <Block type="lists_create_with" />
-            <Block type="controls_ifelse" />
-            <Block type="logic_compare" />
-            <Block type="logic_operation" />
+  return (
+    <div className="App">
+      <header className="App-header">
+        <button onClick={generateCode}>Convert</button>
+        <BlocklyComponent
+          ref={simpleWorkspace}
+          readOnly={false}
+          trashcan={true}
+          media={"media/"}
+          move={{
+            scrollbars: true,
+            drag: true,
+            wheel: true,
+          }}
+        >
+          {/* <Block type="contract" />
+          <Block type="test_react_field" />
+          <Block type="test_react_date_field" />
+          <Block type="lists_create_with" />
+          <Block type="controls_ifelse" />
+          <Block type="procedures_defnoreturn" />
+          <Block type="logic_compare" />
+          <Block type="logic_operation" />
+          <Block type="controls_repeat_ext">
+            <Value name="TIMES">
+              <Shadow type="math_number">
+                <Field name="NUM">10</Field>
+              </Shadow>
+            </Value>
+          </Block>
+          <Block type="logic_operation" />
+          <Block type="logic_negate" />
+          <Block type="logic_boolean" />
+          <Block type="logic_null" />
+          <Block type="logic_ternary" />
+          <Block type="text_charAt">
+            <Value name="VALUE">
+              <Block type="variables_get">
+                <Field name="VAR">text</Field>
+              </Block>
+            </Value>
+          </Block> */}
+          <Category name="Logic" colour="%{BKY_LOGIC_HUE}">
+            <Block type="controls_if"></Block>
+            <Block type="logic_compare"></Block>
+            <Block type="logic_operation"></Block>
+            <Block type="logic_negate"></Block>
+            <Block type="logic_boolean"></Block>
+            <Block type="logic_null"></Block>
+            <Block type="logic_ternary"></Block>
+          </Category>
+          <Category name="Loops" colour="%{BKY_LOOPS_HUE}">
             <Block type="controls_repeat_ext">
               <Value name="TIMES">
                 <Shadow type="math_number">
@@ -72,23 +78,304 @@ class App extends React.Component {
                 </Shadow>
               </Value>
             </Block>
-            <Block type="logic_operation" />
-            <Block type="logic_negate" />
-            <Block type="logic_boolean" />
-            <Block type="logic_null" />
-            <Block type="logic_ternary" />
+            <Block type="controls_whileUntil"></Block>
+            <Block type="controls_for">
+              <Value name="FROM">
+                <Shadow type="math_number">
+                  <Field name="NUM">1</Field>
+                </Shadow>
+              </Value>
+              <Value name="TO">
+                <Shadow type="math_number">
+                  <Field name="NUM">10</Field>
+                </Shadow>
+              </Value>
+              <Value name="BY">
+                <Shadow type="math_number">
+                  <Field name="NUM">1</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="controls_forEach"></Block>
+            <Block type="controls_flow_statements"></Block>
+          </Category>
+          <Category name="Math" colour="%{BKY_MATH_HUE}">
+            <Block type="math_number">
+              <Field name="NUM">123</Field>
+            </Block>
+            <Block type="math_arithmetic">
+              <Value name="A">
+                <Shadow type="math_number">
+                  <Field name="NUM">1</Field>
+                </Shadow>
+              </Value>
+              <Value name="B">
+                <Shadow type="math_number">
+                  <Field name="NUM">1</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="math_single">
+              <Value name="NUM">
+                <Shadow type="math_number">
+                  <Field name="NUM">9</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="math_trig">
+              <Value name="NUM">
+                <Shadow type="math_number">
+                  <Field name="NUM">45</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="math_constant"></Block>
+            <Block type="math_number_property">
+              <Value name="NUMBER_TO_CHECK">
+                <Shadow type="math_number">
+                  <Field name="NUM">0</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="math_round">
+              <Value name="NUM">
+                <Shadow type="math_number">
+                  <Field name="NUM">3.1</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="math_on_list"></Block>
+            <Block type="math_modulo">
+              <Value name="DIVIDEND">
+                <Shadow type="math_number">
+                  <Field name="NUM">64</Field>
+                </Shadow>
+              </Value>
+              <Value name="DIVISOR">
+                <Shadow type="math_number">
+                  <Field name="NUM">10</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="math_constrain">
+              <Value name="VALUE">
+                <Shadow type="math_number">
+                  <Field name="NUM">50</Field>
+                </Shadow>
+              </Value>
+              <Value name="LOW">
+                <Shadow type="math_number">
+                  <Field name="NUM">1</Field>
+                </Shadow>
+              </Value>
+              <Value name="HIGH">
+                <Shadow type="math_number">
+                  <Field name="NUM">100</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="math_random_int">
+              <Value name="FROM">
+                <Shadow type="math_number">
+                  <Field name="NUM">1</Field>
+                </Shadow>
+              </Value>
+              <Value name="TO">
+                <Shadow type="math_number">
+                  <Field name="NUM">100</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="math_random_float"></Block>
+            <Block type="math_atan2">
+              <Value name="X">
+                <Shadow type="math_number">
+                  <Field name="NUM">1</Field>
+                </Shadow>
+              </Value>
+              <Value name="Y">
+                <Shadow type="math_number">
+                  <Field name="NUM">1</Field>
+                </Shadow>
+              </Value>
+            </Block>
+          </Category>
+          <Category name="Text" colour="%{BKY_TEXTS_HUE}">
+            <Block type="text"></Block>
+            <Block type="text_join"></Block>
+            <Block type="text_append">
+              <Value name="TEXT">
+                <Shadow type="text"></Shadow>
+              </Value>
+            </Block>
+            <Block type="text_length">
+              <Value name="VALUE">
+                <Shadow type="text">
+                  <Field name="TEXT">abc</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="text_isEmpty">
+              <Value name="VALUE">
+                <Shadow type="text">
+                  <Field name="TEXT"></Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="text_indexOf">
+              <Value name="VALUE">
+                <Block type="variables_get">
+                  <Field name="VAR">{textVariable}</Field>
+                </Block>
+              </Value>
+              <Value name="FIND">
+                <Shadow type="text">
+                  <Field name="TEXT">abc</Field>
+                </Shadow>
+              </Value>
+            </Block>
             <Block type="text_charAt">
               <Value name="VALUE">
                 <Block type="variables_get">
-                  <Field name="VAR">text</Field>
+                  <Field name="VAR">{textVariable}</Field>
                 </Block>
               </Value>
             </Block>
-          </BlocklyComponent>
-        </header>
-      </div>
-    );
-  }
-}
+            <Block type="text_getSubstring">
+              <Value name="STRING">
+                <Block type="variables_get">
+                  <Field name="VAR">{textVariable}</Field>
+                </Block>
+              </Value>
+            </Block>
+            <Block type="text_changeCase">
+              <Value name="TEXT">
+                <Shadow type="text">
+                  <Field name="TEXT">abc</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="text_trim">
+              <Value name="TEXT">
+                <Shadow type="text">
+                  <Field name="TEXT">abc</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="text_print">
+              <Value name="TEXT">
+                <Shadow type="text">
+                  <Field name="TEXT">abc</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <block type="text_prompt_ext">
+              <Value name="TEXT">
+                <Shadow type="text">
+                  <Field name="TEXT">abc</Field>
+                </Shadow>
+              </Value>
+            </block>
+          </Category>
+          <Category name="List" colour="%{BKY_LISTS_HUE}">
+            <block type="lists_create_with">
+              <mutation items="0"></mutation>
+            </block>
+            <block type="lists_create_with"></block>
+            <block type="lists_repeat">
+              <Value name="NUM">
+                <Shadow type="math_number">
+                  <Field name="NUM">5</Field>
+                </Shadow>
+              </Value>
+            </block>
+            <block type="lists_length"></block>
+            <block type="lists_isEmpty"></block>
+            <block type="lists_indexOf">
+              <Value name="VALUE">
+                <block type="variables_get">
+                  <Field name="VAR">{listVariable}</Field>
+                </block>
+              </Value>
+            </block>
+            <block type="lists_getIndex">
+              <Value name="VALUE">
+                <block type="variables_get">
+                  <Field name="VAR">{listVariable}</Field>
+                </block>
+              </Value>
+            </block>
+            <block type="lists_setIndex">
+              <Value name="LIST">
+                <block type="variables_get">
+                  <Field name="VAR">{listVariable}</Field>
+                </block>
+              </Value>
+            </block>
+            <block type="lists_getSublist">
+              <Value name="LIST">
+                <block type="variables_get">
+                  <Field name="VAR">{listVariable}</Field>
+                </block>
+              </Value>
+            </block>
+            <block type="lists_split">
+              <Value name="DELIM">
+                <Shadow type="text">
+                  <Field name="TEXT">,</Field>
+                </Shadow>
+              </Value>
+            </block>
+            <block type="lists_sort"></block>
+          </Category>
+          <Category name="Colour" colour="%{BKY_COLOUR_HUE}">
+            <block type="colour_picker"></block>
+            <block type="colour_random"></block>
+            <block type="colour_rgb">
+              <Value name="RED">
+                <Shadow type="math_number">
+                  <Field name="NUM">100</Field>
+                </Shadow>
+              </Value>
+              <Value name="GREEN">
+                <Shadow type="math_number">
+                  <Field name="NUM">50</Field>
+                </Shadow>
+              </Value>
+              <Value name="BLUE">
+                <Shadow type="math_number">
+                  <Field name="NUM">0</Field>
+                </Shadow>
+              </Value>
+            </block>
+            <block type="colour_blend">
+              <Value name="COLOUR1">
+                <Shadow type="colour_picker">
+                  <Field name="COLOUR">#ff0000</Field>
+                </Shadow>
+              </Value>
+              <Value name="COLOUR2">
+                <Shadow type="colour_picker">
+                  <Field name="COLOUR">#3333ff</Field>
+                </Shadow>
+              </Value>
+              <Value name="RATIO">
+                <Shadow type="math_number">
+                  <Field name="NUM">0.5</Field>
+                </Shadow>
+              </Value>
+            </block>
+          </Category>
+          <sep></sep>
+          <Category name="Variables" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE" />
+          <Category name="Contract" colour="%{BKY_VARIABLES_HUE}">
+            <Block type="contract" />
+          </Category>
+          <Category name="Entrypoints" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE" />
+        </BlocklyComponent>
+      </header>
+    </div>
+  );
+};
 
 export default App;

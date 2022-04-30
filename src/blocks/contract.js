@@ -15,7 +15,6 @@ Blockly.defineBlocksWithJsonArray([
         name: "EMPTY",
       },
     ],
-    output: null,
     style: "list_blocks",
     helpUrl: "%{BKY_LISTS_CREATE_WITH_HELPURL}",
     tooltip: "Add an entry point.",

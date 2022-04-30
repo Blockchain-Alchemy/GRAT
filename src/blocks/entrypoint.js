@@ -23,7 +23,7 @@ delete Blockly.Blocks['entrypoint_defreturn'];
 Blockly.defineBlocksWithJsonArray([
   {
     "type": "entrypoint_defnoreturn",
-    "message0": "%{BKY_PROCEDURES_DEFNORETURN_TITLE} %1 %2",
+    "message0": "entrypoint %1 %2",
     "message1": "%{BKY_PROCEDURES_DEFNORETURN_DO} %1",
     "args0": [
       {
@@ -42,6 +42,7 @@ Blockly.defineBlocksWithJsonArray([
         "name": "STACK",
       },
     ],
+    "output": null,
     "style": "procedure_blocks",
     "helpUrl": "%{BKY_PROCEDURES_DEFNORETURN_HELPURL}",
     "tooltip": "%{BKY_PROCEDURES_DEFNORETURN_TOOLTIP}",

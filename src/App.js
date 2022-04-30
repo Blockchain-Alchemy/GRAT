@@ -1,19 +1,19 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import "./App.css";
 import BlocklyComponent, { Block, Category, Value, Field, Shadow } from "./Blockly";
-import BlocklyJS from "blockly/javascript";
+//import BlocklyJS from "blockly/javascript";
+import BlocklyPy from "blockly/python";
 import "./blocks/customblocks";
 import "./blocks/contract";
-import "./generator/generator";
+import "./generator/javsacript";
+import "./generator/python";
 
 //class App extends React.Component {
 const App = () => {
   const simpleWorkspace = useRef();
-  const [textVariable, setTextVariable] = useState('');
-  const [listVariable, setListVariable] = useState('');
 
   const generateCode = () => {
-    const code = BlocklyJS.workspaceToCode(
+    const code = BlocklyPy.workspaceToCode(
       simpleWorkspace.current.workspace
     );
     console.log(code);
@@ -225,7 +225,7 @@ const App = () => {
             <Block type="text_indexOf">
               <Value name="VALUE">
                 <Block type="variables_get">
-                  <Field name="VAR">{textVariable}</Field>
+                  <Field name="VAR">text</Field>
                 </Block>
               </Value>
               <Value name="FIND">
@@ -237,14 +237,14 @@ const App = () => {
             <Block type="text_charAt">
               <Value name="VALUE">
                 <Block type="variables_get">
-                  <Field name="VAR">{textVariable}</Field>
+                  <Field name="VAR">text</Field>
                 </Block>
               </Value>
             </Block>
             <Block type="text_getSubstring">
               <Value name="STRING">
                 <Block type="variables_get">
-                  <Field name="VAR">{textVariable}</Field>
+                  <Field name="VAR">text</Field>
                 </Block>
               </Value>
             </Block>
@@ -294,28 +294,28 @@ const App = () => {
             <block type="lists_indexOf">
               <Value name="VALUE">
                 <block type="variables_get">
-                  <Field name="VAR">{listVariable}</Field>
+                  <Field name="VAR">ary</Field>
                 </block>
               </Value>
             </block>
             <block type="lists_getIndex">
               <Value name="VALUE">
                 <block type="variables_get">
-                  <Field name="VAR">{listVariable}</Field>
+                  <Field name="VAR">ary</Field>
                 </block>
               </Value>
             </block>
             <block type="lists_setIndex">
               <Value name="LIST">
                 <block type="variables_get">
-                  <Field name="VAR">{listVariable}</Field>
+                  <Field name="VAR">ary</Field>
                 </block>
               </Value>
             </block>
             <block type="lists_getSublist">
               <Value name="LIST">
                 <block type="variables_get">
-                  <Field name="VAR">{listVariable}</Field>
+                  <Field name="VAR">ary</Field>
                 </block>
               </Value>
             </block>

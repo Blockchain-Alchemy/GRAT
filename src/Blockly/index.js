@@ -50,10 +50,17 @@ const Field = (p) => {
     return React.createElement("field", props, children);
 };
 
+const Mutation = (p) => {
+    const { children, ...props } = p;
+    props.is = "blockly";
+    return React.createElement("mutation", props, children);
+};
+
 const Shadow = (p) => {
     const { children, ...props } = p;
     props.is = "blockly";
     return React.createElement("shadow", props, children);
 };
 
-export { Block, Category, Value, Field, Shadow }
+
+export { Block, Category, Value, Field, Mutation, Shadow }

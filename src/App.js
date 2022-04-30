@@ -1,10 +1,18 @@
 import React, { useRef } from "react";
 import "./App.css";
-import BlocklyComponent, { Block, Category, Value, Field, Shadow } from "./Blockly";
+import BlocklyComponent, {
+  Block,
+  Category,
+  Value,
+  Field,
+  Shadow,
+  Mutation,
+} from "./Blockly";
 //import BlocklyJS from "blockly/javascript";
 import BlocklyPy from "blockly/python";
 import "./blocks/customblocks";
 import "./blocks/contract";
+import "./blocks/entrypoint";
 import "./generator/javsacript";
 import "./generator/python";
 
@@ -13,9 +21,7 @@ const App = () => {
   const simpleWorkspace = useRef();
 
   const generateCode = () => {
-    const code = BlocklyPy.workspaceToCode(
-      simpleWorkspace.current.workspace
-    );
+    const code = BlocklyPy.workspaceToCode(simpleWorkspace.current.workspace);
     console.log(code);
   };
 
@@ -269,69 +275,69 @@ const App = () => {
                 </Shadow>
               </Value>
             </Block>
-            <block type="text_prompt_ext">
+            <Block type="text_prompt_ext">
               <Value name="TEXT">
                 <Shadow type="text">
                   <Field name="TEXT">abc</Field>
                 </Shadow>
               </Value>
-            </block>
+            </Block>
           </Category>
           <Category name="List" colour="%{BKY_LISTS_HUE}">
-            <block type="lists_create_with">
-              <mutation items="0"></mutation>
-            </block>
-            <block type="lists_create_with"></block>
-            <block type="lists_repeat">
+            <Block type="lists_create_with">
+              <Mutation items="0"></Mutation>
+            </Block>
+            <Block type="lists_create_with"></Block>
+            <Block type="lists_repeat">
               <Value name="NUM">
                 <Shadow type="math_number">
                   <Field name="NUM">5</Field>
                 </Shadow>
               </Value>
-            </block>
-            <block type="lists_length"></block>
-            <block type="lists_isEmpty"></block>
-            <block type="lists_indexOf">
+            </Block>
+            <Block type="lists_length"></Block>
+            <Block type="lists_isEmpty"></Block>
+            <Block type="lists_indexOf">
               <Value name="VALUE">
-                <block type="variables_get">
+                <Block type="variables_get">
                   <Field name="VAR">ary</Field>
-                </block>
+                </Block>
               </Value>
-            </block>
-            <block type="lists_getIndex">
+            </Block>
+            <Block type="lists_getIndex">
               <Value name="VALUE">
-                <block type="variables_get">
+                <Block type="variables_get">
                   <Field name="VAR">ary</Field>
-                </block>
+                </Block>
               </Value>
-            </block>
-            <block type="lists_setIndex">
+            </Block>
+            <Block type="lists_setIndex">
               <Value name="LIST">
-                <block type="variables_get">
+                <Block type="variables_get">
                   <Field name="VAR">ary</Field>
-                </block>
+                </Block>
               </Value>
-            </block>
-            <block type="lists_getSublist">
+            </Block>
+            <Block type="lists_getSublist">
               <Value name="LIST">
-                <block type="variables_get">
+                <Block type="variables_get">
                   <Field name="VAR">ary</Field>
-                </block>
+                </Block>
               </Value>
-            </block>
-            <block type="lists_split">
+            </Block>
+            <Block type="lists_split">
               <Value name="DELIM">
                 <Shadow type="text">
                   <Field name="TEXT">,</Field>
                 </Shadow>
               </Value>
-            </block>
-            <block type="lists_sort"></block>
+            </Block>
+            <Block type="lists_sort"></Block>
           </Category>
           <Category name="Colour" colour="%{BKY_COLOUR_HUE}">
-            <block type="colour_picker"></block>
-            <block type="colour_random"></block>
-            <block type="colour_rgb">
+            <Block type="colour_picker"></Block>
+            <Block type="colour_random"></Block>
+            <Block type="colour_rgb">
               <Value name="RED">
                 <Shadow type="math_number">
                   <Field name="NUM">100</Field>
@@ -347,8 +353,8 @@ const App = () => {
                   <Field name="NUM">0</Field>
                 </Shadow>
               </Value>
-            </block>
-            <block type="colour_blend">
+            </Block>
+            <Block type="colour_blend">
               <Value name="COLOUR1">
                 <Shadow type="colour_picker">
                   <Field name="COLOUR">#ff0000</Field>
@@ -364,14 +370,23 @@ const App = () => {
                   <Field name="NUM">0.5</Field>
                 </Shadow>
               </Value>
-            </block>
+            </Block>
           </Category>
-          <sep></sep>
-          <Category name="Variables" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE" />
+          {/* <sep></sep> */}
+          <Category
+            name="Variables"
+            colour="%{BKY_VARIABLES_HUE}"
+            custom="VARIABLE"
+          />
           <Category name="Contract" colour="%{BKY_VARIABLES_HUE}">
             <Block type="contract" />
+            <Block type="entrypoint_defnoreturn" />
           </Category>
-          <Category name="Entrypoints" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE" />
+          <Category
+            name="Functions"
+            colour="%{BKY_PROCEDURES_HUE}"
+            custom="PROCEDURE"
+          />
         </BlocklyComponent>
       </header>
     </div>

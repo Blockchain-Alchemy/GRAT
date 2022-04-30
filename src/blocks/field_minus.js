@@ -49,7 +49,7 @@ function onClick_(minusField) {
   const newMutationDom = block.mutationToDom();
   const newMutation = newMutationDom && Blockly.Xml.domToText(newMutationDom);
 
-  if (oldMutation != newMutation) {
+  if (oldMutation !== newMutation) {
     Blockly.Events.fire(new Blockly.Events.BlockChange(
         block, 'mutation', null, oldMutation, newMutation));
   }

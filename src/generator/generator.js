@@ -34,3 +34,7 @@ Blockly.JavaScript['test_react_field'] = function (block) {
 Blockly.JavaScript['test_react_date_field'] = function (block) {
     return 'console.log(' + block.getField('DATE').getText() + ');\n';
 };
+
+Blockly.JavaScript['contract'] = function (block) {
+    return 'console.log("contract");\n';
+};

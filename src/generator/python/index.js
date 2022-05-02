@@ -15,7 +15,7 @@ Blockly.Python['test_react_date_field'] = function (block) {
 Blockly.Python['contract'] = function (block) {
   console.log('contact', block)
   Python.contracts = {}
-  let branch = Python.valueToCode(block, 'ADD0', Python.ORDER_NONE);
+  let branch = Python.valueToCode(block, 'ADD0', Python.ORDER_RELATIONAL);
   console.log('branch~~~~~~~~~~~~~~~~', branch)
   console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', Python.contracts)
   return 'console.log("python.contract");\n';
@@ -80,13 +80,14 @@ Blockly.Python['entrypoint_defnoreturn'] = function (block) {
   for (let i = 0; i < variables.length; i++) {
     args[i] = Python.nameDB_.getName(variables[i], NameType.VARIABLE);
   }
-  let code = 'def ' + funcName + '(' + args.join(', ') + '):\n' + globalString +
+  let entrypoint = '@entrypoint\n';
+  let code = entrypoint + 'def ' + funcName + '(' + args.join(', ') + '):\n' + globalString +
       xfix1 + loopTrap + branch + xfix2 + returnValue;
   code = Python.scrub_(block, code);
   // Add % so as not to collide with helper functions in definitions list.
   if (!Python.contracts) {
     Python.contracts = {}
   }
-  Python.contracts['FA20' + '%' + funcName] = code;
+  Python.contracts['FA20' + '%' + funcName] = code; //TODO
   return null;
 };

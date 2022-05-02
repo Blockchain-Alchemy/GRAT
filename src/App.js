@@ -13,6 +13,7 @@ import BlocklyPy from "blockly/python";
 import "./blocks/customblocks";
 import "./blocks/contract";
 import "./blocks/entrypoint";
+import "./blocks/procedures";
 import "./generator/javsacript";
 import "./generator/python";
 
@@ -382,6 +383,7 @@ const App = () => {
           <Category name="Contract" colour="%{BKY_VARIABLES_HUE}">
             <Block type="contract" />
             <Block type="entrypoint_defnoreturn" />
+            <Block type="functions_defnoreturn" />
           </Category>
           <Category
             name="Functions"

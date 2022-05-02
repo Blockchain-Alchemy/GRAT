@@ -7,7 +7,7 @@ import Blockly from "blockly/core";
  Blockly.defineBlocksWithJsonArray([
   {
     'type': 'sp_verify',
-    'message0': 'verify %1 %2 %3, throw message %4',
+    'message0': 'verify %1 %2 %3 with message %4',
     'args0': [
       {
         'type': 'input_value',
@@ -31,7 +31,7 @@ import Blockly from "blockly/core";
       },
       {
         'type': 'input_value',
-        'name': 'VALUE',
+        'name': 'MESSAGE',
         'check': ['String', 'Array'],
       },
     ],

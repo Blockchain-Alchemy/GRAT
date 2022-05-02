@@ -171,3 +171,16 @@ Blockly.Python['functions_defnoreturn'] = function (block) {
   Python.entrypoints['%' + funcName] = code;
   return null;
 };
+
+Blockly.Python['sp_verify'] = function (block) {
+  // Comparison operator.
+  const OPERATORS = {'EQ': '==', 'NEQ': '!=', 'LT': '<', 'LTE': '<=', 'GT': '>', 'GTE': '>='};
+  const operator = OPERATORS[block.getFieldValue('OP')];
+  const order = Python.ORDER_RELATIONAL;
+  const arg1 = Python.valueToCode(block, 'A', order) || '0';
+  const arg2 = Python.valueToCode(block, 'B', order) || '0';
+  const message = Python.valueToCode(block, 'MESSAGE', order);
+  const msg = message? `, ${message}` : '';
+  const code = `sp.verify(${arg1} ${operator} ${arg2}${msg})`;
+  return code;
+};

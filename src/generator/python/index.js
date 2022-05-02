@@ -14,11 +14,25 @@ Blockly.Python['test_react_date_field'] = function (block) {
 
 Blockly.Python['contract'] = function (block) {
   console.log('contact', block)
-  Python.contracts = {}
-  let branch = Python.valueToCode(block, 'ADD0', Python.ORDER_RELATIONAL);
-  console.log('branch~~~~~~~~~~~~~~~~', branch)
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', Python.contracts)
-  return 'console.log("python.contract");\n';
+  Python.entrypoints = {}
+
+  for (let i = 0; i < block.itemCount_; i++) {
+    Python.valueToCode(block, 'ADD' + i, Python.ORDER_NONE);
+  }
+
+  const contractName = Python.nameDB_.getName(block.getFieldValue('NAME'), NameType.PROCEDURE);
+
+  let code = 'import smartpy as sp\n';
+  code += '\n';
+  code += `class ${contractName}(sp.Contract):\n`;
+
+  for (let key of Object.keys(Python.entrypoints)) {
+    let entrypoint = Python.entrypoints[key];
+    code += entrypoint = Python.prefixLines(entrypoint, Python.INDENT);
+    code += '\n';
+  }
+
+  return code;
 };
 
 Blockly.Python['entrypoint_defnoreturn'] = function (block) {
@@ -44,9 +58,7 @@ Blockly.Python['entrypoint_defnoreturn'] = function (block) {
   const globalString = globals.length ?
       Python.INDENT + 'global ' + globals.join(', ') + '\n' :
       '';
-  const funcName =
-      Python.nameDB_.getName(block.getFieldValue('NAME'), NameType.PROCEDURE);
-  console.log('funcName~~~~~~~~~~~~', funcName)
+  const funcName = Python.nameDB_.getName(block.getFieldValue('NAME'), NameType.PROCEDURE);
   let xfix1 = '';
   if (Python.STATEMENT_PREFIX) {
     xfix1 += Python.injectId(Python.STATEMENT_PREFIX, block);
@@ -63,8 +75,7 @@ Blockly.Python['entrypoint_defnoreturn'] = function (block) {
         Python.injectId(Python.INFINITE_LOOP_TRAP, block), Python.INDENT);
   }
   let branch = Python.statementToCode(block, 'STACK');
-  let returnValue =
-      Python.valueToCode(block, 'RETURN', Python.ORDER_NONE) || '';
+  let returnValue = Python.valueToCode(block, 'RETURN', Python.ORDER_NONE) || '';
   let xfix2 = '';
   if (branch && returnValue) {
     // After executing the function body, revisit this block for the return.
@@ -80,14 +91,14 @@ Blockly.Python['entrypoint_defnoreturn'] = function (block) {
   for (let i = 0; i < variables.length; i++) {
     args[i] = Python.nameDB_.getName(variables[i], NameType.VARIABLE);
   }
-  let entrypoint = '@entrypoint\n';
+  let entrypoint = '@sp.entrypoint\n';
   let code = entrypoint + 'def ' + funcName + '(' + args.join(', ') + '):\n' + globalString +
       xfix1 + loopTrap + branch + xfix2 + returnValue;
   code = Python.scrub_(block, code);
   // Add % so as not to collide with helper functions in definitions list.
-  if (!Python.contracts) {
-    Python.contracts = {}
+  if (!Python.entrypoints) {
+    Python.entrypoints = {}
   }
-  Python.contracts['FA20' + '%' + funcName] = code; //TODO
+  Python.entrypoints['%' + funcName] = code;
   return null;
 };

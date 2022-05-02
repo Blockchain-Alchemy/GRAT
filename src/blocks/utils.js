@@ -7,6 +7,38 @@ import Blockly from "blockly/core";
  Blockly.defineBlocksWithJsonArray([
   {
     'type': 'sp_verify',
+    'message0': 'verify %1 %2 %3',
+    'args0': [
+      {
+        'type': 'input_value',
+        'name': 'A',
+      },
+      {
+        'type': 'field_dropdown',
+        'name': 'OP',
+        'options': [
+          ['=', 'EQ'],
+          ['\u2260', 'NEQ'],
+          ['\u200F<', 'LT'],
+          ['\u200F\u2264', 'LTE'],
+          ['\u200F>', 'GT'],
+          ['\u200F\u2265', 'GTE'],
+        ],
+      },
+      {
+        'type': 'input_value',
+        'name': 'B',
+      }
+    ],
+    'inputsInline': true,
+    'previousStatement': null,
+    'nextStatement': null,
+    'style': 'logic_blocks',
+    'helpUrl': '%{BKY_LOGIC_COMPARE_HELPURL}',
+    'extensions': ['sp_logic_compare', 'sp_logic_op_tooltip'],
+  },
+  {
+    'type': 'sp_verify_message',
     'message0': 'verify %1 %2 %3 with message %4',
     'args0': [
       {

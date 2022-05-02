@@ -385,8 +385,9 @@ const App = () => {
             <Block type="contract" />
             <Block type="entrypoint_defnoreturn" />
             <Block type="functions_defnoreturn" />
-            <Block type="sp_verify">
-              <Value name="VALUE">
+            <Block type="sp_verify" />
+            <Block type="sp_verify_message">
+              <Value name="MESSAGE">
                 <Shadow type="text">
                   <Field name="TEXT">abc</Field>
                 </Shadow>

@@ -8,7 +8,7 @@ delete Blockly.Blocks['contract'];
 Blockly.defineBlocksWithJsonArray([
   {
     type: "contract",
-    message0: "%{BKY_LISTS_CREATE_EMPTY_TITLE} %1",
+    message0: "Contract %1",
     args0: [
       {
         type: "input_dummy",
@@ -120,7 +120,8 @@ const contractMutator = {
       this.removeInput("EMPTY");
       this.topInput_ = this.appendValueInput("ADD" + this.itemCount_)
         .appendField(createPlusField(), "PLUS")
-        .appendField("Contract");
+        .appendField("Contract")
+        .appendField(new Blockly.FieldTextInput('unnamed'), 'NAME');
     } else {
       this.appendValueInput("ADD" + this.itemCount_);
     }
@@ -139,7 +140,8 @@ const contractMutator = {
     if (this.itemCount_ === 0) {
       this.topInput_ = this.appendDummyInput("EMPTY")
         .appendField(createPlusField(), "PLUS")
-        .appendField("Contract");
+        .appendField("Contract")
+        .appendField(new Blockly.FieldTextInput('unnamed'), 'NAME');
     }
   },
 

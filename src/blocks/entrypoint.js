@@ -385,17 +385,13 @@ const procedureDefMutator = {
    */
   addArg_: function(name = null, varId = null, argId = null) {
     if (!this.argData_.length) {
-      const withField = new Blockly.FieldLabel(
-          Blockly.Msg['PROCEDURES_BEFORE_PARAMS']);
-      this.getInput('TOP')
-          .appendField(withField, 'WITH');
+      const withField = new Blockly.FieldLabel(Blockly.Msg['PROCEDURES_BEFORE_PARAMS']);
+      this.getInput('TOP').appendField(withField, 'WITH');
     }
 
     const argNames = this.argData_.map((elem) => elem.model.name);
-    name = name || Blockly.Variables.generateUniqueNameFromOptions(
-        Blockly.Procedures.DEFAULT_ARG, argNames);
-    const variable = Blockly.Variables.getOrCreateVariablePackage(
-        this.workspace, varId, name, '');
+    name = name || Blockly.Variables.generateUniqueNameFromOptions(Blockly.Procedures.DEFAULT_ARG, argNames);
+    const variable = Blockly.Variables.getOrCreateVariablePackage(this.workspace, varId, name, '');
     argId = argId || Blockly.utils.idGenerator.genUid();
 
     this.addVarInput_(name, argId);

@@ -22,6 +22,7 @@ const App = () => {
 
   const generateCode = () => {
     const code = BlocklyPy.workspaceToCode(simpleWorkspace.current.workspace);
+    console.log('Result:');
     console.log(code);
   };
 

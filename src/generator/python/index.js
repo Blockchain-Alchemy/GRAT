@@ -14,9 +14,10 @@ Blockly.Python['test_react_date_field'] = function (block) {
 
 Blockly.Python['contract'] = function (block) {
   console.log('contact', block)
+  Python.contracts = {}
   let branch = Python.valueToCode(block, 'ADD0', Python.ORDER_NONE);
   console.log('branch~~~~~~~~~~~~~~~~', branch)
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', Python.contracts)
   return 'console.log("python.contract");\n';
 };
 
@@ -83,6 +84,9 @@ Blockly.Python['entrypoint_defnoreturn'] = function (block) {
       xfix1 + loopTrap + branch + xfix2 + returnValue;
   code = Python.scrub_(block, code);
   // Add % so as not to collide with helper functions in definitions list.
-  Python.definitions_['%' + funcName] = code;
+  if (!Python.contracts) {
+    Python.contracts = {}
+  }
+  Python.contracts['FA20' + '%' + funcName] = code;
   return null;
 };

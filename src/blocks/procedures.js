@@ -253,7 +253,7 @@ const procedureDefMutator = {
     const varIds = [];
     const argIds = [];
     for (const childNode of xmlElement.childNodes) {
-      if (childNode.nodeName.toLowerCase() == 'arg') {
+      if (childNode.nodeName.toLowerCase() === 'arg') {
         names.push(childNode.getAttribute('name'));
         varIds.push(childNode.getAttribute('varid') ||
             childNode.getAttribute('varId'));
@@ -330,7 +330,7 @@ const procedureDefMutator = {
    * @private
    */
   updateShape_: function(names, varIds, argIds) {
-    if (names.length != varIds.length) {
+    if (names.length !== varIds.length) {
       throw Error('names and varIds must have the same length.');
     }
     // Usually it's more efficient to modify the block, rather than tearing it
@@ -385,17 +385,13 @@ const procedureDefMutator = {
    */
   addArg_: function(name = null, varId = null, argId = null) {
     if (!this.argData_.length) {
-      const withField = new Blockly.FieldLabel(
-          Blockly.Msg['PROCEDURES_BEFORE_PARAMS']);
-      this.getInput('TOP')
-          .appendField(withField, 'WITH');
+      const withField = new Blockly.FieldLabel(Blockly.Msg['PROCEDURES_BEFORE_PARAMS']);
+      this.getInput('TOP').appendField(withField, 'WITH');
     }
 
     const argNames = this.argData_.map((elem) => elem.model.name);
-    name = name || Blockly.Variables.generateUniqueNameFromOptions(
-        Blockly.Procedures.DEFAULT_ARG, argNames);
-    const variable = Blockly.Variables.getOrCreateVariablePackage(
-        this.workspace, varId, name, '');
+    name = name || Blockly.Variables.generateUniqueNameFromOptions(Blockly.Procedures.DEFAULT_ARG, argNames);
+    const variable = Blockly.Variables.getOrCreateVariablePackage(this.workspace, varId, name, '');
     argId = argId || Blockly.utils.idGenerator.genUid();
 
     this.addVarInput_(name, argId);
@@ -418,10 +414,10 @@ const procedureDefMutator = {
    */
   removeArg_: function(argId) {
     if (this.removeInput(argId, true)) {
-      if (this.argData_.length == 1) { // Becoming argumentless.
+      if (this.argData_.length === 1) { // Becoming argumentless.
         this.getInput('TOP').removeField('WITH');
       }
-      this.argData_ = this.argData_.filter((element) => element.argId != argId);
+      this.argData_ = this.argData_.filter((element) => element.argId !== argId);
     }
   },
 
@@ -456,8 +452,7 @@ const procedureDefMutator = {
     const sourceBlock = this.getSourceBlock();
     const workspace = sourceBlock.workspace;
     const argData = sourceBlock.argData_;
-    const argDatum = sourceBlock.argData_.find(
-        (element) => element.argId == this.name);
+    const argDatum = sourceBlock.argData_.find((element) => element.argId === this.name);
     const currId = argDatum.model.getId();
 
     // Replace all whitespace with normal spaces, then trim.
@@ -476,8 +471,8 @@ const procedureDefMutator = {
      */
     const hasDifName = (argDatum) => {
       // The field name (aka id) is always equal to the arg id.
-      return argDatum.argId == this.name ||
-          caselessName != argDatum.model.name.toLowerCase();
+      return argDatum.argId === this.name ||
+          caselessName !== argDatum.model.name.toLowerCase();
     };
     /**
      * Returns true if the variable associated with this field is only used
@@ -487,9 +482,9 @@ const procedureDefMutator = {
      */
     const varOnlyUsedHere = () => {
       return workspace.getVariableUsesById(currId).every((block) => {
-        return block.id == sourceBlock.id ||
+        return block.id === sourceBlock.id ||
             (block.getProcedureCall &&
-                block.getProcedureCall() == sourceBlock.getProcedureDef()[0]);
+                block.getProcedureCall() === sourceBlock.getProcedureDef()[0]);
       });
     };
 
@@ -515,12 +510,12 @@ const procedureDefMutator = {
     if (!model) {
       model = workspace.createVariable(newName, '');
       this.varIdsToDelete_.push(model.getId());
-    } else if (model.name != newName) {
+    } else if (model.name !== newName) {
       // Blockly is case-insensitive so we have to update the var instead of
       // creating a new one.
       workspace.renameVariableById(model.getId(), newName);
     }
-    if (model.getId() != currId) {
+    if (model.getId() !== currId) {
       argDatum.model = model;
     }
     Blockly.Procedures.mutateCallers(sourceBlock);
@@ -535,11 +530,11 @@ const procedureDefMutator = {
   finishEditing_: function(_finalName) {
     const source = this.getSourceBlock();
     const argDatum = source.argData_.find(
-        (element) => element.argId == this.name);
+        (element) => element.argId === this.name);
 
     const currentVarId = argDatum.model.getId();
     this.varIdsToDelete_.forEach((id) => {
-      if (id != currentVarId) {
+      if (id !== currentVarId) {
         source.workspace.deleteVariableById(id);
       }
     });
@@ -621,7 +616,7 @@ const procedureVars = function() {
      */
     renameVarById: function(oldId, newId) {
       const argData = this.argData_.find(
-          (element) => element.model.getId() == oldId);
+          (element) => element.model.getId() === oldId);
       if (!argData) {
         return; // Not on this block.
       }
@@ -646,7 +641,7 @@ const procedureVars = function() {
     updateVarName: function(variable) {
       const id = variable.getId();
       const argData = this.argData_.find(
-          (element) => element.model.getId() == id);
+          (element) => element.model.getId() === id);
       if (!argData) {
         return; // Not on this block.
       }

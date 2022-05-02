@@ -452,8 +452,7 @@ const procedureDefMutator = {
     const sourceBlock = this.getSourceBlock();
     const workspace = sourceBlock.workspace;
     const argData = sourceBlock.argData_;
-    const argDatum = sourceBlock.argData_.find(
-        (element) => element.argId === this.name);
+    const argDatum = sourceBlock.argData_.find((element) => element.argId === this.name);
     const currId = argDatum.model.getId();
 
     // Replace all whitespace with normal spaces, then trim.

@@ -25,6 +25,11 @@ Blockly.Python['contract'] = function (block) {
   let code = 'import smartpy as sp\n';
   code += '\n';
   code += `class ${contractName}(sp.Contract):\n`;
+  
+  let construct = 'def __init__(self):\n';
+  construct += Python.prefixLines('pass\n', Python.INDENT)
+  construct = Python.prefixLines(construct, Python.INDENT)
+  code += construct;
 
   for (let key of Object.keys(Python.entrypoints)) {
     let entrypoint = Python.entrypoints[key];

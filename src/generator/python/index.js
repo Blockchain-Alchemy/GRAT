@@ -181,6 +181,6 @@ Blockly.Python['sp_verify'] = function (block) {
   const arg2 = Python.valueToCode(block, 'B', order) || '0';
   const message = Python.valueToCode(block, 'MESSAGE', order);
   const msg = message? `, ${message}` : '';
-  const code = `sp.verify(${arg1} ${operator} ${arg2}${msg})`;
+  const code = `sp.verify(${arg1} ${operator} ${arg2}${msg})\n`;
   return code;
 };

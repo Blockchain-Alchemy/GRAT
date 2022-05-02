@@ -92,7 +92,7 @@ Blockly.Python['entrypoint_defnoreturn'] = function (block) {
     const varg = Python.nameDB_.getName(variables[i], NameType.VARIABLE);
     args.push(varg);
   }
-  let entrypoint = '@sp.entrypoint\n';
+  let entrypoint = '@sp.entry_point\n';
   let code = entrypoint + 'def ' + funcName + '(' + args.join(', ') + '):\n' + globalString +
       xfix1 + loopTrap + branch + xfix2 + returnValue;
   code = Python.scrub_(block, code);

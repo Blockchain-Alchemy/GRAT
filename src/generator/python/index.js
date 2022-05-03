@@ -42,13 +42,12 @@ Blockly.Python['contract'] = function (block) {
 };
 
 Blockly.Python['entrypoint_defnoreturn'] = function (block) {
-   // Define a procedure with a return value.
+  // Define a procedure with a return value.
   // First, add a 'global' statement for every variable that is not shadowed by
   // a local parameter.
   const globals = [];
   /*const workspace = block.workspace;
   const usedVariables = Variables.allUsedVarModels(workspace) || [];
-  console.log('usedVariables', usedVariables)
   for (let i = 0, variable; (variable = usedVariables[i]); i++) {
     const varName = variable.name;
     if (block.getVars().indexOf(varName) === -1) {
@@ -191,4 +190,14 @@ Blockly.Python['sp_verify'] = function (block) {
   const msg = message? `, ${message}` : '';
   const code = `sp.verify(${arg1} ${operator} ${arg2}${msg})\n`;
   return code;
+};
+
+Blockly.Python['variables_set'] = function(block) {
+  console.log('~~~~~~~~~~~~~', block.getField('VAR'), block.getFieldValue('VAR'));
+  // Variable setter.
+  const argument0 =
+  Python.valueToCode(block, 'VALUE', Python.ORDER_NONE) || '0';
+  const varName =
+      Python.nameDB_.getName(block.getFieldValue('VAR'), NameType.VARIABLE);
+  return varName + ' = ' + argument0 + '\n';
 };

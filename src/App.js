@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import "./App.css";
+import Blockly from "blockly/core";
 import BlocklyComponent, {
   Block,
   Category,
@@ -7,6 +8,7 @@ import BlocklyComponent, {
   Field,
   Shadow,
   Mutation,
+  Button,
 } from "./Blockly";
 //import BlocklyJS from "blockly/javascript";
 import BlocklyPy from "blockly/python";
@@ -22,6 +24,15 @@ import "./generator/python";
 const App = () => {
   const simpleWorkspace = useRef();
 
+  useEffect(() => {
+    if (simpleWorkspace.current) {
+      const workspace = simpleWorkspace.current.workspace;
+      workspace.registerButtonCallback('CREATE_CONTRACT_VARIABLE', function (button) {
+        Blockly.Variables.createVariableButtonHandler(button.getTargetWorkspace());
+      })
+    }
+  }, [simpleWorkspace])
+  
   const generateCode = () => {
     const code = BlocklyPy.workspaceToCode(simpleWorkspace.current.workspace);
     console.log('Result:');
@@ -43,33 +54,6 @@ const App = () => {
             wheel: true,
           }}
         >
-          {/* <Block type="contract" />
-          <Block type="test_react_field" />
-          <Block type="test_react_date_field" />
-          <Block type="lists_create_with" />
-          <Block type="controls_ifelse" />
-          <Block type="procedures_defnoreturn" />
-          <Block type="logic_compare" />
-          <Block type="logic_operation" />
-          <Block type="controls_repeat_ext">
-            <Value name="TIMES">
-              <Shadow type="math_number">
-                <Field name="NUM">10</Field>
-              </Shadow>
-            </Value>
-          </Block>
-          <Block type="logic_operation" />
-          <Block type="logic_negate" />
-          <Block type="logic_boolean" />
-          <Block type="logic_null" />
-          <Block type="logic_ternary" />
-          <Block type="text_charAt">
-            <Value name="VALUE">
-              <Block type="variables_get">
-                <Field name="VAR">text</Field>
-              </Block>
-            </Value>
-          </Block> */}
           <Category name="Logic" colour="%{BKY_LOGIC_HUE}">
             <Block type="controls_if"></Block>
             <Block type="logic_compare"></Block>
@@ -380,8 +364,13 @@ const App = () => {
             name="Variables"
             colour="%{BKY_VARIABLES_HUE}"
             custom="VARIABLE"
-          />
+          >
+          </Category>
           <Category name="Contract" colour="%{BKY_VARIABLES_HUE}">
+            <Button
+              text="Create contract variables"
+              callbackKey="CREATE_CONTRACT_VARIABLE"
+            ></Button>
             <Block type="contract" />
             <Block type="entrypoint_defnoreturn" />
             <Block type="functions_defnoreturn" />

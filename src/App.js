@@ -28,7 +28,7 @@ const App = () => {
     if (simpleWorkspace.current) {
       const workspace = simpleWorkspace.current.workspace;
       workspace.registerButtonCallback('CREATE_CONTRACT_VARIABLE', function (button) {
-        Blockly.Variables.createVariableButtonHandler(button.getTargetWorkspace());
+        Blockly.Variables.createVariableButtonHandler(button.getTargetWorkspace(), undefined, 'contract');
       })
     }
   }, [simpleWorkspace])

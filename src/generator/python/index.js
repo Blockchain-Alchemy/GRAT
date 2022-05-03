@@ -192,12 +192,32 @@ Blockly.Python['sp_verify'] = function (block) {
   return code;
 };
 
+Python['variables_get'] = function(block) {
+  // Variable getter.
+  const varId = block.getFieldValue('VAR');
+  let varName = Python.nameDB_.getName(block.getFieldValue('VAR'), NameType.VARIABLE)
+  
+  const usedVariables = Variables.allUsedVarModels(block.workspace) || [];
+  const variable = usedVariables.find(it => it.id_ === varId);
+  if (variable && variable.type === 'contract') {
+    varName = `self.${varName}`;
+  }
+
+  const code = varName;
+  return [code, Python.ORDER_ATOMIC];
+};
+
 Blockly.Python['variables_set'] = function(block) {
-  console.log('~~~~~~~~~~~~~', block.getField('VAR'), block.getFieldValue('VAR'));
   // Variable setter.
-  const argument0 =
-  Python.valueToCode(block, 'VALUE', Python.ORDER_NONE) || '0';
-  const varName =
-      Python.nameDB_.getName(block.getFieldValue('VAR'), NameType.VARIABLE);
-  return varName + ' = ' + argument0 + '\n';
+  const varId = block.getFieldValue('VAR');
+  let varName = Python.nameDB_.getName(block.getFieldValue('VAR'), NameType.VARIABLE)
+  
+  const usedVariables = Variables.allUsedVarModels(block.workspace) || [];
+  const variable = usedVariables.find(it => it.id_ === varId);
+  if (variable && variable.type === 'contract') {
+    varName = `self.${varName}`;
+  }
+
+  const argument = Python.valueToCode(block, 'VALUE', Python.ORDER_NONE) || '0';
+  return varName + ' = ' + argument + '\n';
 };

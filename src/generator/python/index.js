@@ -30,6 +30,7 @@ Blockly.Python['contract'] = function (block) {
   construct += Python.prefixLines('pass\n', Python.INDENT)
   construct = Python.prefixLines(construct, Python.INDENT)
   code += construct;
+  code += '\n';
 
   for (let key of Object.keys(Python.entrypoints)) {
     let entrypoint = Python.entrypoints[key];
@@ -45,8 +46,9 @@ Blockly.Python['entrypoint_defnoreturn'] = function (block) {
   // First, add a 'global' statement for every variable that is not shadowed by
   // a local parameter.
   const globals = [];
-  const workspace = block.workspace;
+  /*const workspace = block.workspace;
   const usedVariables = Variables.allUsedVarModels(workspace) || [];
+  console.log('usedVariables', usedVariables)
   for (let i = 0, variable; (variable = usedVariables[i]); i++) {
     const varName = variable.name;
     if (block.getVars().indexOf(varName) === -1) {
@@ -58,11 +60,12 @@ Blockly.Python['entrypoint_defnoreturn'] = function (block) {
   for (let i = 0; i < devVarList.length; i++) {
     globals.push(
         Python.nameDB_.getName(devVarList[i], NameType.DEVELOPER_VARIABLE));
-  }
+  }*/
 
   const globalString = globals.length ?
       Python.INDENT + 'global ' + globals.join(', ') + '\n' :
       '';
+
   const funcName = Python.nameDB_.getName(block.getFieldValue('NAME'), NameType.PROCEDURE);
   let xfix1 = '';
   if (Python.STATEMENT_PREFIX) {

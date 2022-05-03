@@ -27,7 +27,19 @@ Blockly.Python['contract'] = function (block) {
   code += `class ${contractName}(sp.Contract):\n`;
   
   let construct = 'def __init__(self):\n';
-  construct += Python.prefixLines('pass\n', Python.INDENT)
+  let initCode = 'self.init()';
+  let usedVariables = Variables.allUsedVarModels(block.workspace) || [];
+  usedVariables = usedVariables.filter(it => it.type === 'contract');
+  console.log('usedVariables', usedVariables)
+  if (usedVariables.length > 0) {
+    initCode = usedVariables
+      .map(it => it.id_)
+      .map(id => Python.nameDB_.getName(id, NameType.VARIABLE))
+      .map(varName => `${varName} = None`)
+      .join(', ');
+    initCode = `self.init(${initCode})`;
+  }
+  construct += Python.prefixLines(`${initCode}\n`, Python.INDENT)
   construct = Python.prefixLines(construct, Python.INDENT)
   code += construct;
   code += '\n';
@@ -200,7 +212,7 @@ Python['variables_get'] = function(block) {
   const usedVariables = Variables.allUsedVarModels(block.workspace) || [];
   const variable = usedVariables.find(it => it.id_ === varId);
   if (variable && variable.type === 'contract') {
-    varName = `self.${varName}`;
+    varName = `self.data.${varName}`;
   }
 
   const code = varName;
@@ -215,7 +227,7 @@ Blockly.Python['variables_set'] = function(block) {
   const usedVariables = Variables.allUsedVarModels(block.workspace) || [];
   const variable = usedVariables.find(it => it.id_ === varId);
   if (variable && variable.type === 'contract') {
-    varName = `self.${varName}`;
+    varName = `self.data.${varName}`;
   }
 
   const argument = Python.valueToCode(block, 'VALUE', Python.ORDER_NONE) || '0';

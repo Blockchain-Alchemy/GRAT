@@ -382,6 +382,7 @@ const App = () => {
                 </Shadow>
               </Value>
             </Block>
+            <Block type="sp_now" />
           </Category>
           <Category
             name="Functions"

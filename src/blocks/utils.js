@@ -73,7 +73,16 @@ import Blockly from "blockly/core";
     'style': 'logic_blocks',
     'helpUrl': '%{BKY_LOGIC_COMPARE_HELPURL}',
     'extensions': ['sp_logic_compare', 'sp_logic_op_tooltip'],
-  }
+  },
+  // Block for null data type.
+  {
+    'type': 'sp_now',
+    'message0': 'now',
+    'output': null,
+    'style': 'logic_blocks',
+    'tooltip': '%{BKY_LOGIC_NULL_TOOLTIP}',
+    'helpUrl': '%{BKY_LOGIC_NULL_HELPURL}',
+  },
 ]);
 
 /**

@@ -233,3 +233,9 @@ Blockly.Python['variables_set'] = function(block) {
   const argument = Python.valueToCode(block, 'VALUE', Python.ORDER_NONE) || '0';
   return varName + ' = ' + argument + '\n';
 };
+
+Blockly.Python['sp_now'] = function(block) {
+  console.log('sp_now', block)
+  // sp.now data type.
+  return ['sp.now', Python.ORDER_ATOMIC];
+}

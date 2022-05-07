@@ -386,7 +386,8 @@ const App = () => {
           </Category>
           <Category name="Timestamps" colour="%{BKY_VARIABLES_HUE}">
             <Block type="sp_now" />
-            <Block type="sp_timestamp">
+            <Block type="sp_timestamp_from_utc_now" />
+            <Block type="sp_timestamp_of">
               <Value name="SECONDS">
                 <Shadow type="math_number">
                   <Field name="NUM">5</Field>
@@ -394,6 +395,27 @@ const App = () => {
               </Value>
             </Block>
             <Block type="sp_timestamp_add_seconds">
+              <Value name="VALUE">
+                <Shadow type="math_number">
+                  <Field name="NUM">3</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="sp_timestamp_add_minutes">
+              <Value name="VALUE">
+                <Shadow type="math_number">
+                  <Field name="NUM">2</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="sp_timestamp_add_hours">
+              <Value name="VALUE">
+                <Shadow type="math_number">
+                  <Field name="NUM">1</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="sp_timestamp_add_days">
               <Value name="VALUE">
                 <Shadow type="math_number">
                   <Field name="NUM">1</Field>

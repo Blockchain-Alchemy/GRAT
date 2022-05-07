@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import 'blockly/python';
+import './timestamps';
 const Python = Blockly.Python;
 const Variables = Blockly.Variables;
 const {NameType} = Blockly.Names;

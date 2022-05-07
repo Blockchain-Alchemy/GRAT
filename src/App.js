@@ -384,7 +384,13 @@ const App = () => {
               </Value>
             </Block>
             <Block type="sp_now" />
-            <Block type="sp_timestamp" />
+            <Block type="sp_timestamp">
+              <Value name="SECONDS">
+                <Shadow type="math_number">
+                  <Field name="NUM">5</Field>
+                </Shadow>
+              </Value>
+            </Block>
           </Category>
           <Category
             name="Functions"

@@ -383,11 +383,20 @@ const App = () => {
                 </Shadow>
               </Value>
             </Block>
+          </Category>
+          <Category name="Timestamps" colour="%{BKY_VARIABLES_HUE}">
             <Block type="sp_now" />
             <Block type="sp_timestamp">
               <Value name="SECONDS">
                 <Shadow type="math_number">
                   <Field name="NUM">5</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="sp_timestamp_add_seconds">
+              <Value name="VALUE">
+                <Shadow type="math_number">
+                  <Field name="NUM">1</Field>
                 </Shadow>
               </Value>
             </Block>

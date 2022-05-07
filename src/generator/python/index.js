@@ -235,7 +235,12 @@ Blockly.Python['variables_set'] = function(block) {
 };
 
 Blockly.Python['sp_now'] = function(block) {
-  console.log('sp_now', block)
   // sp.now data type.
   return ['sp.now', Python.ORDER_ATOMIC];
+}
+
+Blockly.Python['sp_timestamp'] = function(block) {
+  console.log('sp_timestamp', block)
+  const seconds = Python.valueToCode(block, 'SECONDS', Python.ORDER_NONE) || '0';
+  return [`sp.timestamp(${seconds})`, Python.ORDER_ATOMIC];
 }

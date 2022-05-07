@@ -16,6 +16,7 @@ import "./blocks/customblocks";
 import "./blocks/contract";
 import "./blocks/entrypoint";
 import "./blocks/procedures";
+import "./blocks/timestamps";
 import "./blocks/utils";
 import "./generator/javsacript";
 import "./generator/python";
@@ -383,6 +384,7 @@ const App = () => {
               </Value>
             </Block>
             <Block type="sp_now" />
+            <Block type="sp_timestamp" />
           </Category>
           <Category
             name="Functions"

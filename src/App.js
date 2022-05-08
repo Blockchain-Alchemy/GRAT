@@ -16,6 +16,7 @@ import "./blocks/customblocks";
 import "./blocks/contract";
 import "./blocks/entrypoint";
 import "./blocks/procedures";
+import "./blocks/mutez";
 import "./blocks/timestamps";
 import "./blocks/utils";
 import "./generator/javsacript";
@@ -380,6 +381,22 @@ const App = () => {
               <Value name="MESSAGE">
                 <Shadow type="text">
                   <Field name="TEXT">abc</Field>
+                </Shadow>
+              </Value>
+            </Block>
+          </Category>
+          <Category name="Mutez" colour="%{BKY_VARIABLES_HUE}">
+            <Block type="sp_mutez">
+              <Value name="VALUE">
+                <Shadow type="math_number">
+                  <Field name="NUM">10</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="sp_tez">
+              <Value name="VALUE">
+                <Shadow type="math_number">
+                  <Field name="NUM">10</Field>
                 </Shadow>
               </Value>
             </Block>

@@ -443,6 +443,10 @@ const App = () => {
               </Value>
             </Block>
           </Category>
+          <Category name="Smartpy List" colour="%{BKY_VARIABLES_HUE}">
+            {/* <Block type="sp_length_of">
+            </Block> */}
+          </Category>
           <Category
             name="Functions"
             colour="%{BKY_PROCEDURES_HUE}"

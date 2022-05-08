@@ -400,6 +400,9 @@ const App = () => {
                 </Shadow>
               </Value>
             </Block>
+            <Block type="sp_amount" />
+            <Block type="sp_balance" />
+            <Block type="sp_split_tokens" />
           </Category>
           <Category name="Timestamps" colour="%{BKY_VARIABLES_HUE}">
             <Block type="sp_now" />

@@ -52,6 +52,9 @@ Blockly.Python['contract'] = function (block) {
     code += '\n';
   }
 
+  code += `sp.add_compilation_target("${contractName}", ${contractName}())`;
+  code += '\n';
+
   return code;
 };
 

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, Fragment } from "react";
+import React, { useRef, useEffect } from "react";
 import "./App.css";
 import * as api from "./service";
 import Blockly from "blockly/core";
@@ -47,6 +47,7 @@ const App = () => {
   };
 
   const compileCode = () => {
+    console.log('compile...');
     const code = BlocklyPy.workspaceToCode(simpleWorkspace.current.workspace);
     const base64 = Buffer.from(code).toString('base64');
     api.compile('untitled', base64);

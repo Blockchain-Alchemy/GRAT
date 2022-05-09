@@ -1,7 +1,6 @@
 import * as Blockly from 'blockly/core';
 import 'blockly/python';
 const Python = Blockly.Python;
-const {NameType} = Blockly.Names;
 
 Blockly.Python['sp_mutez'] = function(block) {
   const value = Python.valueToCode(block, 'VALUE', Python.ORDER_NONE) || '0';

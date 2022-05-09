@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, Fragment } from "react";
 import "./App.css";
 import * as api from "./service";
 import Blockly from "blockly/core";
@@ -55,8 +55,14 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={generateCode}>Convert</button>
-        <button onClick={compileCode}>Compile</button>
+        <div className="w-full bg-white text-xl p-5 text-blue-600 ">
+          <div className="logo"></div>
+          <div className="float-right">
+            <button className="mx-1 px-4 py-2 border-2 border-blue-400 rounded-md font-semibold" onClick={generateCode}>Convert</button>
+            <button className="mx-1 px-4 py-2 border-2 border-blue-400 rounded-md font-semibold" onClick={generateCode}>Save</button>
+            <button className="ml-1 px-4 py-2 border-2 border-blue-400 rounded-md font-semibold" onClick={compileCode}>Compile</button>
+          </div>
+        </div>
         <BlocklyComponent
           ref={simpleWorkspace}
           readOnly={false}

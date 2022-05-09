@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@blockly/block-plus-minus": "^3.0.13",
+    "@craco/craco": "^6.4.3",
     "axios": "^0.27.2",
     "blockly": "8.0.0",
     "js-cookies": "^1.0.4",
@@ -17,9 +18,9 @@
     "update": "npm update",
     "postinstall": "cp -r node_modules/blockly/media public/media",
     "predeploy": "npm run build",
-    "start": "SET port=3300 && react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "SET port=3300 && craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -45,5 +46,10 @@
       "build/index.html",
       "build/**/*"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.8",
+    "postcss": "^7.0.39",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   }
 }

@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import "./App.css";
+import * as api from "./service";
 import Blockly from "blockly/core";
 import BlocklyComponent, {
   Block,
@@ -34,6 +35,10 @@ const App = () => {
       })
     }
   }, [simpleWorkspace])
+
+  /*useEffect(() => {
+    api.compile().then(result => console.log(result));
+  }, [])*/
   
   const generateCode = () => {
     const code = BlocklyPy.workspaceToCode(simpleWorkspace.current.workspace);
@@ -41,10 +46,17 @@ const App = () => {
     console.log(code);
   };
 
+  const compileCode = () => {
+    const code = BlocklyPy.workspaceToCode(simpleWorkspace.current.workspace);
+    const base64 = Buffer.from(code).toString('base64');
+    api.compile('untitled', base64);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <button onClick={generateCode}>Convert</button>
+        <button onClick={compileCode}>Compile</button>
         <BlocklyComponent
           ref={simpleWorkspace}
           readOnly={false}

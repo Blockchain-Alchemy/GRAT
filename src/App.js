@@ -404,6 +404,7 @@ const App = () => {
               </Value>
             </Block>
             <Block type="sp_send" />
+            <Block type="sp_transfer" />
           </Category>
           <Category name="Address" colour="%{BKY_VARIABLES_HUE}">
             <Block type="sp_address">

@@ -100,6 +100,27 @@ Blockly.defineBlocksWithJsonArray([
     'helpUrl': '%{BKY_LOGIC_COMPARE_HELPURL}',
     'extensions': ['sp_logic_compare', 'sp_logic_op_tooltip'],
   },
+  // Block for sp.transfer
+  {
+    'type': 'sp_transfer',
+    'message0': 'transfer %1 to %2',
+    'args0': [
+      {
+        'type': 'input_value',
+        'name': 'A',
+      },
+      {
+        'type': 'input_value',
+        'name': 'B',
+      }
+    ],
+    'inputsInline': true,
+    'previousStatement': null,
+    'nextStatement': null,
+    'style': 'logic_blocks',
+    'helpUrl': '%{BKY_LOGIC_COMPARE_HELPURL}',
+    'extensions': ['sp_logic_compare', 'sp_logic_op_tooltip'],
+  },
 ]);
 /* eslint-enable quotes */
 

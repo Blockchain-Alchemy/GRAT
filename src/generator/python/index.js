@@ -16,6 +16,7 @@ Blockly.Python['test_react_date_field'] = function (block) {
 
 Blockly.Python['contract'] = function (block) {
   console.log('contact', block)
+  Python.construct = null;
   Python.entrypoints = {}
 
   for (let i = 0; i < block.itemCount_; i++) {
@@ -28,11 +29,10 @@ Blockly.Python['contract'] = function (block) {
   code += '\n';
   code += `class ${contractName}(sp.Contract):\n`;
   
-  let construct = 'def __init__(self):\n';
+  /*let construct = 'def __init__(self):\n';
   let initCode = 'self.init()';
   let usedVariables = Variables.allUsedVarModels(block.workspace) || [];
   usedVariables = usedVariables.filter(it => it.type === 'contract');
-  console.log('usedVariables', usedVariables)
   if (usedVariables.length > 0) {
     initCode = usedVariables
       .map(it => it.id_)
@@ -44,26 +44,71 @@ Blockly.Python['contract'] = function (block) {
   construct += Python.prefixLines(`${initCode}\n`, Python.INDENT)
   construct = Python.prefixLines(construct, Python.INDENT)
   code += construct;
-  code += '\n';
-
-  for (let key of Object.keys(Python.entrypoints)) {
-    let entrypoint = Python.entrypoints[key];
-    code += entrypoint = Python.prefixLines(entrypoint, Python.INDENT);
+  code += '\n';*/
+  const construct = Python.construct;
+  console.log('construct', construct)
+  if (construct) {
+    code += Python.prefixLines(construct, Python.INDENT);
     code += '\n';
   }
 
+  for (let key of Object.keys(Python.entrypoints)) {
+    let entrypoint = Python.entrypoints[key];
+    code += Python.prefixLines(entrypoint, Python.INDENT);
+    code += '\n';
+  }
+
+  code += '\n';
   code += `sp.add_compilation_target("${contractName}", ${contractName}())`;
   code += '\n';
 
   return code;
 };
 
+Blockly.Python['construct_defnoreturn'] = function (block) {
+  console.log('construct_defnoreturn', block)
+  let xfix1 = '';
+  if (Python.STATEMENT_PREFIX) {
+    xfix1 += Python.injectId(Python.STATEMENT_PREFIX, block);
+  }
+  if (Python.STATEMENT_SUFFIX) {
+    xfix1 += Python.injectId(Python.STATEMENT_SUFFIX, block);
+  }
+  if (xfix1) {
+    xfix1 = Python.prefixLines(xfix1, Python.INDENT);
+  }
+
+  let loopTrap = '';
+  if (Python.INFINITE_LOOP_TRAP) {
+    loopTrap = Python.prefixLines(
+        Python.injectId(Python.INFINITE_LOOP_TRAP, block), Python.INDENT);
+  }
+
+  let branch = Python.statementToCode(block, 'STACK');
+  if (!branch) {
+    branch = Python.PASS;
+  }
+
+  const args = ['self'];
+  const variables = block.getVars();
+  for (let i = 0; i < variables.length; i++) {
+    const varg = Python.nameDB_.getName(variables[i], NameType.VARIABLE);
+    args.push(varg);
+  }
+
+  let code = 'def __init__(' + args.join(', ') + '):\n' + xfix1 + loopTrap + branch;
+  code = Python.scrub_(block, code);
+  Python.construct = code;
+
+  return null;
+};
+
 Blockly.Python['entrypoint_defnoreturn'] = function (block) {
   // Define a procedure with a return value.
   // First, add a 'global' statement for every variable that is not shadowed by
   // a local parameter.
-  const globals = [];
-  /*const workspace = block.workspace;
+  /*const globals = [];
+  const workspace = block.workspace;
   const usedVariables = Variables.allUsedVarModels(workspace) || [];
   for (let i = 0, variable; (variable = usedVariables[i]); i++) {
     const varName = variable.name;
@@ -76,11 +121,12 @@ Blockly.Python['entrypoint_defnoreturn'] = function (block) {
   for (let i = 0; i < devVarList.length; i++) {
     globals.push(
         Python.nameDB_.getName(devVarList[i], NameType.DEVELOPER_VARIABLE));
-  }*/
+  }
 
   const globalString = globals.length ?
       Python.INDENT + 'global ' + globals.join(', ') + '\n' :
-      '';
+      '';*/
+  const globalString = '';
 
   const funcName = Python.nameDB_.getName(block.getFieldValue('NAME'), NameType.PROCEDURE);
   let xfix1 = '';

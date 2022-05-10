@@ -20,6 +20,31 @@ Blockly.defineBlocksWithJsonArray([
     tooltip: "Add an entry point.",
     mutator: "contract_mutator",
   },
+  // Block for sp.address
+  {
+    'type': 'sp_address',
+    'message0': 'address of %1',
+    'args0': [
+      {
+        'type': 'input_value',
+        'name': 'VALUE',
+        'check': ['String'],
+      },
+    ],
+    'output': null,
+    'style': 'logic_blocks',
+    'tooltip': '%{BKY_LOGIC_NULL_TOOLTIP}',
+    'helpUrl': '%{BKY_LOGIC_NULL_HELPURL}',
+  },
+  // Block for sp.self
+  {
+    'type': 'sp_self',
+    'message0': 'sp.self',
+    'output': null,
+    'style': 'logic_blocks',
+    'tooltip': '%{BKY_LOGIC_NULL_TOOLTIP}',
+    'helpUrl': '%{BKY_LOGIC_NULL_HELPURL}',
+  },
 ]);
 /* eslint-enable quotes */
 

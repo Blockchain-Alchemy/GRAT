@@ -239,13 +239,11 @@ Blockly.Python['variables_set'] = function(block) {
   return varName + ' = ' + argument + '\n';
 };
 
-Blockly.Python['sp_now'] = function(block) {
-  // sp.now data type.
-  return ['sp.now', Python.ORDER_ATOMIC];
+Blockly.Python['sp_self'] = function(block) {
+  return ['sp.self', Python.ORDER_ATOMIC];
 }
 
-Blockly.Python['sp_timestamp'] = function(block) {
-  console.log('sp_timestamp', block)
-  const seconds = Python.valueToCode(block, 'SECONDS', Python.ORDER_NONE) || '0';
-  return [`sp.timestamp(${seconds})`, Python.ORDER_ATOMIC];
+Blockly.Python['sp_address'] = function(block) {
+  const address = Python.valueToCode(block, 'VALUE', Python.ORDER_RELATIONAL) || '';
+  return [`sp.address(${address})`, Python.ORDER_ATOMIC];
 }

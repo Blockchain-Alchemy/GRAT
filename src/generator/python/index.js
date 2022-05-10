@@ -251,3 +251,7 @@ Blockly.Python['sp_self'] = function(block) {
 Blockly.Python['sp_sender'] = function(block) {
   return ['sp.sender', Python.ORDER_ATOMIC];
 }
+
+Blockly.Python['sp_source'] = function(block) {
+  return ['sp.source', Python.ORDER_ATOMIC];
+}

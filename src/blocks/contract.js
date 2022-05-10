@@ -54,6 +54,15 @@ Blockly.defineBlocksWithJsonArray([
     'tooltip': '%{BKY_LOGIC_NULL_TOOLTIP}',
     'helpUrl': '%{BKY_LOGIC_NULL_HELPURL}',
   },
+  // Block for sp.source
+  {
+    'type': 'sp_source',
+    'message0': 'source address',
+    'output': null,
+    'style': 'logic_blocks',
+    'tooltip': '%{BKY_LOGIC_NULL_TOOLTIP}',
+    'helpUrl': '%{BKY_LOGIC_NULL_HELPURL}',
+  },
 ]);
 /* eslint-enable quotes */
 

@@ -404,6 +404,7 @@ const App = () => {
             </Block>
             <Block type="sp_self" />
             <Block type="sp_sender" />
+            <Block type="sp_source" />
             <Block type="sp_verify" />
             <Block type="sp_verify_message">
               <Value name="MESSAGE">

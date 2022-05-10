@@ -126,9 +126,9 @@ Blockly.Python['entrypoint_defnoreturn'] = function (block) {
   const globalString = globals.length ?
       Python.INDENT + 'global ' + globals.join(', ') + '\n' :
       '';*/
-  const globalString = '';
 
   const funcName = Python.nameDB_.getName(block.getFieldValue('NAME'), NameType.PROCEDURE);
+  
   let xfix1 = '';
   if (Python.STATEMENT_PREFIX) {
     xfix1 += Python.injectId(Python.STATEMENT_PREFIX, block);
@@ -139,11 +139,13 @@ Blockly.Python['entrypoint_defnoreturn'] = function (block) {
   if (xfix1) {
     xfix1 = Python.prefixLines(xfix1, Python.INDENT);
   }
+
   let loopTrap = '';
   if (Python.INFINITE_LOOP_TRAP) {
     loopTrap = Python.prefixLines(
         Python.injectId(Python.INFINITE_LOOP_TRAP, block), Python.INDENT);
   }
+
   let branch = Python.statementToCode(block, 'STACK');
   let returnValue = Python.valueToCode(block, 'RETURN', Python.ORDER_NONE) || '';
   let xfix2 = '';
@@ -156,14 +158,16 @@ Blockly.Python['entrypoint_defnoreturn'] = function (block) {
   } else if (!branch) {
     branch = Python.PASS;
   }
+
   const args = ['self'];
   const variables = block.getVars();
   for (let i = 0; i < variables.length; i++) {
     const varg = Python.nameDB_.getName(variables[i], NameType.VARIABLE);
     args.push(varg);
   }
+
   let entrypoint = '@sp.entry_point\n';
-  let code = entrypoint + 'def ' + funcName + '(' + args.join(', ') + '):\n' + globalString +
+  let code = entrypoint + 'def ' + funcName + '(' + args.join(', ') + '):\n' +
       xfix1 + loopTrap + branch + xfix2 + returnValue;
   code = Python.scrub_(block, code);
   // Add % so as not to collide with helper functions in definitions list.
@@ -178,7 +182,7 @@ Blockly.Python['functions_defnoreturn'] = function (block) {
    // Define a procedure with a return value.
   // First, add a 'global' statement for every variable that is not shadowed by
   // a local parameter.
-  const globals = [];
+  /*const globals = [];
   const workspace = block.workspace;
   const usedVariables = Variables.allUsedVarModels(workspace) || [];
   for (let i = 0, variable; (variable = usedVariables[i]); i++) {
@@ -196,7 +200,8 @@ Blockly.Python['functions_defnoreturn'] = function (block) {
 
   const globalString = globals.length ?
       Python.INDENT + 'global ' + globals.join(', ') + '\n' :
-      '';
+      '';*/
+
   const funcName = Python.nameDB_.getName(block.getFieldValue('NAME'), NameType.PROCEDURE);
   let xfix1 = '';
   if (Python.STATEMENT_PREFIX) {
@@ -213,6 +218,7 @@ Blockly.Python['functions_defnoreturn'] = function (block) {
     loopTrap = Python.prefixLines(
         Python.injectId(Python.INFINITE_LOOP_TRAP, block), Python.INDENT);
   }
+  
   let branch = Python.statementToCode(block, 'STACK');
   let returnValue = Python.valueToCode(block, 'RETURN', Python.ORDER_NONE) || '';
   let xfix2 = '';
@@ -231,9 +237,11 @@ Blockly.Python['functions_defnoreturn'] = function (block) {
     const varg = Python.nameDB_.getName(variables[i], NameType.VARIABLE);
     args.push(varg);
   }
-  let code = 'def ' + funcName + '(' + args.join(', ') + '):\n' + globalString +
+
+  let code = 'def ' + funcName + '(' + args.join(', ') + '):\n' +
       xfix1 + loopTrap + branch + xfix2 + returnValue;
   code = Python.scrub_(block, code);
+  
   // Add % so as not to collide with helper functions in definitions list.
   if (!Python.entrypoints) {
     Python.entrypoints = {}

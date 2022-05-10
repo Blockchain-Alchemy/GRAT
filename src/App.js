@@ -9,9 +9,7 @@ import BlocklyComponent, {
   Field,
   Shadow,
   Mutation,
-  Button,
 } from "./Blockly";
-//import BlocklyJS from "blockly/javascript";
 import BlocklyPy from "blockly/python";
 import "./blocks/customblocks";
 import "./blocks/contract";
@@ -390,10 +388,10 @@ const App = () => {
           >
           </Category>
           <Category name="Contract" colour="%{BKY_VARIABLES_HUE}">
-            <Button
+            {/* <Button
               text="Create contract variables"
               callbackKey="CREATE_CONTRACT_VARIABLE"
-            ></Button>
+            ></Button> */}
             <Block type="contract" />
             <Block type="construct_defnoreturn" />
             <Block type="entrypoint_defnoreturn" />

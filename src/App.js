@@ -395,6 +395,17 @@ const App = () => {
             <Block type="contract" />
             <Block type="entrypoint_defnoreturn" />
             <Block type="functions_defnoreturn" />
+            <Block type="sp_verify" />
+            <Block type="sp_verify_message">
+              <Value name="MESSAGE">
+                <Shadow type="text">
+                  <Field name="TEXT">abc</Field>
+                </Shadow>
+              </Value>
+            </Block>
+            <Block type="sp_send" />
+          </Category>
+          <Category name="Address" colour="%{BKY_VARIABLES_HUE}">
             <Block type="sp_address">
               <Value name="VALUE">
                 <Shadow type="text">
@@ -405,14 +416,7 @@ const App = () => {
             <Block type="sp_self" />
             <Block type="sp_sender" />
             <Block type="sp_source" />
-            <Block type="sp_verify" />
-            <Block type="sp_verify_message">
-              <Value name="MESSAGE">
-                <Shadow type="text">
-                  <Field name="TEXT">abc</Field>
-                </Shadow>
-              </Value>
-            </Block>
+            <Block type="sp_to_address" />
           </Category>
           <Category name="Mutez" colour="%{BKY_VARIABLES_HUE}">
             <Block type="sp_mutez">

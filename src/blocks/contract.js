@@ -63,6 +63,43 @@ Blockly.defineBlocksWithJsonArray([
     'tooltip': '%{BKY_LOGIC_NULL_TOOLTIP}',
     'helpUrl': '%{BKY_LOGIC_NULL_HELPURL}',
   },
+  // Block for sp.to_address
+  {
+    'type': 'sp_to_address',
+    'message0': 'to address of %1',
+    'args0': [
+      {
+        'type': 'input_value',
+        'name': 'VALUE',
+        'check': ['String'],
+      },
+    ],
+    'output': null,
+    'style': 'logic_blocks',
+    'tooltip': '%{BKY_LOGIC_NULL_TOOLTIP}',
+    'helpUrl': '%{BKY_LOGIC_NULL_HELPURL}',
+  },
+  // Block for sp.send
+  {
+    'type': 'sp_send',
+    'message0': 'send %1 to %2',
+    'args0': [
+      {
+        'type': 'input_value',
+        'name': 'A',
+      },
+      {
+        'type': 'input_value',
+        'name': 'B',
+      }
+    ],
+    'inputsInline': true,
+    'previousStatement': null,
+    'nextStatement': null,
+    'style': 'logic_blocks',
+    'helpUrl': '%{BKY_LOGIC_COMPARE_HELPURL}',
+    'extensions': ['sp_logic_compare', 'sp_logic_op_tooltip'],
+  },
 ]);
 /* eslint-enable quotes */
 

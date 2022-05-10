@@ -15,9 +15,11 @@ import BlocklyComponent, {
 import BlocklyPy from "blockly/python";
 import "./blocks/customblocks";
 import "./blocks/contract";
+import "./blocks/construct";
 import "./blocks/entrypoint";
 import "./blocks/procedures";
 import "./blocks/mutez";
+import "./blocks/map";
 import "./blocks/timestamps";
 import "./blocks/utils";
 import "./generator/javsacript";
@@ -393,6 +395,7 @@ const App = () => {
               callbackKey="CREATE_CONTRACT_VARIABLE"
             ></Button>
             <Block type="contract" />
+            <Block type="construct_defnoreturn" />
             <Block type="entrypoint_defnoreturn" />
             <Block type="functions_defnoreturn" />
             <Block type="sp_verify" />
@@ -418,6 +421,10 @@ const App = () => {
             <Block type="sp_sender" />
             <Block type="sp_source" />
             <Block type="sp_to_address" />
+          </Category>
+          <Category name="Maps" colour="%{BKY_VARIABLES_HUE}">
+            <Block type="sp_pair" />
+            <Block type="sp_map" />
           </Category>
           <Category name="Mutez" colour="%{BKY_VARIABLES_HUE}">
             <Block type="sp_mutez">

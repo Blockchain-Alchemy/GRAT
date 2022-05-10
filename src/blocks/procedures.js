@@ -102,7 +102,7 @@ Blockly.defineBlocksWithJsonArray([
  * block.
  * @type {{callType_: string, getProcedureDef: (function(): Array)}}
  */
-const getDefNoReturn = {
+export const getDefNoReturn = {
   /**
    * Returns info about this block to be used by the Blockly.Procedures.
    * @return {Array} An array of info.
@@ -127,7 +127,7 @@ Blockly.Extensions.registerMixin('get_function_def_no_return', getDefNoReturn);
  * block.
  * @type {{callType_: string, getProcedureDef: (function(): Array)}}
  */
-const getDefReturn = {
+export const getDefReturn = {
   /**
    * Returns info about this block to be used by the Blockly.Procedures.
    * @return {Array} An array of info.
@@ -146,7 +146,7 @@ const getDefReturn = {
 
 Blockly.Extensions.registerMixin('get_function_def_return', getDefReturn);
 
-const procedureContextMenu = {
+export const procedureContextMenu = {
   /**
    * Adds an option to create a caller block.
    * Adds an option to create a variable getter for each variable included in
@@ -201,7 +201,7 @@ const procedureContextMenu = {
 Blockly.Extensions.registerMixin(
     'function_context_menu', procedureContextMenu);
 
-const procedureDefMutator = {
+export const procedureDefMutator = {
   /**
    * Create XML to represent the argument inputs.
    * @param {boolean=} isForCaller If true include the procedure name and
@@ -547,7 +547,7 @@ const procedureDefMutator = {
  * Initializes some private variables for procedure blocks.
  * @this {Blockly.Block}
  */
-const procedureDefHelper = function() {
+export const procedureDefHelper = function() {
   /**
    * An array of objects containing data about the args belonging to the
    * procedure definition.
@@ -575,7 +575,7 @@ Blockly.Extensions.registerMutator('function_def_mutator',
  * Sets the validator for the procedure's name field.
  * @this {Blockly.Block}
  */
-const procedureRename = function() {
+export const procedureRename = function() {
   this.getField('NAME').setValidator(Blockly.Procedures.rename);
 };
 
@@ -585,7 +585,7 @@ Blockly.Extensions.register('function_rename', procedureRename);
  * Defines functions for dealing with variables and renaming variables.
  * @this {Blockly.Block}
  */
-const procedureVars = function() {
+export const procedureVars = function() {
   // This is a hack to get around the don't-override-builtins check.
   const mixin = {
     /**

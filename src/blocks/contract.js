@@ -45,6 +45,15 @@ Blockly.defineBlocksWithJsonArray([
     'tooltip': '%{BKY_LOGIC_NULL_TOOLTIP}',
     'helpUrl': '%{BKY_LOGIC_NULL_HELPURL}',
   },
+  // Block for sp.sender
+  {
+    'type': 'sp_sender',
+    'message0': 'sender address',
+    'output': null,
+    'style': 'logic_blocks',
+    'tooltip': '%{BKY_LOGIC_NULL_TOOLTIP}',
+    'helpUrl': '%{BKY_LOGIC_NULL_HELPURL}',
+  },
 ]);
 /* eslint-enable quotes */
 

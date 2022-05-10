@@ -239,11 +239,15 @@ Blockly.Python['variables_set'] = function(block) {
   return varName + ' = ' + argument + '\n';
 };
 
+Blockly.Python['sp_address'] = function(block) {
+  const address = Python.valueToCode(block, 'VALUE', Python.ORDER_RELATIONAL) || '';
+  return [`sp.address(${address})`, Python.ORDER_ATOMIC];
+}
+
 Blockly.Python['sp_self'] = function(block) {
   return ['sp.self', Python.ORDER_ATOMIC];
 }
 
-Blockly.Python['sp_address'] = function(block) {
-  const address = Python.valueToCode(block, 'VALUE', Python.ORDER_RELATIONAL) || '';
-  return [`sp.address(${address})`, Python.ORDER_ATOMIC];
+Blockly.Python['sp_sender'] = function(block) {
+  return ['sp.sender', Python.ORDER_ATOMIC];
 }

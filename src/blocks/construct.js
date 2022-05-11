@@ -46,6 +46,7 @@ Blockly.defineBlocksWithJsonArray([
     "helpUrl": "%{BKY_PROCEDURES_DEFNORETURN_HELPURL}",
     "tooltip": "%{BKY_PROCEDURES_DEFNORETURN_TOOLTIP}",
     "extensions": [
+      "get_construct_def_no_return",
       "construct_context_menu",
       "construct_vars",
     ],
@@ -53,6 +54,31 @@ Blockly.defineBlocksWithJsonArray([
   },
 ]);
 /* eslint-enable quotes */
+
+/**
+ * Defines the what are essentially info-getters for the functions_defnoreturn
+ * block.
+ * @type {{callType_: string, getProcedureDef: (function(): Array)}}
+ */
+ export const getDefNoReturn = {
+  /**
+   * Returns info about this block to be used by the Blockly.Procedures.
+   * @return {Array} An array of info.
+   * @this {Blockly.Block}
+   */
+  getProcedureDef: function() {
+    const argNames = this.argData_.map((elem) => elem.model.name);
+    return ['construct', argNames, false];
+  },
+
+  /**
+   * Used by the context menu to create a caller block.
+   * @type {string}
+   */
+  callType_: 'functions_callnoreturn',
+};
+
+Blockly.Extensions.registerMixin('get_construct_def_no_return', getDefNoReturn);
 
 Blockly.Extensions.registerMixin(
     'construct_context_menu', procedureContextMenu);

@@ -46,7 +46,6 @@ Blockly.Python['contract'] = function (block) {
   code += construct;
   code += '\n';*/
   const construct = Python.construct;
-  console.log('construct', construct)
   if (construct) {
     code += Python.prefixLines(construct, Python.INDENT);
     code += '\n';

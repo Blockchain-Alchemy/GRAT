@@ -14,7 +14,6 @@ import {
   procedureContextMenu,
   procedureDefMutator,
   procedureDefHelper,
-  procedureRename,
   procedureVars,
 } from './procedures';
 

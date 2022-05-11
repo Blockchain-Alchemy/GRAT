@@ -13,7 +13,7 @@ import {createMinusField} from './field_minus';
 import {createPlusField} from './field_plus';
 import {
   // getDefNoReturn,
-  // procedureContextMenu,
+  procedureContextMenu,
   // procedureDefMutator,
   // procedureDefHelper,
   // procedureRename,
@@ -55,7 +55,6 @@ Blockly.defineBlocksWithJsonArray([
     "helpUrl": "%{BKY_PROCEDURES_DEFNORETURN_HELPURL}",
     "tooltip": "%{BKY_PROCEDURES_DEFNORETURN_TOOLTIP}",
     "extensions": [
-      "get_construct_def_no_return",
       "construct_context_menu",
       "construct_rename",
       "construct_vars",
@@ -64,83 +63,6 @@ Blockly.defineBlocksWithJsonArray([
   },
 ]);
 /* eslint-enable quotes */
-
-/**
- * Defines the what are essentially info-getters for the construct_defnoreturn
- * block.
- * @type {{callType_: string, getProcedureDef: (function(): Array)}}
- */
-export const getDefNoReturn = {
-  /**
-   * Returns info about this block to be used by the Blockly.Procedures.
-   * @return {Array} An array of info.
-   * @this {Blockly.Block}
-   */
-  getProcedureDef: function() {
-    const argNames = this.argData_.map((elem) => elem.model.name);
-    return [this.getFieldValue('NAME'), argNames, false];
-  },
-
-  /**
-   * Used by the context menu to create a caller block.
-   * @type {string}
-   */
-  callType_: 'construct_callnoreturn',
-};
-
-Blockly.Extensions.registerMixin('get_construct_def_no_return', getDefNoReturn);
-
-export const procedureContextMenu = {
-  /**
-   * Adds an option to create a caller block.
-   * Adds an option to create a variable getter for each variable included in
-   * the procedure definition.
-   * @this {Blockly.Block}
-   * @param {!Array} options The current options for the context menu.
-   */
-  customContextMenu: function(options) {
-    if (this.isInFlyout) {
-      return;
-    }
-
-    // Add option to create caller.
-    const name = this.getFieldValue('NAME');
-    const text = Blockly.Msg['PROCEDURES_CREATE_DO'].replace('%1', name);
-
-    const xml = Blockly.utils.xml.createElement('block');
-    xml.setAttribute('type', this.callType_);
-    xml.appendChild(this.mutationToDom(true));
-    const callback = Blockly.ContextMenu.callbackFactory(this, xml);
-
-    options.push({
-      enabled: true,
-      text: text,
-      callback: callback,
-    });
-
-    if (this.isCollapsed()) {
-      return;
-    }
-
-    // Add options to create getters for each parameter.
-    const varModels = this.getVarModels();
-    for (const model of varModels) {
-      const text = Blockly.Msg['VARIABLES_SET_CREATE_GET']
-          .replace('%1', model.name);
-
-      const xml = Blockly.utils.xml.createElement('block');
-      xml.setAttribute('type', 'variables_get');
-      xml.appendChild(Blockly.Variables.generateVariableFieldDom(model));
-      const callback = Blockly.ContextMenu.callbackFactory(this, xml);
-
-      options.push({
-        enabled: true,
-        text: text,
-        callback: callback,
-      });
-    }
-  },
-};
 
 Blockly.Extensions.registerMixin(
     'construct_context_menu', procedureContextMenu);
@@ -520,7 +442,7 @@ Blockly.Extensions.registerMutator('construct_def_mutator',
  * @this {Blockly.Block}
  */
 export const procedureRename = function() {
-  this.getField('NAME').setValidator(Blockly.Procedures.rename);
+  //this.getField('NAME').setValidator(Blockly.Procedures.rename);
 };
 
 Blockly.Extensions.register('construct_rename', procedureRename);

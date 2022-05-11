@@ -23,9 +23,14 @@ delete Blockly.Blocks['construct_defreturn'];
 Blockly.defineBlocksWithJsonArray([
   {
     "type": "construct_defnoreturn",
-    "message0": "construct %1",
+    "message0": "function %1 %2",
     "message1": "%{BKY_PROCEDURES_DEFNORETURN_DO} %1",
     "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "",
+      },
       {
         "type": "input_dummy",
         "name": "TOP",
@@ -48,7 +53,47 @@ Blockly.defineBlocksWithJsonArray([
       "construct_vars",
     ],
     "mutator": "construct_def_mutator",
-  }
+  },
+  {
+    "type": "construct_defreturn",
+    "message0": "%{BKY_PROCEDURES_DEFRETURN_TITLE} %1 %2",
+    "message1": "%{BKY_PROCEDURES_DEFRETURN_DO} %1",
+    "message2": "%{BKY_PROCEDURES_DEFRETURN_RETURN} %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "",
+      },
+      {
+        "type": "input_dummy",
+        "name": "TOP",
+      },
+    ],
+    "args1": [
+      {
+        "type": "input_statement",
+        "name": "STACK",
+      },
+    ],
+    "args2": [
+      {
+        "type": "input_value",
+        "align": "right",
+        "name": "RETURN",
+      },
+    ],
+    "style": "procedure_blocks",
+    "helpUrl": "%{BKY_PROCEDURES_DEFRETURN_HELPURL}",
+    "tooltip": "%{BKY_PROCEDURES_DEFRETURN_TOOLTIP}",
+    "extensions": [
+      "get_construct_def_return",
+      "construct_context_menu",
+      "construct_rename",
+      "construct_vars",
+    ],
+    "mutator": "construct_def_mutator",
+  },
 ]);
 /* eslint-enable quotes */
 
@@ -76,6 +121,30 @@ export const getDefNoReturn = {
 };
 
 Blockly.Extensions.registerMixin('get_construct_def_no_return', getDefNoReturn);
+
+/**
+ * Defines what are essentially info-getters for the construct_def_return
+ * block.
+ * @type {{callType_: string, getProcedureDef: (function(): Array)}}
+ */
+export const getDefReturn = {
+  /**
+   * Returns info about this block to be used by the Blockly.Procedures.
+   * @return {Array} An array of info.
+   * @this {Blockly.Block}
+   */
+  getProcedureDef: function() {
+    const argNames = this.argData_.map((elem) => elem.model.name);
+    return [this.getFieldValue('NAME'), argNames, true];
+  },
+  /**
+   * Used by the context menu to create a caller block.
+   * @type {string}
+   */
+  callType_: 'construct_callreturn',
+};
+
+Blockly.Extensions.registerMixin('get_construct_def_return', getDefReturn);
 
 export const procedureContextMenu = {
   /**

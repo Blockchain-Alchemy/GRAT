@@ -11,6 +11,14 @@
 import Blockly from 'blockly/core';
 import {createMinusField} from './field_minus';
 import {createPlusField} from './field_plus';
+import {
+  // getDefNoReturn,
+  // procedureContextMenu,
+  // procedureDefMutator,
+  // procedureDefHelper,
+  // procedureRename,
+  procedureVars,
+} from './procedures';
 
 Blockly.Msg['PROCEDURE_VARIABLE'] = 'variable:';
 
@@ -23,7 +31,7 @@ delete Blockly.Blocks['construct_defreturn'];
 Blockly.defineBlocksWithJsonArray([
   {
     "type": "construct_defnoreturn",
-    "message0": "function %1 %2",
+    "message0": "construct %1 %2",
     "message1": "%{BKY_PROCEDURES_DEFNORETURN_DO} %1",
     "args0": [
       {
@@ -48,46 +56,6 @@ Blockly.defineBlocksWithJsonArray([
     "tooltip": "%{BKY_PROCEDURES_DEFNORETURN_TOOLTIP}",
     "extensions": [
       "get_construct_def_no_return",
-      "construct_context_menu",
-      "construct_rename",
-      "construct_vars",
-    ],
-    "mutator": "construct_def_mutator",
-  },
-  {
-    "type": "construct_defreturn",
-    "message0": "%{BKY_PROCEDURES_DEFRETURN_TITLE} %1 %2",
-    "message1": "%{BKY_PROCEDURES_DEFRETURN_DO} %1",
-    "message2": "%{BKY_PROCEDURES_DEFRETURN_RETURN} %1",
-    "args0": [
-      {
-        "type": "field_input",
-        "name": "NAME",
-        "text": "",
-      },
-      {
-        "type": "input_dummy",
-        "name": "TOP",
-      },
-    ],
-    "args1": [
-      {
-        "type": "input_statement",
-        "name": "STACK",
-      },
-    ],
-    "args2": [
-      {
-        "type": "input_value",
-        "align": "right",
-        "name": "RETURN",
-      },
-    ],
-    "style": "procedure_blocks",
-    "helpUrl": "%{BKY_PROCEDURES_DEFRETURN_HELPURL}",
-    "tooltip": "%{BKY_PROCEDURES_DEFRETURN_TOOLTIP}",
-    "extensions": [
-      "get_construct_def_return",
       "construct_context_menu",
       "construct_rename",
       "construct_vars",
@@ -121,30 +89,6 @@ export const getDefNoReturn = {
 };
 
 Blockly.Extensions.registerMixin('get_construct_def_no_return', getDefNoReturn);
-
-/**
- * Defines what are essentially info-getters for the construct_def_return
- * block.
- * @type {{callType_: string, getProcedureDef: (function(): Array)}}
- */
-export const getDefReturn = {
-  /**
-   * Returns info about this block to be used by the Blockly.Procedures.
-   * @return {Array} An array of info.
-   * @this {Blockly.Block}
-   */
-  getProcedureDef: function() {
-    const argNames = this.argData_.map((elem) => elem.model.name);
-    return [this.getFieldValue('NAME'), argNames, true];
-  },
-  /**
-   * Used by the context menu to create a caller block.
-   * @type {string}
-   */
-  callType_: 'construct_callreturn',
-};
-
-Blockly.Extensions.registerMixin('get_construct_def_return', getDefReturn);
 
 export const procedureContextMenu = {
   /**
@@ -585,72 +529,72 @@ Blockly.Extensions.register('construct_rename', procedureRename);
  * Defines functions for dealing with variables and renaming variables.
  * @this {Blockly.Block}
  */
-export const procedureVars = function() {
-  // This is a hack to get around the don't-override-builtins check.
-  const mixin = {
-    /**
-     * Return all variables referenced by this block.
-     * @return {!Array.<string>} List of variable names.
-     * @this {Blockly.Block}
-     */
-    getVars: function() {
-      return this.argData_.map((elem) => elem.model.name);
-    },
+// export const procedureVars = function() {
+//   // This is a hack to get around the don't-override-builtins check.
+//   const mixin = {
+//     /**
+//      * Return all variables referenced by this block.
+//      * @return {!Array.<string>} List of variable names.
+//      * @this {Blockly.Block}
+//      */
+//     getVars: function() {
+//       return this.argData_.map((elem) => elem.model.name);
+//     },
 
-    /**
-     * Return all variables referenced by this block.
-     * @return {!Array.<!Blockly.VariableModel>} List of variable models.
-     * @this {Blockly.Block}
-     */
-    getVarModels: function() {
-      return this.argData_.map((elem) => elem.model);
-    },
+//     /**
+//      * Return all variables referenced by this block.
+//      * @return {!Array.<!Blockly.VariableModel>} List of variable models.
+//      * @this {Blockly.Block}
+//      */
+//     getVarModels: function() {
+//       return this.argData_.map((elem) => elem.model);
+//     },
 
-    /**
-     * Notification that a variable was renamed to the same name as an existing
-     * variable. These variables are coalescing into a single variable with the
-     * ID of the variable that was already using the name.
-     * @param {string} oldId The ID of the variable that was renamed.
-     * @param {string} newId The ID of the variable that was already using
-     *     the name.
-     */
-    renameVarById: function(oldId, newId) {
-      const argData = this.argData_.find(
-          (element) => element.model.getId() === oldId);
-      if (!argData) {
-        return; // Not on this block.
-      }
+//     /**
+//      * Notification that a variable was renamed to the same name as an existing
+//      * variable. These variables are coalescing into a single variable with the
+//      * ID of the variable that was already using the name.
+//      * @param {string} oldId The ID of the variable that was renamed.
+//      * @param {string} newId The ID of the variable that was already using
+//      *     the name.
+//      */
+//     renameVarById: function(oldId, newId) {
+//       const argData = this.argData_.find(
+//           (element) => element.model.getId() === oldId);
+//       if (!argData) {
+//         return; // Not on this block.
+//       }
 
-      const newVar = this.workspace.getVariableById(newId);
-      const newName = newVar.name;
-      this.addVarInput_(newName, newId);
-      this.moveInputBefore(newId, oldId);
-      this.removeInput(oldId);
-      argData.model = newVar;
-      Blockly.Procedures.mutateCallers(this);
-    },
+//       const newVar = this.workspace.getVariableById(newId);
+//       const newName = newVar.name;
+//       this.addVarInput_(newName, newId);
+//       this.moveInputBefore(newId, oldId);
+//       this.removeInput(oldId);
+//       argData.model = newVar;
+//       Blockly.Procedures.mutateCallers(this);
+//     },
 
-    /**
-     * Notification that a variable is renaming but keeping the same ID.  If the
-     * variable is in use on this block, rerender to show the new name.
-     * @param {!Blockly.VariableModel} variable The variable being renamed.
-     * @package
-     * @override
-     * @this {Blockly.Block}
-     */
-    updateVarName: function(variable) {
-      const id = variable.getId();
-      const argData = this.argData_.find(
-          (element) => element.model.getId() === id);
-      if (!argData) {
-        return; // Not on this block.
-      }
-      this.setFieldValue(variable.name, argData.argId);
-      argData.model = variable;
-    },
-  };
+//     /**
+//      * Notification that a variable is renaming but keeping the same ID.  If the
+//      * variable is in use on this block, rerender to show the new name.
+//      * @param {!Blockly.VariableModel} variable The variable being renamed.
+//      * @package
+//      * @override
+//      * @this {Blockly.Block}
+//      */
+//     updateVarName: function(variable) {
+//       const id = variable.getId();
+//       const argData = this.argData_.find(
+//           (element) => element.model.getId() === id);
+//       if (!argData) {
+//         return; // Not on this block.
+//       }
+//       this.setFieldValue(variable.name, argData.argId);
+//       argData.model = variable;
+//     },
+//   };
 
-  this.mixin(mixin, true);
-};
+//   this.mixin(mixin, true);
+// };
 
 Blockly.Extensions.register('construct_vars', procedureVars);

@@ -27,9 +27,9 @@ import Unity, { UnityContext } from "react-unity-webgl";
 
 const unityContext = new UnityContext({
   loaderUrl: "Build/1.loader.js",
-  dataUrl: "Build/1.data",
-  frameworkUrl: "Build/1.framework.js",
-  codeUrl: "Build/1.wasm",
+  dataUrl: "Build/1.data.gz",
+  frameworkUrl: "Build/1.framework.js.gz",
+  codeUrl: "Build/1.wasm.gz",
 });  
 
 //class App extends React.Component {

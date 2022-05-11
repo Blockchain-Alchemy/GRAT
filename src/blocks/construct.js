@@ -31,14 +31,9 @@ delete Blockly.Blocks['construct_defreturn'];
 Blockly.defineBlocksWithJsonArray([
   {
     "type": "construct_defnoreturn",
-    "message0": "construct %1 %2",
+    "message0": "construct %1",
     "message1": "%{BKY_PROCEDURES_DEFNORETURN_DO} %1",
     "args0": [
-      {
-        "type": "field_input",
-        "name": "NAME",
-        "text": "",
-      },
       {
         "type": "input_dummy",
         "name": "TOP",
@@ -56,7 +51,6 @@ Blockly.defineBlocksWithJsonArray([
     "tooltip": "%{BKY_PROCEDURES_DEFNORETURN_TOOLTIP}",
     "extensions": [
       "construct_context_menu",
-      "construct_rename",
       "construct_vars",
     ],
     "mutator": "construct_def_mutator",
@@ -78,9 +72,9 @@ export const procedureDefMutator = {
    */
   mutationToDom: function(isForCaller = false) {
     const container = Blockly.utils.xml.createElement('mutation');
-    if (isForCaller) {
+    /*if (isForCaller) {
       container.setAttribute('name', this.getFieldValue('NAME'));
-    }
+    }*/
     this.argData_.forEach((element) => {
       const argument = Blockly.utils.xml.createElement('arg');
       const argModel = element.model;
@@ -436,15 +430,5 @@ export const procedureDefHelper = function() {
 
 Blockly.Extensions.registerMutator('construct_def_mutator',
     procedureDefMutator, procedureDefHelper);
-
-/**
- * Sets the validator for the procedure's name field.
- * @this {Blockly.Block}
- */
-export const procedureRename = function() {
-  //this.getField('NAME').setValidator(Blockly.Procedures.rename);
-};
-
-Blockly.Extensions.register('construct_rename', procedureRename);
 
 Blockly.Extensions.register('construct_vars', procedureVars);

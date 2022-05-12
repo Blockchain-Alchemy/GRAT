@@ -3,8 +3,8 @@ import React from "react";
 const CompileField = (props) => {
   return(
     <div id="CompileField" className="bg-gray-300 p-5 pt-0 rounded-md my-1">
-      <div className="text-lg font-semibold text-center p-1">Compiled Code</div>
-      <div className="overflow-y-auto h-24 bg-white border border-gray-400">
+      <div className="text-lg font-semibold text-center p-1">Smartpy</div>
+      <div className="overflow-y-auto bg-gray-300 w-full border border-gray-400 mt-5" id="textField">
         {props.children}
       </div>
     </div>
@@ -13,7 +13,7 @@ const CompileField = (props) => {
 
 const ConsoleField = (props) => {
   return(
-    <div id="ConsoleField" className="bg-gray-300 p-5 pt-0 rounded-md mt-1">
+    <div id="ConsoleField" className="bg-gray-300 p-5 pt-0 rounded-md my-1">
       <div className="text-lg font-semibold text-center p-1">Console</div>
       <div className="overflow-y-auto h-12 bg-white border border-gray-400">
         {props.children}

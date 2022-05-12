@@ -8,6 +8,14 @@ function setCode(code) {
   };
 }
 
+function consoleLog(log) {
+  return {
+    type: ApiConstants.ADD_CONSOLE_LOG,
+    log,
+  };
+}
+
 export {
   setCode,
+  consoleLog,
 }

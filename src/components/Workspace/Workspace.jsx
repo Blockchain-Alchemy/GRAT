@@ -45,15 +45,6 @@ const Workspace = () => {
     }
   };
 
-  /*const getPython = () => {
-    console.log("Python");
-    footerRef.current.style.width = "75%";
-    blockRef.current.style.display = "none";
-    CompileRef.current.style.display = "block";
-    pythonRef.current.style.background = "rgba(37, 99, 235, var(--tw-bg-opacity))";
-    smartRef.current.style.background = "rgba(96, 165, 250, var(--tw-bg-opacity))";
-  };*/
-
   const handleSwitch = (tabIndex) => {
     setTabIndex(tabIndex);
   }

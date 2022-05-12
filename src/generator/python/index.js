@@ -15,7 +15,6 @@ Blockly.Python['test_react_date_field'] = function (block) {
 };
 
 Blockly.Python['contract'] = function (block) {
-  console.log('contact', block)
   Python.construct = null;
   Python.entrypoints = {}
 
@@ -65,7 +64,6 @@ Blockly.Python['contract'] = function (block) {
 };
 
 Blockly.Python['construct_defnoreturn'] = function (block) {
-  console.log('construct_defnoreturn', block)
   let xfix1 = '';
   if (Python.STATEMENT_PREFIX) {
     xfix1 += Python.injectId(Python.STATEMENT_PREFIX, block);

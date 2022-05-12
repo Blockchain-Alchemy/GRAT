@@ -1,23 +1,27 @@
 import React, { forwardRef } from "react";
 import { useDispatch } from "react-redux";
 import BlocklyPy from "blockly/python";
-import { setCode } from "../../store/actions"
+import { setCode, consoleLog } from "../../store/actions"
 import "../../generator/python";
+import * as api from "../../service"
 
 const ControlPanel = forwardRef((props, ref) => {
   const dispatch = useDispatch();
 
   const generateCode = () => {
     const code = BlocklyPy.workspaceToCode(props.workspace);
+    dispatch(consoleLog('generate code.'));
     dispatch(setCode(code));
   };
 
   const compileCode = () => {
-    console.log("compile...");
+    console.log("compile.");
     const code = BlocklyPy.workspaceToCode(props.workspace);
     const base64 = Buffer.from(code).toString("base64");
-    console.log('base64', base64);
-    //api.compile("untitled", base64);
+    api.compile("untitled", base64)
+      .then(result => {
+        dispatch(consoleLog(result));
+      });
   };
 
   return (

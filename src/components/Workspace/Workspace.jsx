@@ -22,17 +22,15 @@ const Workspace = () => {
   const smartRef = useRef();
 
   useEffect(() => {
-    console.log('simpleWorkspace', simpleWorkspace.current)
-    //getBlock();
-    //getHeight();
-  }, [dispatch, simpleWorkspace, controlRef]);
+    initialize();
+  }, []);
 
   /*useEffect(() => {
     api.compile().then(result => console.log(result));
   }, [])*/
 
-  const getHeight = () => {
-    const height = footerRef.current.clientHeight;
+  const initialize = () => {
+    const height = footerRef.current.clientHeight + 10;
     console.log(height);
     const workspace = ReactDOM.findDOMNode(
       document.querySelector("rect.blocklyMainBackground")
@@ -51,15 +49,6 @@ const Workspace = () => {
       controlRef.current.style.bottom = `${height}px`;
       controlRef.current.style.transform = `translate(-130%, -20px)`;
     }
-  };
-
-  const getBlock = () => {
-    console.log("Block");
-    footerRef.current.style.width = "63.75%";
-    blockRef.current.style.display = "block";
-    CompileRef.current.style.display = "none";
-    smartRef.current.style.background = "rgba(37, 99, 235, var(--tw-bg-opacity))";
-    pythonRef.current.style.background = "rgba(96, 165, 250, var(--tw-bg-opacity))";
   };
 
   const getPython = () => {
@@ -89,10 +78,8 @@ const Workspace = () => {
         >
           <BlockCategory />
         </BlocklyComponent>
-        <div className="control-panel">
-          <ControlPanel 
-            workspace={simpleWorkspace.current?.workspace}
-          />
+        <div ref={footerRef} className="bg-gray-300 control-panel">
+          <ControlPanel workspace={simpleWorkspace.current?.workspace} />
           <ConsoleView />
         </div>
       </div>

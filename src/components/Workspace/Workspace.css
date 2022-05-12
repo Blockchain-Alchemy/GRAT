@@ -2,6 +2,11 @@
   z-index: 1;
   position: absolute;
   bottom: 0;
-  left: 12%;
-  width: 62%;
+  left: 11.22%;
+  width: 63.8%;
+  border-radius: 9px;
+}
+
+.g.blocklyTrash image:last-child {
+  bottom: 5rem;
 }

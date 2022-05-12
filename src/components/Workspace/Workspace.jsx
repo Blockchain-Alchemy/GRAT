@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch } from "react-redux";
 import BlocklyComponent from "../Blockly";
+import "./Workspace.css";
 import Menu from "../Menu/Menu";
 import Switch from "../Switch/Switch";
 import BlockCategory from "../BlockCategory/BlockCategory";
@@ -88,11 +89,10 @@ const Workspace = () => {
         >
           <BlockCategory />
         </BlocklyComponent>
-        <ControlPanel
-          ref={controlRef}
-          workspace={simpleWorkspace.current?.workspace}
-        />
-        <div className="absolute bottom-0 right-1/4" ref={footerRef}>
+        <div className="control-panel">
+          <ControlPanel 
+            workspace={simpleWorkspace.current?.workspace}
+          />
           <ConsoleView />
         </div>
       </div>

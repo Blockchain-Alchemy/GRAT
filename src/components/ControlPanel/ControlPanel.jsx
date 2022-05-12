@@ -18,7 +18,7 @@ const ControlPanel = forwardRef((props, ref) => {
   };
 
   return (
-    <div className="absolute bg-blue-400 p-2 rounded-md font-bold bottom-0 z-50 left-3/4">
+    <div className="rounded-md font-bold">
       <div className="text-xl text-center">Contract Control Panel</div>
       <div className="text-base text-center pt-3">
         <button

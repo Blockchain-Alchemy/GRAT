@@ -1,0 +1,7 @@
+.control-panel {
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  left: 12%;
+  width: 62%;
+}

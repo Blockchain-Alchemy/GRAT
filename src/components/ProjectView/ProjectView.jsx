@@ -1,28 +1,6 @@
-import React from "react";
+import React from 'react';
 
-const CompileField = (props) => {
-  return(
-    <div id="CompileField" className="bg-gray-300 p-5 pt-0 rounded-md my-1">
-      <div className="text-lg font-semibold text-center p-1">Smartpy</div>
-      <div className="overflow-y-auto bg-gray-300 w-full border border-gray-400 mt-5" id="textField">
-        {props.children}
-      </div>
-    </div>
-  );
-};
-
-const ConsoleField = (props) => {
-  return(
-    <div id="ConsoleField" className="bg-gray-300 p-5 pt-0 rounded-md my-1">
-      <div className="text-lg font-semibold text-center p-1">Console</div>
-      <div className="overflow-y-auto h-12 bg-white border border-gray-400">
-        {props.children}
-      </div>
-    </div>
-  );
-};
-
-const ProjectsField = (props) => {
+const ProjectView = (props) => {
   return(
     <div className="bg-gray-300 p-5 pt-0 rounded-md mx-1 h-3/5">
       <div className="text-xl font-semibold text-center p-1">Projects</div>
@@ -69,4 +47,4 @@ const ProjectsField = (props) => {
   )
 }
 
-export {CompileField, ConsoleField, ProjectsField};
+export default ProjectView;

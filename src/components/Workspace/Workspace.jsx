@@ -8,17 +8,17 @@ import BlockCategory from "../BlockCategory/BlockCategory";
 import ControlPanel from "../ControlPanel/ControlPanel";
 import ConsoleView from '../ConsoleView/ConsoleView';
 import CodeView from '../CodeView/CodeView';
-import "../../generator/python";
+import Loader from '../Loader/Loader';
 
-const Workspace = () => {
+const Workspace = ({ loading }) => {
   const simpleWorkspace = useRef();
   const footerRef = useRef();
   const controlRef = useRef();
   const [tabIndex, setTabIndex] = useState(1);
 
   useEffect(() => {
-    initialize();
-  }, []);
+    footerRef.current && initialize();
+  }, [footerRef]);
 
   /*useEffect(() => {
     api.compile().then(result => console.log(result));
@@ -54,26 +54,29 @@ const Workspace = () => {
       <Menu />
       <Switch tabIndex={tabIndex} handleSwitch={handleSwitch} />
 
-      <div className={tabIndex === 1? '': 'hidden'}>
-        <BlocklyComponent
-          ref={simpleWorkspace}
-          readOnly={false}
-          trashcan={true}
-          media={"media/"}
-          move={{
-            scrollbars: true,
-            drag: true,
-            wheel: true,
-          }}
-        >
-          <BlockCategory />
-        </BlocklyComponent>
-        <div ref={footerRef} className="bg-gray-300 control-panel">
-          <ControlPanel workspace={simpleWorkspace.current?.workspace} />
-          <ConsoleView />
+      { loading ? (
+        <Loader />
+      ) : (
+        <div className={tabIndex === 1? '': 'hidden'}>
+          <BlocklyComponent
+            ref={simpleWorkspace}
+            readOnly={false}
+            trashcan={true}
+            media={"media/"}
+            move={{
+              scrollbars: true,
+              drag: true,
+              wheel: true,
+            }}
+          >
+            <BlockCategory />
+          </BlocklyComponent>
+          <div ref={footerRef} className="bg-gray-300 control-panel">
+            <ControlPanel workspace={simpleWorkspace.current?.workspace} />
+            <ConsoleView />
+          </div>
         </div>
-      </div>
-      
+      )}
       { tabIndex === 2 && (
         <CodeView />
       )}

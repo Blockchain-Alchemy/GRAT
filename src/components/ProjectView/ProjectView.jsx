@@ -3,7 +3,7 @@ import React from 'react';
 const ProjectView = (props) => {
   return(
     <div className="bg-gray-300 p-5 pt-0 rounded-md mx-1 h-3/5">
-      <div className="text-xl font-semibold text-center p-1">Projects</div>
+      <div className="text-xl font-semibold text-center p-1">Lessons</div>
       <div>
         <div className="text-lg font-semibold p-1">Staking</div>
         <div className="text-base p-1">This contract will allow users to stake tezos for a certain time and then withdraw after a certain time.</div>

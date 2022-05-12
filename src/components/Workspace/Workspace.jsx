@@ -63,27 +63,27 @@ const Workspace = () => {
       <Menu />
       <Switch tabIndex={tabIndex} handleSwitch={handleSwitch} />
 
-      { tabIndex === 1 ? (
-        <>
-          <BlocklyComponent
-            ref={simpleWorkspace}
-            readOnly={false}
-            trashcan={true}
-            media={"media/"}
-            move={{
-              scrollbars: true,
-              drag: true,
-              wheel: true,
-            }}
-          >
-            <BlockCategory />
-          </BlocklyComponent>
-          <div ref={footerRef} className="bg-gray-300 control-panel">
-            <ControlPanel workspace={simpleWorkspace.current?.workspace} />
-            <ConsoleView />
-          </div>
-        </>
-      ) : (
+      <div className={tabIndex === 1? '': 'hidden'}>
+        <BlocklyComponent
+          ref={simpleWorkspace}
+          readOnly={false}
+          trashcan={true}
+          media={"media/"}
+          move={{
+            scrollbars: true,
+            drag: true,
+            wheel: true,
+          }}
+        >
+          <BlockCategory />
+        </BlocklyComponent>
+        <div ref={footerRef} className="bg-gray-300 control-panel">
+          <ControlPanel workspace={simpleWorkspace.current?.workspace} />
+          <ConsoleView />
+        </div>
+      </div>
+      
+      { tabIndex === 2 && (
         <CodeView />
       )}
     </div>

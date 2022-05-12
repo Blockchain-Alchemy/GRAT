@@ -1,12 +1,15 @@
 import React, { forwardRef } from "react";
+import { useDispatch } from "react-redux";
 import BlocklyPy from "blockly/python";
+import { setCode } from "../../store/actions"
 import "../../generator/python";
 
 const ControlPanel = forwardRef((props, ref) => {
+  const dispatch = useDispatch();
+
   const generateCode = () => {
     const code = BlocklyPy.workspaceToCode(props.workspace);
-    console.log("Result:");
-    console.log(code);
+    dispatch(setCode(code));
   };
 
   const compileCode = () => {

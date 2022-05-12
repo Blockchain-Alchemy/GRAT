@@ -1,13 +1,13 @@
-import Constants from '../../constants';
+import ApiConstants from '../../constants';
 
 // Get the common year list reference
-function setWorkspace(workspace) {
+function setCode(code) {
   return {
-    type: Constants.WORKSPACE_INIT,
-    workspace,
+    type: ApiConstants.SET_CODE,
+    code,
   };
 }
 
 export {
-  setWorkspace,
+  setCode,
 }

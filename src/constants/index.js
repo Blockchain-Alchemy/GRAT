@@ -1,5 +1,5 @@
-const Constants = {
-  WORKSPACE_INIT: 'WORKSPACE_INIT',
+const ApiConstants = {
+  SET_CODE: 'SET_CODE',
 }
 
-export default Constants;
+export default ApiConstants;

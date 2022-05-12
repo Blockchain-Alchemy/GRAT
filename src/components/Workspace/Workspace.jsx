@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { useDispatch } from "react-redux";
 import BlocklyComponent from "../Blockly";
 import "./Workspace.css";
 import Menu from "../Menu/Menu";
@@ -12,7 +11,6 @@ import CodeView from '../CodeView/CodeView';
 import "../../generator/python";
 
 const Workspace = () => {
-  const dispatch = useDispatch();
   const simpleWorkspace = useRef();
   const footerRef = useRef();
   const controlRef = useRef();
@@ -86,7 +84,7 @@ const Workspace = () => {
           </div>
         </>
       ) : (
-        <CodeView code={"123123"}/>
+        <CodeView />
       )}
     </div>
   );

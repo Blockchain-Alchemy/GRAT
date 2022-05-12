@@ -1,8 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import blocklyReducer from "./reducers/blocklyReducer";
+import rootReducer from './reducers';
 
 export default configureStore({
-  reducer: {
-    blocklyReducer,
-  }
+  reducer: rootReducer
 })

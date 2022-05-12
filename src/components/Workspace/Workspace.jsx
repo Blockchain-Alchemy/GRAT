@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch } from "react-redux";
 import BlocklyComponent from "../Blockly";
@@ -16,10 +16,7 @@ const Workspace = () => {
   const simpleWorkspace = useRef();
   const footerRef = useRef();
   const controlRef = useRef();
-  const CompileRef = useRef();
-  const blockRef = useRef();
-  const pythonRef = useRef();
-  const smartRef = useRef();
+  const [tabIndex, setTabIndex] = useState(1);
 
   useEffect(() => {
     initialize();
@@ -31,7 +28,6 @@ const Workspace = () => {
 
   const initialize = () => {
     const height = footerRef.current.clientHeight + 10;
-    console.log(height);
     const workspace = ReactDOM.findDOMNode(
       document.querySelector("rect.blocklyMainBackground")
     );
@@ -51,42 +47,47 @@ const Workspace = () => {
     }
   };
 
-  const getPython = () => {
+  /*const getPython = () => {
     console.log("Python");
     footerRef.current.style.width = "75%";
     blockRef.current.style.display = "none";
     CompileRef.current.style.display = "block";
     pythonRef.current.style.background = "rgba(37, 99, 235, var(--tw-bg-opacity))";
     smartRef.current.style.background = "rgba(96, 165, 250, var(--tw-bg-opacity))";
-  };
+  };*/
+
+  const handleSwitch = (tabIndex) => {
+    setTabIndex(tabIndex);
+  }
 
   return (
-    <div className="App">
+    <div className="workspace">
       <Menu />
-      <Switch />
-      <div ref={blockRef}>
-        <BlocklyComponent
-          ref={simpleWorkspace}
-          readOnly={false}
-          trashcan={true}
-          media={"media/"}
-          move={{
-            scrollbars: true,
-            drag: true,
-            wheel: true,
-          }}
-        >
-          <BlockCategory />
-        </BlocklyComponent>
-        <div ref={footerRef} className="bg-gray-300 control-panel">
-          <ControlPanel workspace={simpleWorkspace.current?.workspace} />
-          <ConsoleView />
-        </div>
-      </div>
+      <Switch tabIndex={tabIndex} handleSwitch={handleSwitch} />
 
-      <div className="hidden" ref={CompileRef}>
-        <CodeView />
-      </div>
+      { tabIndex === 1 ? (
+        <>
+          <BlocklyComponent
+            ref={simpleWorkspace}
+            readOnly={false}
+            trashcan={true}
+            media={"media/"}
+            move={{
+              scrollbars: true,
+              drag: true,
+              wheel: true,
+            }}
+          >
+            <BlockCategory />
+          </BlocklyComponent>
+          <div ref={footerRef} className="bg-gray-300 control-panel">
+            <ControlPanel workspace={simpleWorkspace.current?.workspace} />
+            <ConsoleView />
+          </div>
+        </>
+      ) : (
+        <CodeView code={"123123"}/>
+      )}
     </div>
   );
 };

@@ -70,10 +70,6 @@ rect.blocklyMainBackground {
   ry: 10;
 }
 
-#textField {
-  height: calc(100% - 50px);
-}
-
 #blockTitle {
   position: absolute;
   top: 10%;

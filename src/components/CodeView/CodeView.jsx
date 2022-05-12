@@ -1,13 +1,15 @@
 import React from 'react';
+import "./CodeView.css";
 
-const CodeView = (props) => {
+const CodeView = ({code}) => {
   return(
-    <div className="bg-gray-300 p-5 pt-0 rounded-md my-1">
-      <div className="text-lg font-semibold text-center p-1">Smartpy</div>
-      <div className="overflow-y-auto bg-gray-300 w-full border border-gray-400 mt-5" id="textField">
-        {props.children}
+    <React.Fragment>
+      <div className="bg-gray-300 p-2 pt-0 rounded-md my-1 codeview">
+        <div className="overflow-y-auto bg-white w-full" id="code-editor">
+          { code }
+        </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

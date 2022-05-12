@@ -21,7 +21,7 @@ const Switch = ({ tabIndex, handleSwitch }) => {
         onClick={() => handleSwitch(2)}
       >
         <span className="material-symbols-outlined mr-1">code</span>
-        Smartpy
+        SmartPy
       </button>
     </div>
   );

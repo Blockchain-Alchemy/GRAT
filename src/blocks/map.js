@@ -37,7 +37,7 @@ import Blockly from "blockly/core";
   // Block for sp.map
   {
     'type': 'sp_map',
-    'message0': 'create empty map with key type %1 and value type %2',
+    'message0': 'map with %1 and %2',
     'args0': [
       {
         'type': 'field_dropdown',

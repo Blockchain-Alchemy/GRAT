@@ -66,28 +66,38 @@ Blockly.Python['contract'] = function (block) {
 Blockly.Python['construct_defnoreturn'] = function (block) {
   let xfix1 = '';
   if (Python.STATEMENT_PREFIX) {
+    console.log('construct~~~~~~~~~~~~~~~~~1')
     xfix1 += Python.injectId(Python.STATEMENT_PREFIX, block);
   }
   if (Python.STATEMENT_SUFFIX) {
+    console.log('construct~~~~~~~~~~~~~~~~~2')
     xfix1 += Python.injectId(Python.STATEMENT_SUFFIX, block);
   }
   if (xfix1) {
+    console.log('construct~~~~~~~~~~~~~~~~~3')
     xfix1 = Python.prefixLines(xfix1, Python.INDENT);
   }
 
+  console.log('construct~~~~~~~~~~~~~~~~~xfix1', xfix1)
+
   let loopTrap = '';
   if (Python.INFINITE_LOOP_TRAP) {
+    console.log('construct~~~~~~~~~~~~~~~~~4')
     loopTrap = Python.prefixLines(
         Python.injectId(Python.INFINITE_LOOP_TRAP, block), Python.INDENT);
   }
 
+  Python.contractStorage = true;
   let branch = Python.statementToCode(block, 'STACK');
   if (!branch) {
     branch = Python.PASS;
   }
+  Python.contractStorage = false;
+  console.log('construct~~~~~~~~~~~~~~~~~branch', branch)
 
   const args = ['self'];
   const variables = block.getVars();
+  console.log('variables', variables)
   for (let i = 0; i < variables.length; i++) {
     const varg = Python.nameDB_.getName(variables[i], NameType.VARIABLE);
     args.push(varg);
@@ -266,8 +276,9 @@ Python['variables_get'] = function(block) {
   let varName = Python.nameDB_.getName(block.getFieldValue('VAR'), NameType.VARIABLE)
   
   const usedVariables = Variables.allUsedVarModels(block.workspace) || [];
+  console.log('usedVariables1', block)
   const variable = usedVariables.find(it => it.id_ === varId);
-  if (variable && variable.type === 'contract') {
+  if (variable && Python.contractStorage) {
     varName = `self.data.${varName}`;
   }
 
@@ -281,8 +292,9 @@ Blockly.Python['variables_set'] = function(block) {
   let varName = Python.nameDB_.getName(block.getFieldValue('VAR'), NameType.VARIABLE)
   
   const usedVariables = Variables.allUsedVarModels(block.workspace) || [];
+  console.log('usedVariables2', block)
   const variable = usedVariables.find(it => it.id_ === varId);
-  if (variable && variable.type === 'contract') {
+  if (variable && Python.contractStorage) {
     varName = `self.data.${varName}`;
   }
 

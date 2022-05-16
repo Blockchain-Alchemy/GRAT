@@ -367,6 +367,7 @@ const BlockCategory = forwardRef((props, workspace) => {
       <Category name="Maps" colour="%{BKY_VARIABLES_HUE}">
         <Block type="sp_pair" />
         <Block type="sp_map" />
+        <Block type="sp_big_map" />
       </Category>
       <Category name="Mutez" colour="%{BKY_VARIABLES_HUE}">
         <Block type="sp_mutez">

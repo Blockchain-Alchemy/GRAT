@@ -17,8 +17,10 @@ const Workspace = ({ loading }) => {
   const [tabIndex, setTabIndex] = useState(1);
 
   useEffect(() => {
-    footerRef.current && initialize();
-  }, [footerRef]);
+    setTimeout(() => {
+      footerRef.current && initialize();
+    }, 1000)
+  }, [loading, footerRef]);
 
   /*useEffect(() => {
     api.compile().then(result => console.log(result));

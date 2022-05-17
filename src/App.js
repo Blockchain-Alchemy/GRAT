@@ -22,6 +22,10 @@ const App = () => {
       console.log('progression', progression)
       setProgression(progression);
     });
+
+    unityContext.on("Converted", () => {
+      console.log('converted');
+    })
   }, []);
 
   return (

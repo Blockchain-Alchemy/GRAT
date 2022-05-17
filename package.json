@@ -6,6 +6,8 @@
     "@blockly/block-plus-minus": "^3.0.13",
     "@craco/craco": "^6.4.3",
     "@reduxjs/toolkit": "^1.8.1",
+    "@taquito/beacon-wallet": "^12.1.1",
+    "@taquito/taquito": "^12.1.1",
     "axios": "^0.27.2",
     "blockly": "8.0.0",
     "js-cookies": "^1.0.4",

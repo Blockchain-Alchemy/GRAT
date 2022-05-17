@@ -1,59 +1,30 @@
 {
-  "name": "blockly-react-sample",
-  "version": "0.0.0",
+  "name": "grat",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@blockly/block-plus-minus": "^3.0.13",
-    "@craco/craco": "^6.4.3",
-    "@reduxjs/toolkit": "^1.8.1",
-    "axios": "^0.27.2",
-    "blockly": "8.0.0",
-    "js-cookies": "^1.0.4",
-    "react": "^17.0.1",
-    "react-datepicker": "^3.3.0",
-    "react-dom": "^17.0.1",
-    "react-redux": "^8.0.1",
-    "react-scripts": "^4.0.1",
-    "react-unity-webgl": "^8.8.0",
-    "redux": "^4.2.0"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-localization": "^1.0.13",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "2.1.8",
+    "muicss": "^0.10.3"
   },
   "scripts": {
-    "audit": "npm audit fix",
-    "update": "npm update",
-    "postinstall": "cp -r node_modules/blockly/media public/media",
-    "predeploy": "npm run build",
-    "start": "SET port=3300 && craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "react-scripts eject"
+    "start": "cross-env PORT=3000 react-scripts start",
+    "start_nobrowser": "cross-env BROWSER=none PORT=3000 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "openbrowser": "node -e 'const openBrowser = require(\"react-dev-utils/openBrowser\"); openBrowser(\"http://localhost:3000\"); process.exit();'"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "homepage": "./",
-  "blocklyDemoConfig": {
-    "title": "Blockly in React",
-    "description": "Load Blockly in a React project.",
-    "files": [
-      "build/index.html",
-      "build/**/*"
-    ]
-  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "devDependencies": {
-    "autoprefixer": "^9.8.8",
-    "postcss": "^7.0.39",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
+    "cross-env": "^7.0.3"
   }
 }

@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import Blockly from "blockly/core";
 import BlocklyComponent from "../Blockly";
 import "./Workspace.css";
 import Switch from "../Switch/Switch";
@@ -10,20 +11,30 @@ import CodeView from '../CodeView/CodeView';
 import Loader from '../Loader/Loader';
 
 const Workspace = ({ loading }) => {
-  const simpleWorkspace = useRef();
+  const workspaceRef = useRef();
   const footerRef = useRef();
   const controlRef = useRef();
   const [tabIndex, setTabIndex] = useState(1);
 
   useEffect(() => {
-    setTimeout(() => {
-      footerRef.current && initialize();
-    }, 1000)
-  }, [loading, footerRef]);
+    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~', workspaceRef.current)
+    footerRef.current && initialize();
+    workspaceRef.current && initEvents();
+  }, [])
 
   /*useEffect(() => {
     api.compile().then(result => console.log(result));
   }, [])*/
+
+  const initEvents = () => {
+    const workspace = workspaceRef.current.workspace;
+    workspace.addChangeListener(event => {
+      console.log('event', event);
+      if (event.type === Blockly.Events.BLOCK_MOVE) {
+        console.log('move~~~~~~~')
+      }
+    })
+  }
 
   const initialize = () => {
     const height = footerRef.current.clientHeight;
@@ -54,32 +65,27 @@ const Workspace = ({ loading }) => {
     <div className="workspace">
       <Switch tabIndex={tabIndex} handleSwitch={handleSwitch} />
 
-      { loading ? (
-        <Loader />
-      ) : (
-        <div className={tabIndex === 1? '': 'hidden'}>
-          <BlocklyComponent
-            ref={simpleWorkspace}
-            readOnly={false}
-            trashcan={true}
-            media={"media/"}
-            move={{
-              scrollbars: true,
-              drag: true,
-              wheel: true,
-            }}
-          >
-            <BlockCategory />
-          </BlocklyComponent>
-          <div ref={footerRef} className="bg-gray-300 control-panel">
-            <ControlPanel workspace={simpleWorkspace.current?.workspace} />
-            <ConsoleView />
-          </div>
+      <div className={tabIndex === 1? '': 'hidden'}>
+        <BlocklyComponent
+          ref={workspaceRef}
+          readOnly={false}
+          trashcan={true}
+          media={"media/"}
+          move={{
+            scrollbars: true,
+            drag: true,
+            wheel: true,
+          }}
+        >
+          <BlockCategory />
+        </BlocklyComponent>
+        <div ref={footerRef} className="bg-gray-300 control-panel">
+          <ControlPanel workspace={workspaceRef.current?.workspace} />
+          <ConsoleView />
         </div>
-      )}
-      { tabIndex === 2 && (
-        <CodeView />
-      )}
+      </div>
+      
+      { tabIndex === 2 && <CodeView /> }
     </div>
   );
 };

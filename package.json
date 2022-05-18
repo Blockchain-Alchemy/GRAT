@@ -2,5 +2,15 @@
   "dependencies": {
     "@plasmicapp/cli": "^0.1.178",
     "@plasmicapp/react-web": "^0.2.97"
+  },
+    "scripts": {
+    "audit": "npm audit fix",
+    "update": "npm update",
+    "postinstall": "cp -r node_modules/blockly/media public/media",
+    "predeploy": "npm run build",
+    "start": "SET port=3300 && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   }
 }

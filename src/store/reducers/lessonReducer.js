@@ -8,8 +8,10 @@ const initialState = {
 function LessonState(state = initialState, action) {
   switch (action.type) {
     case ApiConstants.UPDATE_LESSON_STATE:
-      const timeline = Math.max(state.timeline, action.timeline);
-      return { ...state, timeline };
+      if (action.timeline > state.timeline && action.timeline - state.timeline === 1) {
+        return { ...state, timeline: action.timeline };
+      }
+      return state;
 
     default:
       return state;

@@ -79,6 +79,7 @@ rect.blocklyMainBackground {
 
 #Sidebar {
   height: 90%;
+  width: 25%;
   position: absolute;
   bottom: 0;
 }
@@ -92,6 +93,11 @@ rect.blocklyMainBackground {
   display: none;
 }
 
+.project-view {
+  position: absolute;
+  bottom: 0;
+  height: calc(60% - 7px);
+}
 
 @keyframes App-logo-spin {
   from {

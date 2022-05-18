@@ -6,7 +6,7 @@ const ProjectView = (props) => {
   const lessonState = useSelector(state => state.LessonState);
 
   return(
-    <Container>
+    <Container className='project-view'>
       <Title align='center' order={3}>Lessons</Title>
       <Group spacing={5} style={{padding: 5}}>
         <Text size='lg'>Staking</Text>

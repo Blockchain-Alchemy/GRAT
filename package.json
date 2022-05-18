@@ -3,7 +3,7 @@
     "@plasmicapp/cli": "^0.1.178",
     "@plasmicapp/react-web": "^0.2.97"
   },
-    "scripts": {
+  "scripts": {
     "audit": "npm audit fix",
     "update": "npm update",
     "predeploy": "npm run build",

@@ -1,10 +1,11 @@
 import React, {  } from "react";
+import { Image } from '@mantine/core';
 
 const Menu = () => {
   return (
     <header className="App-header">
-      <div className="absolute">
-        <img src="grat.png" className="h-20" alt="Grat" />
+      <div style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+        <Image src="grat.png" alt="Grat" height={60} />
       </div>
     </header>
   );

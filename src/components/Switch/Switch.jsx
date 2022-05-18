@@ -1,29 +1,76 @@
 import React from "react";
 import "./Switch.css";
+import { Container, Button, createStyles } from '@mantine/core';
+
+const useStyles = createStyles((theme) => ({
+  button1: {
+    color: theme.white,
+    backgroundColor: theme.colors.blue[7],
+    border: 0,
+    borderRadius: 0,
+    padding: `${theme.spacing.sm}px ${theme.spacing.lg}px`,
+    cursor: 'pointer',
+    margin: 0,
+
+    // Use pseudo-classes just like you would in Sass
+    '&:hover': {
+      backgroundColor: theme.colors.blue[9],
+    },
+
+    '&:first-of-type': {
+      borderTopLeftRadius: theme.radius.lg,
+      borderBottomLeftRadius: theme.radius.lg,
+    },
+
+    '&:not(:first-of-type)': {
+      borderTopRightRadius: theme.radius.lg,
+      borderBottomRightRadius: theme.radius.lg,
+    },
+  },
+  button2: {
+    color: theme.white,
+    backgroundColor: theme.colors.blue[4],
+    border: 0,
+    borderRadius: 0,
+    padding: `${theme.spacing.sm}px ${theme.spacing.lg}px`,
+    cursor: 'pointer',
+    margin: 0,
+
+    // Use pseudo-classes just like you would in Sass
+    '&:hover': {
+      backgroundColor: theme.colors.blue[9],
+    },
+
+    '&:first-of-type': {
+      borderTopLeftRadius: theme.radius.lg,
+      borderBottomLeftRadius: theme.radius.lg,
+    },
+
+    '&:not(:first-of-type)': {
+      borderTopRightRadius: theme.radius.lg,
+      borderBottomRightRadius: theme.radius.lg,
+    },    
+  }
+}));
 
 const Switch = ({ tabIndex, handleSwitch }) => {
+  const { classes } = useStyles();
+
   const buttonStyles = (value) => {
     return tabIndex === value 
-      ? "btn bg-blue-600 text-xl font-semibold hover:bg-blue-700 p-2 w-36 clicked"
-      : "btn bg-blue-400 text-xl font-semibold hover:bg-blue-700 p-2 w-36";
+      ? classes.button1
+      : classes.button2;
   }
+
   return (
-    <div className="absolute float-right text-white switch-container">
-      <button
-        className={buttonStyles(1) + " rounded-l-full pl-5"}
-        onClick={() => handleSwitch(1)}
-      >
-        <span className="material-symbols-outlined mr-1">extension</span>
+    <Container className="switch-container" style={{color: 'white'}}>
+      <Button leftIcon={<span className="material-symbols-outlined">extension</span>} className={buttonStyles(1)} onClick={() => handleSwitch(1)}>
         Blocks
-      </button>
-      <button
-        className={buttonStyles(2) + " rounded-r-full pr-5"}
-        onClick={() => handleSwitch(2)}
-      >
-        <span className="material-symbols-outlined mr-1">code</span>
+      </Button>
+      <Button leftIcon={<span className="material-symbols-outlined">code</span>} className={buttonStyles(2)} onClick={() => handleSwitch(2)}>
         SmartPy
-      </button>
-    </div>
+      </Button>
+    </Container>
   );
 };
 

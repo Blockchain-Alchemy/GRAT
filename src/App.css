@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
@@ -18,12 +14,9 @@
   font-size: calc(10px + 2vmin);
   position: absolute;
   width: 100%;
-  height: 10%;  
+  height: 10%;
+  border-bottom: 2px solid #373A40;
   /* color: white; */
-}
-
-.bg-gray-300 {
-  background-color: #ddd;
 }
 
 .App-link {
@@ -31,9 +24,8 @@
 }
 
 .blocklyToolboxDiv {
+  background-color: #1A1B1E;
   width: 15%;
-  margin-left: -5px;
-  border-radius: 5px;
 }
 
 .blocklyToolboxContents {
@@ -42,16 +34,16 @@
   margin: auto;
 }
 
-.blocklyToolboxCategory {
-  padding: 5px;
-}
-
 svg.blocklyMainWorkspaceScrollbar {
   display: none;
 }
 
 svg.blocklyFlyoutScrollbar {
   display: none;
+}
+
+.blocklyFlyoutBackground {
+  fill: #25262B !important;
 }
 
 #CompileField {
@@ -63,11 +55,9 @@ svg.blocklyFlyoutScrollbar {
 }
 
 rect.blocklyMainBackground {
-  fill: #ddd !important;
+  fill: #2C2E33 !important;
   width: 85%;
   transform: translateX(15%);
-  rx: 10;
-  ry: 10;
 }
 
 #blockTitle {
@@ -88,11 +78,19 @@ rect.blocklyMainBackground {
 
 #Sidebar {
   height: 90%;
+  position: absolute;
+  bottom: 0;
 }
 
-.material-symbols-outlined {
-  transform: translateY(5px);
+#unity-canvas-1 {
+  width: 100%;
+  height: 40%;
 }
+
+.hidden {
+  display: none;
+}
+
 
 @keyframes App-logo-spin {
   from {

@@ -4,6 +4,8 @@ import BlocklyPy from "blockly/python";
 import { setCode, consoleLog } from "../../store/actions"
 import "../../generator/python";
 import * as api from "../../service"
+import { Title, Button, Container } from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
 
 const ControlPanel = forwardRef((props, ref) => {
   const dispatch = useDispatch();
@@ -12,6 +14,10 @@ const ControlPanel = forwardRef((props, ref) => {
     const code = BlocklyPy.workspaceToCode(props.workspace);
     dispatch(consoleLog('generate code.'));
     dispatch(setCode(code));
+    showNotification({
+      title: 'Contract Notification',
+      message: 'Hey there, your code is generated.',
+    })
   };
 
   const compileCode = () => {
@@ -22,31 +28,41 @@ const ControlPanel = forwardRef((props, ref) => {
       .then(result => {
         dispatch(consoleLog(result));
       });
+    showNotification({
+      title: 'Contract Notification',
+      message: 'Hey there, your contract is compiled',
+    })
   };
 
   return (
-    <div className="rounded-md font-bold">
-      <div className="text-xl text-center">Contract Control Panel</div>
-      <div className="text-base text-center pt-3">
-        <button
-          className="mx-1 px-2 py-1 bg-white shadow-md rounded-md font-semibold"
+    <div>
+      <Title align="center" order={4}>Contract Control Panel</Title>
+      <Container align="center">
+        <Button
+          variant="outline"
+          m={5}
+          color="gray"
           onClick={generateCode}
         >
           Convert
-        </button>
-        <button
-          className="mx-1 px-2 py-1 bg-white shadow-md rounded-md font-semibold"
+        </Button>
+        <Button
+          variant="outline"
+          m={5}
+          color="gray"
           onClick={generateCode}
         >
           Save
-        </button>
-        <button
-          className="ml-1 px-2 py-1 bg-white shadow-md rounded-md font-semibold"
+        </Button>
+        <Button
+          variant="outline"
+          m={5}
+          color="gray"
           onClick={compileCode}
         >
           Compile
-        </button>
-      </div>
+        </Button>
+      </Container>
     </div>
   );
 });

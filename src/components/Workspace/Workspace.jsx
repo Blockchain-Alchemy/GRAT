@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import BlocklyComponent from "../Blockly";
 import "./Workspace.css";
-import Menu from "../Menu/Menu";
 import Switch from "../Switch/Switch";
 import BlockCategory from "../BlockCategory/BlockCategory";
 import ControlPanel from "../ControlPanel/ControlPanel";
@@ -27,7 +26,7 @@ const Workspace = ({ loading }) => {
   }, [])*/
 
   const initialize = () => {
-    const height = footerRef.current.clientHeight + 10;
+    const height = footerRef.current.clientHeight;
     const workspace = ReactDOM.findDOMNode(
       document.querySelector("rect.blocklyMainBackground")
     );
@@ -53,7 +52,6 @@ const Workspace = ({ loading }) => {
 
   return (
     <div className="workspace">
-      <Menu />
       <Switch tabIndex={tabIndex} handleSwitch={handleSwitch} />
 
       { loading ? (

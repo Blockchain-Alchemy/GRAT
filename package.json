@@ -7,7 +7,7 @@
     "audit": "npm audit fix",
     "update": "npm update",
     "predeploy": "npm run build",
-    "start": "SET port=3300 && react-scripts start",
+    "start": "set port=3300 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

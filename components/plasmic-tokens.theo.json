@@ -1,0 +1,19 @@
+{
+  "props": [
+    {
+      "name": "Link",
+      "type": "color",
+      "value": "#1C7ED6",
+      "category": "color",
+      "meta": {
+        "projectId": "n22P5UCTG6TSvQEwcAgng5",
+        "id": "_dxNMVD7C"
+      }
+    }
+  ],
+  "global": {
+    "meta": {
+      "source": "plasmic.app"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@plasmicapp/cli": "^0.1.178",
+    "@plasmicapp/react-web": "^0.2.97"
+  }
+}

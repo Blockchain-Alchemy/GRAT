@@ -287,7 +287,7 @@ const BlockCategory = forwardRef((props, workspace) => {
         </Block>
         <Block type="lists_sort"></Block>
       </Category>
-      <Category name="Colour" colour="%{BKY_COLOUR_HUE}">
+      {/* <Category name="Colour" colour="%{BKY_COLOUR_HUE}">
         <Block type="colour_picker"></Block>
         <Block type="colour_random"></Block>
         <Block type="colour_rgb">
@@ -324,7 +324,7 @@ const BlockCategory = forwardRef((props, workspace) => {
             </Shadow>
           </Value>
         </Block>
-      </Category>
+      </Category> */}
       {/* <sep></sep> */}
       <Category
         name="Variables"

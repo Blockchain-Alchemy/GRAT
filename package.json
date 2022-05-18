@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@plasmicapp/cli": "^0.1.178",
+    "@plasmicapp/react-web": "^0.2.97",
+    "muicss": "^0.10.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-localization": "^1.0.13",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "2.1.8",
-    "muicss": "^0.10.3"
+    "react-scripts": "2.1.8"
   },
   "scripts": {
     "start": "cross-env PORT=3000 react-scripts start",

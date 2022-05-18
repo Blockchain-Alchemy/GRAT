@@ -58,7 +58,7 @@ const Workspace = ({ loading }) => {
           if (block) {
             if (block.type === 'contract') {
               dispatch(updateLessonStateAction(1));
-            } else if (block.type === 'entrypoint_defnoreturn' && event.newValue === 'Deposit') {
+            } else if (block.type === 'entrypoint_defnoreturn' && event.newValue.toLowerCase() === 'deposit') {
               dispatch(updateLessonStateAction(3));
             }
           }

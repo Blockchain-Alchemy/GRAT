@@ -10,7 +10,7 @@ import { showNotification } from '@mantine/notifications';
 const ControlPanel = forwardRef((props, ref) => {
   const dispatch = useDispatch();
 
-  const alert = (message) => {
+  const notify = (message) => {
     showNotification({
       title: 'GRAT Notification',
       message: message,
@@ -32,11 +32,19 @@ const ControlPanel = forwardRef((props, ref) => {
     })
   }
 
+  const alert = (message) => {
+    showNotification({
+      title: 'Error',
+      message: message,
+      color: 'red'
+    })
+  }
+
   const generateCode = () => {
     const code = BlocklyPy.workspaceToCode(props.workspace);
     dispatch(consoleLog('Generate code'));
     dispatch(setCode(code));
-    alert('Code Generated.')
+    notify('Code Generated.')
   };
 
   const compileCode = () => {
@@ -45,12 +53,12 @@ const ControlPanel = forwardRef((props, ref) => {
     const base64 = Buffer.from(code).toString("base64");
     api.compile("untitled", base64)
       .then(result => {
-        dispatch(consoleLog(result));
-        alert('Contract compiled successfully')
-      })
-      .catch((error) => {
-        console.error(error);
-        alert('Failed to compiled contract')
+        if (result) {
+          dispatch(consoleLog(result));
+          notify('Contract compiled successfully')
+        } else {
+          alert('Failed to compiled contract')
+        }
       })
   };
 

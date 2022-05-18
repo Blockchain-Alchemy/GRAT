@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "./CodeView.css";
-import { Prism } from '@mantine/prism';
+import { Prism } from "@mantine/prism";
 //import { Textarea } from '@mantine/core';
 
 const CodeView = () => {
@@ -14,7 +14,9 @@ const CodeView = () => {
           id="code-editor"
           defaultValue={code}
         ></Textarea> */}
-        <Prism colorScheme="dark" language="python">{code}</Prism>
+        <Prism colorScheme="dark" language="python" withLineNumbers>
+          {code}
+        </Prism>
       </div>
     </React.Fragment>
   );

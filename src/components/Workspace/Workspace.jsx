@@ -7,7 +7,7 @@ import "./Workspace.css";
 import Switch from "../Switch/Switch";
 import BlockCategory from "../BlockCategory/BlockCategory";
 import ControlPanel from "../ControlPanel/ControlPanel";
-import ConsoleView from '../ConsoleView/ConsoleView';
+//import ConsoleView from '../ConsoleView/ConsoleView';
 import CodeView from '../CodeView/CodeView';
 import Loader from '../Loader/Loader';
 import { updateLessonStateAction } from '../../store/actions'
@@ -91,7 +91,7 @@ const Workspace = ({ loading }) => {
         </BlocklyComponent>
         <div ref={footerRef} className="bg-gray-300 control-panel">
           <ControlPanel workspace={workspaceRef.current?.workspace} />
-          <ConsoleView />
+          {/* <ConsoleView /> */}
         </div>
       </div>
       

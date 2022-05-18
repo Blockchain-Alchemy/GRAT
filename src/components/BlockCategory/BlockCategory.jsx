@@ -5,13 +5,13 @@ import {
   Value,
   Field,
   Shadow,
-  Mutation,
 } from "../Blockly";
 import "../../blocks/customblocks";
 import "../../blocks/contract";
 import "../../blocks/construct";
 import "../../blocks/entrypoint";
 import "../../blocks/procedures";
+import "../../blocks/variables";
 import "../../blocks/mutez";
 import "../../blocks/map";
 import "../../blocks/timestamps";
@@ -29,6 +29,8 @@ const BlockCategory = forwardRef((props, workspace) => {
         <Block type="construct_defnoreturn" />
         <Block type="entrypoint_defnoreturn" />
         <Block type="functions_defnoreturn" />
+        <Block type="contract_variables_set" />
+        <Block type="contract_variables_get" />
         <Block type="sp_verify" />
         <Block type="sp_verify_message">
           <Value name="MESSAGE">

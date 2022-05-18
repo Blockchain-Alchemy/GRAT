@@ -12,16 +12,16 @@ const ControlPanel = forwardRef((props, ref) => {
 
   const generateCode = () => {
     const code = BlocklyPy.workspaceToCode(props.workspace);
-    dispatch(consoleLog('generate code.'));
+    dispatch(consoleLog('Generate code'));
     dispatch(setCode(code));
     showNotification({
-      title: 'Contract Notification',
-      message: 'Hey there, your code is generated.',
+      title: 'GRAT Notification',
+      message: 'Code Generated.',
     })
   };
 
   const compileCode = () => {
-    console.log("compile.");
+    console.log("Compile");
     const code = BlocklyPy.workspaceToCode(props.workspace);
     const base64 = Buffer.from(code).toString("base64");
     api.compile("untitled", base64)
@@ -29,8 +29,8 @@ const ControlPanel = forwardRef((props, ref) => {
         dispatch(consoleLog(result));
       });
     showNotification({
-      title: 'Contract Notification',
-      message: 'Hey there, your contract is compiled',
+      title: 'GRAT Notification',
+      message: 'Contract Compiled successfully',
     })
   };
 

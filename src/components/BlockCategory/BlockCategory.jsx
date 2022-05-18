@@ -5,13 +5,13 @@ import {
   Value,
   Field,
   Shadow,
-  Mutation,
 } from "../Blockly";
 import "../../blocks/customblocks";
 import "../../blocks/contract";
 import "../../blocks/construct";
 import "../../blocks/entrypoint";
 import "../../blocks/procedures";
+import "../../blocks/variables";
 import "../../blocks/mutez";
 import "../../blocks/map";
 import "../../blocks/timestamps";
@@ -20,6 +20,109 @@ import "../../blocks/utils";
 const BlockCategory = forwardRef((props, workspace) => {
   return (
     <>
+      <Category name="Contract" colour="%{BKY_MATH_HUE}">
+        {/* <Button
+            text="Create contract variables"
+            callbackKey="CREATE_CONTRACT_VARIABLE"
+          ></Button> */}
+        <Block type="contract" />
+        <Block type="construct_defnoreturn" />
+        <Block type="entrypoint_defnoreturn" />
+        <Block type="functions_defnoreturn" />
+        <Block type="contract_variables_set" />
+        <Block type="contract_variables_get" />
+        <Block type="sp_verify" />
+        <Block type="sp_verify_message">
+          <Value name="MESSAGE">
+            <Shadow type="text">
+              <Field name="TEXT">abc</Field>
+            </Shadow>
+          </Value>
+        </Block>
+        <Block type="sp_send" />
+        <Block type="sp_transfer" />
+      </Category>
+      <Category
+        name="Variables"
+        colour="%{BKY_VARIABLES_HUE}"
+        custom="VARIABLE"
+      ></Category>
+      <Category name="Address" colour="%{BKY_LOOPS_HUE}">
+        <Block type="sp_address">
+          <Value name="VALUE">
+            <Shadow type="text">
+              <Field name="TEXT">KT1Tezooo...PVdv3</Field>
+            </Shadow>
+          </Value>
+        </Block>
+        <Block type="sp_self" />
+        <Block type="sp_sender" />
+        <Block type="sp_source" />
+        <Block type="sp_to_address" />
+      </Category>
+      <Category name="Maps" colour="%{BKY_LOGIC_HUE}">
+        <Block type="sp_pair" />
+        <Block type="sp_map" />
+        <Block type="sp_big_map" />
+      </Category>
+      <Category name="Mutez" colour="%{BKY_VARIABLES_HUE}">
+        <Block type="sp_mutez">
+          <Value name="VALUE">
+            <Shadow type="math_number">
+              <Field name="NUM">10</Field>
+            </Shadow>
+          </Value>
+        </Block>
+        <Block type="sp_tez">
+          <Value name="VALUE">
+            <Shadow type="math_number">
+              <Field name="NUM">10</Field>
+            </Shadow>
+          </Value>
+        </Block>
+        <Block type="sp_amount" />
+        <Block type="sp_balance" />
+        <Block type="sp_split_tokens" />
+      </Category>
+      <Category name="Timestamps" colour="%{BKY_VARIABLES_HUE}">
+        <Block type="sp_now" />
+        <Block type="sp_timestamp_from_utc_now" />
+        <Block type="sp_timestamp_of">
+          <Value name="SECONDS">
+            <Shadow type="math_number">
+              <Field name="NUM">5</Field>
+            </Shadow>
+          </Value>
+        </Block>
+        <Block type="sp_timestamp_add_seconds">
+          <Value name="VALUE">
+            <Shadow type="math_number">
+              <Field name="NUM">3</Field>
+            </Shadow>
+          </Value>
+        </Block>
+        <Block type="sp_timestamp_add_minutes">
+          <Value name="VALUE">
+            <Shadow type="math_number">
+              <Field name="NUM">2</Field>
+            </Shadow>
+          </Value>
+        </Block>
+        <Block type="sp_timestamp_add_hours">
+          <Value name="VALUE">
+            <Shadow type="math_number">
+              <Field name="NUM">1</Field>
+            </Shadow>
+          </Value>
+        </Block>
+        <Block type="sp_timestamp_add_days">
+          <Value name="VALUE">
+            <Shadow type="math_number">
+              <Field name="NUM">1</Field>
+            </Shadow>
+          </Value>
+        </Block>
+      </Category>
       <Category name="Logic" colour="%{BKY_LOGIC_HUE}">
         <Block type="controls_if"></Block>
         <Block type="logic_compare"></Block>
@@ -236,7 +339,7 @@ const BlockCategory = forwardRef((props, workspace) => {
           </Value>
         </Block>
       </Category>
-      <Category name="List" colour="%{BKY_LISTS_HUE}">
+      {/* <Category name="List" colour="%{BKY_LISTS_HUE}">
         <Block type="lists_create_with">
           <Mutation items="0"></Mutation>
         </Block>
@@ -324,118 +427,17 @@ const BlockCategory = forwardRef((props, workspace) => {
             </Shadow>
           </Value>
         </Block>
-      </Category>
+      </Category> */}
       {/* <sep></sep> */}
-      <Category
-        name="Variables"
-        colour="%{BKY_VARIABLES_HUE}"
-        custom="VARIABLE"
-      ></Category>
-      <Category name="Contract" colour="%{BKY_VARIABLES_HUE}">
-        {/* <Button
-            text="Create contract variables"
-            callbackKey="CREATE_CONTRACT_VARIABLE"
-          ></Button> */}
-        <Block type="contract" />
-        <Block type="construct_defnoreturn" />
-        <Block type="entrypoint_defnoreturn" />
-        <Block type="functions_defnoreturn" />
-        <Block type="sp_verify" />
-        <Block type="sp_verify_message">
-          <Value name="MESSAGE">
-            <Shadow type="text">
-              <Field name="TEXT">abc</Field>
-            </Shadow>
-          </Value>
+      {/* <Category name="Smartpy List" colour="%{BKY_VARIABLES_HUE}">
+        <Block type="sp_length_of">
         </Block>
-        <Block type="sp_send" />
-        <Block type="sp_transfer" />
-      </Category>
-      <Category name="Address" colour="%{BKY_VARIABLES_HUE}">
-        <Block type="sp_address">
-          <Value name="VALUE">
-            <Shadow type="text">
-              <Field name="TEXT">KT1Tezooo...PVdv3</Field>
-            </Shadow>
-          </Value>
-        </Block>
-        <Block type="sp_self" />
-        <Block type="sp_sender" />
-        <Block type="sp_source" />
-        <Block type="sp_to_address" />
-      </Category>
-      <Category name="Maps" colour="%{BKY_VARIABLES_HUE}">
-        <Block type="sp_pair" />
-        <Block type="sp_map" />
-        <Block type="sp_big_map" />
-      </Category>
-      <Category name="Mutez" colour="%{BKY_VARIABLES_HUE}">
-        <Block type="sp_mutez">
-          <Value name="VALUE">
-            <Shadow type="math_number">
-              <Field name="NUM">10</Field>
-            </Shadow>
-          </Value>
-        </Block>
-        <Block type="sp_tez">
-          <Value name="VALUE">
-            <Shadow type="math_number">
-              <Field name="NUM">10</Field>
-            </Shadow>
-          </Value>
-        </Block>
-        <Block type="sp_amount" />
-        <Block type="sp_balance" />
-        <Block type="sp_split_tokens" />
-      </Category>
-      <Category name="Timestamps" colour="%{BKY_VARIABLES_HUE}">
-        <Block type="sp_now" />
-        <Block type="sp_timestamp_from_utc_now" />
-        <Block type="sp_timestamp_of">
-          <Value name="SECONDS">
-            <Shadow type="math_number">
-              <Field name="NUM">5</Field>
-            </Shadow>
-          </Value>
-        </Block>
-        <Block type="sp_timestamp_add_seconds">
-          <Value name="VALUE">
-            <Shadow type="math_number">
-              <Field name="NUM">3</Field>
-            </Shadow>
-          </Value>
-        </Block>
-        <Block type="sp_timestamp_add_minutes">
-          <Value name="VALUE">
-            <Shadow type="math_number">
-              <Field name="NUM">2</Field>
-            </Shadow>
-          </Value>
-        </Block>
-        <Block type="sp_timestamp_add_hours">
-          <Value name="VALUE">
-            <Shadow type="math_number">
-              <Field name="NUM">1</Field>
-            </Shadow>
-          </Value>
-        </Block>
-        <Block type="sp_timestamp_add_days">
-          <Value name="VALUE">
-            <Shadow type="math_number">
-              <Field name="NUM">1</Field>
-            </Shadow>
-          </Value>
-        </Block>
-      </Category>
-      <Category name="Smartpy List" colour="%{BKY_VARIABLES_HUE}">
-        {/* <Block type="sp_length_of">
-          </Block> */}
       </Category>
       <Category
         name="Functions"
         colour="%{BKY_PROCEDURES_HUE}"
         custom="PROCEDURE"
-      />
+      /> */}
     </>
   );
 });

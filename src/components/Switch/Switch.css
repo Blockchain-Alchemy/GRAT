@@ -1,5 +1,7 @@
 .switch-container {
+  position: absolute;
   top: 12%;
   left: 36%;
   z-index: 1;
 }
+

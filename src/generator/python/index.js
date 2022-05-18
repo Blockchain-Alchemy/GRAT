@@ -3,8 +3,8 @@ import 'blockly/python';
 import './mutez';
 import './map';
 import './timestamps';
+import './variables';
 const Python = Blockly.Python;
-const Variables = Blockly.Variables;
 const {NameType} = Blockly.Names;
 
 Blockly.Python['test_react_field'] = function (block) {
@@ -67,23 +67,17 @@ Blockly.Python['contract'] = function (block) {
 Blockly.Python['construct_defnoreturn'] = function (block) {
   let xfix1 = '';
   if (Python.STATEMENT_PREFIX) {
-    console.log('construct~~~~~~~~~~~~~~~~~1')
     xfix1 += Python.injectId(Python.STATEMENT_PREFIX, block);
   }
   if (Python.STATEMENT_SUFFIX) {
-    console.log('construct~~~~~~~~~~~~~~~~~2')
     xfix1 += Python.injectId(Python.STATEMENT_SUFFIX, block);
   }
   if (xfix1) {
-    console.log('construct~~~~~~~~~~~~~~~~~3')
     xfix1 = Python.prefixLines(xfix1, Python.INDENT);
   }
 
-  console.log('construct~~~~~~~~~~~~~~~~~xfix1', xfix1)
-
   let loopTrap = '';
   if (Python.INFINITE_LOOP_TRAP) {
-    console.log('construct~~~~~~~~~~~~~~~~~4')
     loopTrap = Python.prefixLines(
         Python.injectId(Python.INFINITE_LOOP_TRAP, block), Python.INDENT);
   }
@@ -94,11 +88,9 @@ Blockly.Python['construct_defnoreturn'] = function (block) {
     branch = Python.PASS;
   }
   Python.contractStorage = false;
-  console.log('construct~~~~~~~~~~~~~~~~~branch', branch)
 
   const args = ['self'];
   const variables = block.getVars();
-  console.log('variables', variables)
   for (let i = 0; i < variables.length; i++) {
     const varg = Python.nameDB_.getName(variables[i], NameType.VARIABLE);
     args.push(varg);
@@ -269,38 +261,6 @@ Blockly.Python['sp_verify'] = function (block) {
   const msg = message? `, ${message}` : '';
   const code = `sp.verify(${arg1} ${operator} ${arg2}${msg})\n`;
   return code;
-};
-
-Python['variables_get'] = function(block) {
-  // Variable getter.
-  const varId = block.getFieldValue('VAR');
-  let varName = Python.nameDB_.getName(block.getFieldValue('VAR'), NameType.VARIABLE)
-  
-  const usedVariables = Variables.allUsedVarModels(block.workspace) || [];
-  console.log('usedVariables1', block)
-  const variable = usedVariables.find(it => it.id_ === varId);
-  if (variable && Python.contractStorage) {
-    varName = `self.data.${varName}`;
-  }
-
-  const code = varName;
-  return [code, Python.ORDER_ATOMIC];
-};
-
-Blockly.Python['variables_set'] = function(block) {
-  // Variable setter.
-  const varId = block.getFieldValue('VAR');
-  let varName = Python.nameDB_.getName(block.getFieldValue('VAR'), NameType.VARIABLE)
-  
-  const usedVariables = Variables.allUsedVarModels(block.workspace) || [];
-  console.log('usedVariables2', block)
-  const variable = usedVariables.find(it => it.id_ === varId);
-  if (variable && Python.contractStorage) {
-    varName = `self.data.${varName}`;
-  }
-
-  const argument = Python.valueToCode(block, 'VALUE', Python.ORDER_NONE) || '0';
-  return varName + ' = ' + argument + '\n';
 };
 
 Blockly.Python['sp_address'] = function(block) {

@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "./CodeView.css";
-import { Textarea } from '@mantine/core';
+import { Prism } from '@mantine/prism';
+//import { Textarea } from '@mantine/core';
 
 const CodeView = () => {
   const code = useSelector((state) => state.BlocklyState.code);
@@ -9,10 +10,11 @@ const CodeView = () => {
   return (
     <React.Fragment>
       <div className="codeview bg-gray-300">
-        <Textarea
+        {/* <Textarea
           id="code-editor"
           defaultValue={code}
-        ></Textarea>
+        ></Textarea> */}
+        <Prism colorScheme="dark" language="python">{code}</Prism>
       </div>
     </React.Fragment>
   );

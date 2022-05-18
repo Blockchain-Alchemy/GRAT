@@ -15,7 +15,15 @@ function consoleLog(log) {
   };
 }
 
+function updateLessonStateAction(timeline) {
+  return {
+    type: ApiConstants.UPDATE_LESSON_STATE,
+    timeline,
+  };
+}
+
 export {
   setCode,
   consoleLog,
+  updateLessonStateAction,
 }

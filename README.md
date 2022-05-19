@@ -64,7 +64,7 @@ Grat is already so awesome! But it can be even more Awesome!
 There is still so much that needs to be done before we realease GRAT into the world.
 
 - [ ] Create **Tutorial**
-- [ ] Build **Ideas** Library
+- [ ] Build **Recipes** Library
 - [ ] Add more medthods
 - [ ] Add more variable types
 - [ ] Add sp.failwith framework

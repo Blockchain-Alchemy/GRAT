@@ -8,9 +8,12 @@ import Switch from "../Switch/Switch";
 import BlockCategory from "../BlockCategory/BlockCategory";
 import ControlPanel from "../ControlPanel/ControlPanel";
 //import ConsoleView from '../ConsoleView/ConsoleView';
-import CodeView from '../CodeView/CodeView';
-import Loader from '../Loader/Loader';
-import { updateLessonStateAction } from '../../store/actions'
+import CodeView from "../CodeView/CodeView";
+import Loader from "../Loader/Loader";
+import {
+  updateLessonStateAction,
+  setContractNameAction,
+} from "../../store/actions";
 
 const Workspace = ({ loading }) => {
   const dispatch = useDispatch();
@@ -37,45 +40,49 @@ const Workspace = ({ loading }) => {
     );
     trash.style.transform = `translate(20px, -${height}px)`;
     trash1.style.transform = `translate(20px, -${height}px)`;
-    
+
     if (controlRef.current) {
       controlRef.current.style.bottom = `${height}px`;
       controlRef.current.style.transform = `translate(-130%, -20px)`;
     }
 
     const workspace = workspaceRef.current.workspace;
-    workspace.addChangeListener(event => {
+    workspace.addChangeListener((event) => {
       if (event.type === Blockly.Events.BLOCK_CREATE) {
-        if (event.json.type === 'contract') {
+        if (event.json.type === "contract") {
           dispatch(updateLessonStateAction(0));
-        } else if (event.json.type === 'entrypoint_defnoreturn') {
+        } else if (event.json.type === "entrypoint_defnoreturn") {
           dispatch(updateLessonStateAction(2));
         }
       }
       if (event.type === Blockly.Events.BLOCK_CHANGE) {
-        if (event.name === 'NAME') {
+        if (event.name === "NAME") {
           const block = workspace.getBlockById(event.blockId);
           if (block) {
-            if (block.type === 'contract') {
+            if (block.type === "contract") {              
               dispatch(updateLessonStateAction(1));
-            } else if (block.type === 'entrypoint_defnoreturn' && event.newValue.toLowerCase() === 'deposit') {
+              dispatch(setContractNameAction(event.newValue));
+            } else if (
+              block.type === "entrypoint_defnoreturn" &&
+              event.newValue.toLowerCase() === "deposit"
+            ) {
               dispatch(updateLessonStateAction(3));
             }
           }
         }
       }
-    })
-  }, [dispatch])
+    });
+  }, [dispatch]);
 
   const handleSwitch = (tabIndex) => {
     setTabIndex(tabIndex);
-  }
+  };
 
   return (
     <div className="workspace">
       <Switch tabIndex={tabIndex} handleSwitch={handleSwitch} />
 
-      <div className={tabIndex === 1? '': 'hidden'}>
+      <div className={tabIndex === 1 ? "" : "hidden"}>
         <BlocklyComponent
           ref={workspaceRef}
           readOnly={false}
@@ -94,10 +101,10 @@ const Workspace = ({ loading }) => {
           {/* <ConsoleView /> */}
         </div>
       </div>
-      
-      { tabIndex === 2 && <CodeView /> }
 
-      { loading && <Loader /> }
+      {tabIndex === 2 && <CodeView />}
+
+      {loading && <Loader />}
     </div>
   );
 };

@@ -4,6 +4,8 @@ const initialState = {
   loading: false,
   code: '',
   messages: [],
+  contractName: '',
+  sessionId: null,
 };
 
 function BlocklyState(state = initialState, action) {
@@ -17,6 +19,18 @@ function BlocklyState(state = initialState, action) {
         messages: [...state.messages, action.log]
       };
 
+    case ApiConstants.SET_SESSION_ID:
+      return {
+        ...state,
+        sessionId: action.sessionId
+      };
+
+    case ApiConstants.SET_CONTRACT_NAME:
+      return {
+        ...state,
+        contractName: action.contractName
+      };
+      
     default:
       return state;
   }

@@ -22,8 +22,24 @@ function updateLessonStateAction(timeline) {
   };
 }
 
+function setSessionIdAction(sessionId) {
+  return {
+    type: ApiConstants.SET_SESSION_ID,
+    sessionId,
+  };
+}
+
+function setContractNameAction(contractName) {
+  return {
+    type: ApiConstants.SET_CONTRACT_NAME,
+    contractName,
+  };
+}
+
 export {
   setCode,
   consoleLog,
   updateLessonStateAction,
+  setSessionIdAction,
+  setContractNameAction,
 }

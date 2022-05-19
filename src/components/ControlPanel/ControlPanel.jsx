@@ -1,7 +1,7 @@
 import React, { forwardRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import BlocklyPy from "blockly/python";
-import { setCode, consoleLog } from "../../store/actions"
+import { setCode, setSessionIdAction } from "../../store/actions"
 import "../../generator/python";
 import * as api from "../../service"
 import { Title, Button, Container } from '@mantine/core';
@@ -9,6 +9,8 @@ import { showNotification } from '@mantine/notifications';
 
 const ControlPanel = forwardRef((props, ref) => {
   const dispatch = useDispatch();
+  const sessionId = useSelector(state => state.BlocklyState.sessionId)
+  const contractName = useSelector(state => state.BlocklyState.contractName)
   const [compiled, setCompiled] = useState(false);
 
   const notify = (message) => {
@@ -43,19 +45,19 @@ const ControlPanel = forwardRef((props, ref) => {
 
   const handleConvertButton = () => {
     const code = BlocklyPy.workspaceToCode(props.workspace);
-    dispatch(consoleLog('Generate code'));
     dispatch(setCode(code));
     notify('Code Generated.')
   };
 
   const handleCompileButton = () => {
-    console.log("Compile");
+    console.log("Start compile.");
     const code = BlocklyPy.workspaceToCode(props.workspace);
     const base64 = Buffer.from(code).toString("base64");
-    api.compile("untitled", base64)
+    api.compile("contract", base64, sessionId)
       .then(result => {
+        console.log('compile-result', result)
         if (result) {
-          dispatch(consoleLog(result));
+          dispatch(setSessionIdAction(result.taqId));
           setCompiled(true);
           notify('Contract compiled successfully')
         } else {
@@ -65,11 +67,10 @@ const ControlPanel = forwardRef((props, ref) => {
   };
 
   const handleDeployButton = () => {
-    console.log("Deploy");
-    api.deploy("untitled")
+    console.log("Start Deploy.");
+    api.deploy(contractName, sessionId)
       .then(result => {
         if (result) {
-          dispatch(consoleLog(result));
           notify('Contract deployed successfully')
         } else {
           alert('Failed to deploy contract')

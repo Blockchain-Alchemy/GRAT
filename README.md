@@ -13,25 +13,35 @@ GRAT is an online IDE (Integrated Development Environment) meant to disrupt Web3
 ## Origin Story
 In 2022, a unique series of events lead to the birth of GRAT!
 
-![Grat_Hi_sm](https://user-images.githubusercontent.com/2120817/169384681-09fd28aa-f04c-4281-94f4-03470bc1401e.gif)
-
 1. [Encode Club](https://Encode.club/) held a competition in partnership with the [Tezos Foundation](https://Tezos.foundation/).
     - One of the categories inspired [Lex](https://github.com/Dreitser) from [Blockchain Alchemy](https://BlockAlc.com/) to start something truly massive and dirsuptive - creating a better future for all. 
 2. [Scratch](https://scratch.mit.edu/) - an open-source prject from MIT has become the world’s largest coding community for children, it allows young people to create digital stories, games, and animations.
     - Young people are the future. [Blockchain Alchemy](https://BlockAlc.com/) decided to invest in our future by building a tool that makes smart contract development accessible for all. 
 
-**GRAT** is based on the French verb for scratch **"gratter"**. It combines the French origins of [Tezos](https://Tezos.com/) with the philosphy of Scratch to be an inclusive tool for all ages and skill levels.
+![Grat_Hi_sm](https://user-images.githubusercontent.com/2120817/169384681-09fd28aa-f04c-4281-94f4-03470bc1401e.gif)
 
+**GRAT** is based on the French verb for scratch **Gratter**. It combines the French origins of [Tezos](https://Tezos.com/) with the philosphy of [Scratch](https://scratch.mit.edu/) to be an inclusive tool for all ages and skill levels.
+
+![arthur1](https://user-images.githubusercontent.com/2120817/169395567-51933599-278c-4c37-972f-d7ed511522bc.png)
+
+**This is Arthur** 
+
+Artrhur is a dog if you like dogs, or a cat if you like cats. As you build smart contracts in GRAT, Arthur gains XP, which can be used to purchase skins and accessories for Arthur.  Arthur adds gamification and guidance to GRAT. 
 
 
 ## Code Is Hard
 Writing smart contract code the "old-fashioned" way is prohibitively complex and frustrating.
+
+![Screen-Shot-2022-05-19-at-1 05 01-PM](https://user-images.githubusercontent.com/2120817/169397427-c984e100-5d9d-4ed6-ac68-d3052ed2d6a7.png)
+
 ### Before GRAT:
 - Errors from typos
 - Syntax Errors
 - Looking up Opeartions, Types & Variables
 - Steep Learning Curve
 - Much Typing
+
+![Screen-Shot-2022-05-19-at-1 05 01-PM](https://user-images.githubusercontent.com/2120817/169397658-55c67989-ecda-478f-9cf5-c10c29c96508.png)
 
 ### Now with GRAT:
 - Code is free from typos

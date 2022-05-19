@@ -7,7 +7,7 @@ const ProjectView = (props) => {
 
   return(
     <Container className='project-view'>
-      <Title align='center' order={3}>Ideas</Title>
+      <Title align='center' order={3}>Recipes</Title>
       <Group spacing={5} style={{padding: 5}}>
         <Text size='lg'>Buy Contract</Text>
         <Text size='md'>This contract will allow users to buy and send it to the user. </Text>
@@ -18,7 +18,7 @@ const ProjectView = (props) => {
         <Timeline.Item title="Rename Contract"/>
         <Timeline.Item title="Add Entry Point"/>
         <Timeline.Item title="Rename Entry Point to Mint"/>
-        <Timeline.Item title="Add "/>
+        <Timeline.Item title="Add In Statement"/>
       </Timeline>
     </Container>
   )

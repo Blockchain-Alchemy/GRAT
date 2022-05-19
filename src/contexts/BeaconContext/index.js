@@ -1,9 +1,9 @@
 import React, { createContext, useState } from 'react'
 import { TezosToolkit } from '@taquito/taquito';
 import { BeaconWallet } from "@taquito/beacon-wallet";
-import { PermissionScope } from "@airgap/beacon-sdk";
 import {
   BeaconEvent,
+  PermissionScope,
   defaultEventCallbacks
 } from "@airgap/beacon-sdk";
 import Network from "config";

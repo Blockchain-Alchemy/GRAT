@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "@airgap/beacon-sdk": "^3.0.0",
     "@blockly/block-plus-minus": "^3.0.13",
     "@mantine/core": "^4.2.5",
     "@mantine/hooks": "^4.2.5",

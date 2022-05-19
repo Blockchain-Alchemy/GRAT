@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import BlocklyPy from "blockly/python";
 import { setCode, consoleLog } from "../../store/actions"
@@ -9,6 +9,7 @@ import { showNotification } from '@mantine/notifications';
 
 const ControlPanel = forwardRef((props, ref) => {
   const dispatch = useDispatch();
+  const [compiled, setCompiled] = useState(false);
 
   const notify = (message) => {
     showNotification({
@@ -40,14 +41,14 @@ const ControlPanel = forwardRef((props, ref) => {
     })
   }
 
-  const generateCode = () => {
+  const handleConvertButton = () => {
     const code = BlocklyPy.workspaceToCode(props.workspace);
     dispatch(consoleLog('Generate code'));
     dispatch(setCode(code));
     notify('Code Generated.')
   };
 
-  const compileCode = () => {
+  const handleCompileButton = () => {
     console.log("Compile");
     const code = BlocklyPy.workspaceToCode(props.workspace);
     const base64 = Buffer.from(code).toString("base64");
@@ -55,12 +56,26 @@ const ControlPanel = forwardRef((props, ref) => {
       .then(result => {
         if (result) {
           dispatch(consoleLog(result));
+          setCompiled(true);
           notify('Contract compiled successfully')
         } else {
           alert('Failed to compiled contract')
         }
       })
   };
+
+  const handleDeployButton = () => {
+    console.log("Deploy");
+    api.deploy("untitled")
+      .then(result => {
+        if (result) {
+          dispatch(consoleLog(result));
+          notify('Contract deployed successfully')
+        } else {
+          alert('Failed to deploy contract')
+        }
+      })
+  }
 
   return (
     <div>
@@ -70,7 +85,7 @@ const ControlPanel = forwardRef((props, ref) => {
           variant="outline"
           m={5}
           color="gray"
-          onClick={generateCode}
+          onClick={handleConvertButton}
         >
           Convert
         </Button>
@@ -78,17 +93,18 @@ const ControlPanel = forwardRef((props, ref) => {
           variant="outline"
           m={5}
           color="gray"
-          onClick={generateCode}
+          onClick={handleCompileButton}
         >
-          Save
+          Compile
         </Button>
         <Button
           variant="outline"
           m={5}
           color="gray"
-          onClick={compileCode}
+          onClick={handleDeployButton}
+          disable={!compiled}
         >
-          Compile
+          Deploy
         </Button>
       </Container>
     </div>

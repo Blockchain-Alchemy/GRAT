@@ -1,6 +1,4 @@
-
-![gratHeader](https://user-images.githubusercontent.com/2120817/169269385-d90157b3-736d-4914-977b-5d624f2c2134.png)
-
+![grat_header](https://user-images.githubusercontent.com/2120817/169413899-ce543bc4-e52e-46d9-ae02-e242a3780678.png)
 # GRAT
 
 ### **GRAT** is a full-featured IDE where you make [Tezos](https://Tezos.com/) Smart Contracts using visual blocks. 

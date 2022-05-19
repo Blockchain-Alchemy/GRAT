@@ -6,7 +6,7 @@
 ### **GRAT** is a full-featured IDE where you make [Tezos](https://Tezos.com/) Smart Contracts using visual blocks. 
 
 ## What is GRAT
-![Screen-Shot-2022-05-19-at-11 37 28-AM](https://user-images.githubusercontent.com/2120817/169377598-3e3e5c73-0e0e-4bff-a321-3302c5a5727a.png)
+![](https://user-images.githubusercontent.com/2120817/169377598-3e3e5c73-0e0e-4bff-a321-3302c5a5727a.png)
 GRAT is an online IDE (Integrated Development Environment) meant to disrupt Web3. This is a major [Tezos](https://Tezos.com/) based project that allows developers of all ages and skill levels to participate in the blockchain ecosystem as smart contract builders. Smart contracts are the basis of Web3 and blockchain intearcation - GRAT simplifies smart contract development and makes it super inclusive.
 
 
@@ -32,7 +32,7 @@ Artrhur is a dog if you like dogs, or a cat if you like cats. As you build smart
 ## Code Is Hard
 Writing smart contract code the "old-fashioned" way is prohibitively complex and frustrating.
 
-![Screen-Shot-2022-05-19-at-1 05 01-PM](https://user-images.githubusercontent.com/2120817/169397427-c984e100-5d9d-4ed6-ac68-d3052ed2d6a7.png)
+![Screen-Shot-2022-05-19-at-1 05 01-PM](https://user-images.githubusercontent.com/2120817/169407045-4c8ee81d-a806-4ede-a675-709969cea340.png)
 
 ### Before GRAT:
 - Errors from typos
@@ -41,7 +41,7 @@ Writing smart contract code the "old-fashioned" way is prohibitively complex and
 - Steep Learning Curve
 - Much Typing
 
-![Screen-Shot-2022-05-19-at-1 05 01-PM](https://user-images.githubusercontent.com/2120817/169397658-55c67989-ecda-478f-9cf5-c10c29c96508.png)
+![Screen-Shot-2022-05-19-at-1 05 01-PM](https://user-images.githubusercontent.com/2120817/169406829-8a4d58bb-937a-421e-ae12-ca5d4a5e424b.png)
 
 ### Now with GRAT:
 - Code is free from typos

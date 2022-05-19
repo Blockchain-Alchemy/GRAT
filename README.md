@@ -18,7 +18,7 @@ In 2022, a unique series of events lead to the birth of GRAT!
 
 ![Grat_Hi_sm](https://user-images.githubusercontent.com/2120817/169384681-09fd28aa-f04c-4281-94f4-03470bc1401e.gif)
 
-**GRAT** is based on the French verb for scratch **Gratter**. It combines the French origins of [Tezos](https://Tezos.com/) with the philosphy of [Scratch](https://scratch.mit.edu/) to be an inclusive tool for all ages and skill levels.
+The name **GRAT** is based on the French verb for Scratch - **Gratter**. It combines the French origins of [Tezos](https://Tezos.com/) with the philosphy of [Scratch](https://scratch.mit.edu/) to be an inclusive tool for all ages and skill levels.
 
 ![arthur1](https://user-images.githubusercontent.com/2120817/169395567-51933599-278c-4c37-972f-d7ed511522bc.png)
 

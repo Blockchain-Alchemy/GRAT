@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3333';//'https://grat.fun';//process.env.REACT_APP_BASE_URL;
+//const BASE_URL = process.env.REACT_APP_BASE_URL;
+//const BASE_URL = 'http://localhost:3333';
+const BASE_URL = 'https://grat.fun';
 
 export const compile = (name, code, taqId) => {
   console.log('compile', name, taqId, code)
@@ -17,7 +19,7 @@ export const compile = (name, code, taqId) => {
 
 export const deploy = (name, taqId) => {
   const payload = { name, taqId };
-  return axios.post(`${BASE_URL}/blockly/deploy`, payload)
+  return axios.post(`${BASE_URL}/blockly/deploy`, payload, { timeout: 600000 })
     .then((res) => {
       return res?.data?.data;
     })

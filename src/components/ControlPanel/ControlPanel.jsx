@@ -12,6 +12,7 @@ const ControlPanel = forwardRef((props, ref) => {
   const sessionId = useSelector(state => state.BlocklyState.sessionId)
   const contractName = useSelector(state => state.BlocklyState.contractName)
   const [compiled, setCompiled] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const notify = (message) => {
     showNotification({
@@ -51,6 +52,8 @@ const ControlPanel = forwardRef((props, ref) => {
 
   const handleCompileButton = () => {
     console.log("Start compile.");
+    setLoading(true);
+
     const code = BlocklyPy.workspaceToCode(props.workspace);
     const base64 = Buffer.from(code).toString("base64");
     api.compile("contract", base64, sessionId)
@@ -64,10 +67,13 @@ const ControlPanel = forwardRef((props, ref) => {
           alert('Failed to compiled contract')
         }
       })
+      .finally(() => setLoading(false));
   };
 
   const handleDeployButton = () => {
     console.log("Start Deploy.");
+    setLoading(true);
+
     api.deploy(contractName, sessionId)
       .then(result => {
         if (result) {
@@ -76,6 +82,7 @@ const ControlPanel = forwardRef((props, ref) => {
           alert('Failed to deploy contract')
         }
       })
+      .finally(() => setLoading(false));
   }
 
   return (
@@ -95,6 +102,7 @@ const ControlPanel = forwardRef((props, ref) => {
           m={5}
           color="gray"
           onClick={handleCompileButton}
+          disabled={loading}
         >
           Compile
         </Button>
@@ -103,7 +111,7 @@ const ControlPanel = forwardRef((props, ref) => {
           m={5}
           color="gray"
           onClick={handleDeployButton}
-          disable={!compiled}
+          disabled={!compiled || loading}
         >
           Deploy
         </Button>

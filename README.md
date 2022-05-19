@@ -58,8 +58,8 @@ It runs [Taqueria](https://github.com/ecadlabs/taqueria) from [Taquito](https://
 
 ## What's Next
 
-Grat is already so awesome! But it can be even more Awesome!
-There is still so much that needs to be done before we realease GRAT into the world.
+Grat is already so awesomem, but it can be even more Awesome!
+There is still so much that needs to be done before we realease GRAT into the wild.
 
 - [ ] Create **Tutorial**
 - [ ] Build **Recipes** Library
@@ -71,7 +71,7 @@ There is still so much that needs to be done before we realease GRAT into the wo
 - [ ] Promotion
 - [ ] Marketing
 - [ ] Press Release and Educator Packet
-- [ ] Add delight to the experience when all tasks are complete :tada:
+- [ ] Release into the wild :tada:
 
 
 

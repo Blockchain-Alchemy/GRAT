@@ -58,6 +58,8 @@ It incorporates Google's **Blockly** - an open source UI. [![Built on Blockly](h
 
 It runs [Taqueria](https://github.com/ecadlabs/taqueria) from [Taquito](https://github.com/ecadlabs/taquito) developers [ECAD Labs Inc](https://ecadlabs.com/) and [SmartPy](https://smartpy.io/) - on the back-end server compile and deploy.
 
+![Screen-Shot-2022-05-19-at-1 05 01-PM](https://user-images.githubusercontent.com/2120817/169409710-2167ad89-3d6a-4f83-b615-a0e2b496296f.png)
+
 ## What's Next
 
 Grat is already so awesome! But it can be even more Awesome!

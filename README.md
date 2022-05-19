@@ -32,7 +32,7 @@ Artrhur is a dog if you like dogs, or a cat if you like cats. As you build smart
 ## Code Is Hard
 Writing smart contract code the "old-fashioned" way is prohibitively complex and frustrating.
 
-![Screen-Shot-2022-05-19-at-1 05 01-PM](https://user-images.githubusercontent.com/2120817/169407298-4673862d-9448-4085-8ce6-43d9f866c9c5.png)
+![Screen-Shot-2022-05-19-at-1 05 01-PM](https://user-images.githubusercontent.com/2120817/169407552-791f8f1d-cc2f-4667-bee4-d984ff9cc39e.png)
 
 ### Before GRAT:
 - Errors from typos

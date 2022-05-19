@@ -1,4 +1,5 @@
-![grat](https://user-images.githubusercontent.com/2120817/169254719-8608123f-0e48-4f19-bc25-8c32a4846820.png)
+
+![gratHeader](https://user-images.githubusercontent.com/2120817/169269385-d90157b3-736d-4914-977b-5d624f2c2134.png)
 
 # GRAT
 

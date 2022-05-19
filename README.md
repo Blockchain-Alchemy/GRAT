@@ -11,15 +11,18 @@ GRAT is an online IDE (Integrated Development Environment) meant to disrupt Web3
 
 
 ## Origin Story
-![Grat_Hi_sm](https://user-images.githubusercontent.com/2120817/169382670-707ccc7a-c5d2-479a-8cc6-4c4c5041c43e.gif)
-
 In 2022, a unique series of events lead to the birth of GRAT!
+
+![Grat_Hi_sm](https://user-images.githubusercontent.com/2120817/169384681-09fd28aa-f04c-4281-94f4-03470bc1401e.gif)
+
 1. [Encode Club](https://Encode.club/) held a competition in partnership with the [Tezos Foundation](https://Tezos.foundation/).
     - One of the categories inspired [Lex](https://github.com/Dreitser) from [Blockchain Alchemy](https://BlockAlc.com/) to start something truly massive and dirsuptive - creating a better future for all. 
 2. [Scratch](https://scratch.mit.edu/) - an open-source prject from MIT has become the world’s largest coding community for children, it allows young people to create digital stories, games, and animations.
     - Young people are the future. [Blockchain Alchemy](https://BlockAlc.com/) decided to invest in our future by building a tool that makes smart contract development accessible for all. 
 
 **GRAT** is based on the French verb for scratch **"gratter"**. It combines the French origins of [Tezos](https://Tezos.com/) with the philosphy of Scratch to be an inclusive tool for all ages and skill levels.
+
+
 
 ## Code Is Hard
 Writing smart contract code the "old-fashioned" way is prohibitively complex and frustrating.

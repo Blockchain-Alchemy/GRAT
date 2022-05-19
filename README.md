@@ -6,10 +6,12 @@
 ### **GRAT** is a full-featured IDE where you make [Tezos](https://Tezos.com/) Smart Contracts using visual blocks. 
 
 ## What is GRAT
-
+![Screen-Shot-2022-05-19-at-11 37 28-AM](https://user-images.githubusercontent.com/2120817/169377598-3e3e5c73-0e0e-4bff-a321-3302c5a5727a.png)
 GRAT is an online IDE (Integrated Development Environment) meant to disrupt Web3. This is a major [Tezos](https://Tezos.com/) based project that allows developers of all ages and skill levels to participate in the blockchain ecosystem as smart contract builders. Smart contracts are the basis of Web3 and blockchain intearcation - GRAT simplifies smart contract development and makes it super inclusive.
 
+
 ## Origin Story
+![Grat_Hi_sm](https://user-images.githubusercontent.com/2120817/169382670-707ccc7a-c5d2-479a-8cc6-4c4c5041c43e.gif)
 
 In 2022, a unique series of events lead to the birth of GRAT!
 1. [Encode Club](https://Encode.club/) held a competition in partnership with the [Tezos Foundation](https://Tezos.foundation/).

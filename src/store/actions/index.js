@@ -36,10 +36,18 @@ function setContractNameAction(contractName) {
   };
 }
 
+function setCompiledContractAction(contract, storage) {
+  return {
+    type: ApiConstants.SET_COMPILED_CONTRACT,
+    payload: { contract, storage },
+  };
+}
+
 export {
   setCode,
   consoleLog,
   updateLessonStateAction,
   setSessionIdAction,
   setContractNameAction,
+  setCompiledContractAction,
 }

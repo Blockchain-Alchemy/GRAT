@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 //const BASE_URL = process.env.REACT_APP_BASE_URL;
-//const BASE_URL = 'http://localhost:3333';
-const BASE_URL = 'https://grat.fun';
+const BASE_URL = 'http://localhost:3333';
+//const BASE_URL = 'https://grat.fun';
 
 export const compile = (name, code, taqId) => {
   console.log('compile', name, taqId, code)

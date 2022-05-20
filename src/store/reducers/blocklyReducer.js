@@ -6,6 +6,7 @@ const initialState = {
   messages: [],
   contractName: '',
   sessionId: null,
+  compiled: {},
 };
 
 function BlocklyState(state = initialState, action) {
@@ -30,6 +31,13 @@ function BlocklyState(state = initialState, action) {
         ...state,
         contractName: action.contractName
       };
+
+    case ApiConstants.SET_COMPILED_CONTRACT:
+      console.log('action.payload', action.payload)
+      return {
+        ...state,
+        compiled: action.payload,
+      }
       
     default:
       return state;

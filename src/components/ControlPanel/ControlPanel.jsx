@@ -1,18 +1,21 @@
 import React, { forwardRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BlocklyPy from "blockly/python";
-import { setCode, setSessionIdAction } from "../../store/actions"
+import { setCode, setSessionIdAction, setCompiledContractAction } from "../../store/actions"
 import "../../generator/python";
 import * as api from "../../service"
 import { Title, Button, Container } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
+import useTaquito from "hooks/useTaquito";
 
 const ControlPanel = forwardRef((props, ref) => {
   const dispatch = useDispatch();
   const sessionId = useSelector(state => state.BlocklyState.sessionId)
   const contractName = useSelector(state => state.BlocklyState.contractName)
+  const compiledContract = useSelector(state => state.BlocklyState.compiled)
   const [compiled, setCompiled] = useState(false);
   const [loading, setLoading] = useState(false);
+  const {deployContract} = useTaquito();
 
   const notify = (message) => {
     showNotification({
@@ -51,16 +54,17 @@ const ControlPanel = forwardRef((props, ref) => {
   };
 
   const handleCompileButton = () => {
-    console.log("Start compile.");
+    console.log("Start compile.", contractName);
     setLoading(true);
 
     const code = BlocklyPy.workspaceToCode(props.workspace);
     const base64 = Buffer.from(code).toString("base64");
-    api.compile("contract", base64, sessionId)
+    api.compile(contractName, base64, sessionId)
       .then(result => {
         console.log('compile-result', result)
         if (result) {
           dispatch(setSessionIdAction(result.taqId));
+          dispatch(setCompiledContractAction(result.contract, result.storage))
           setCompiled(true);
           notify('Contract compiled successfully')
         } else {
@@ -74,7 +78,7 @@ const ControlPanel = forwardRef((props, ref) => {
     console.log("Start Deploy.");
     setLoading(true);
 
-    api.deploy(contractName, sessionId)
+    /*api.deploy(contractName, sessionId)
       .then(result => {
         if (result) {
           notify('Contract deployed successfully')
@@ -82,7 +86,16 @@ const ControlPanel = forwardRef((props, ref) => {
           alert('Failed to deploy contract')
         }
       })
-      .finally(() => setLoading(false));
+      .finally(() => setLoading(false));*/
+    const contract = JSON.parse(compiledContract.contract);
+    const storage = JSON.parse(compiledContract.storage);
+    console.log('deply', contract, storage);
+    deployContract(contract, storage)
+      .then(address => {
+        console.log('~~~~~~~~~~~~~~~~~~~', address);
+        notify(`Origination completed for ${address}`);
+        setLoading(false);
+      })
   }
 
   return (

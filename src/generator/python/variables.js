@@ -28,7 +28,6 @@ Blockly.Python['contract_variables_set'] = function(block) {
   let varName = Python.nameDB_.getName(block.getFieldValue('VAR'), NameType.VARIABLE)
   
   const usedVariables = Variables.allUsedVarModels(block.workspace) || [];
-  console.log('usedVariables2', block)
   const variable = usedVariables.find(it => it.id_ === varId);
   if (variable) {
     varName = `self.data.${varName}`;

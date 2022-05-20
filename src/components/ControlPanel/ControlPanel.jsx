@@ -1,10 +1,11 @@
 import React, { forwardRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Title, Button, Container } from '@mantine/core';
+import { ArrowUpRight, ArrowsUpDown, CloudUpload, Code } from 'tabler-icons-react';
 import BlocklyPy from "blockly/python";
 import { setCode, setSessionIdAction, setCompiledContractAction } from "../../store/actions"
 import "../../generator/python";
 import * as api from "../../service"
-import { Title, Button, Container } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import useTaquito from "hooks/useTaquito";
 
@@ -103,26 +104,33 @@ const ControlPanel = forwardRef((props, ref) => {
       <Title align="center" order={4}>Contract Control Panel</Title>
       <Container align="center">
         <Button
-          variant="outline"
-          m={5}
-          color="gray"
+          leftIcon={<ArrowsUpDown size={14} />}
+          size="md"
+          m={10}
           onClick={handleConvertButton}
         >
           Convert
         </Button>
         <Button
-          variant="outline"
-          m={5}
-          color="gray"
+          leftIcon={<CloudUpload size={14} />}
+          size="md"
+          m={10}
+        >
+          Save
+        </Button>
+        <Button
+          leftIcon={<Code size={14} />}
+          size="md"
+          m={10}
           onClick={handleCompileButton}
           disabled={loading}
         >
           Compile
         </Button>
         <Button
-          variant="outline"
-          m={5}
-          color="gray"
+          leftIcon={<ArrowUpRight size={14} />}
+          size="md"
+          m={10}
           onClick={handleDeployButton}
           disabled={!compiled || loading}
         >

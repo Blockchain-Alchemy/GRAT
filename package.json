@@ -21,7 +21,8 @@
     "react-redux": "^8.0.1",
     "react-scripts": "^4.0.1",
     "react-unity-webgl": "^8.8.0",
-    "redux": "^4.2.0"
+    "redux": "^4.2.0",
+    "tabler-icons-react": "^1.48.0"
   },
   "scripts": {
     "audit": "npm audit fix",

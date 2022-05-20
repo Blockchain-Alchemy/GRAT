@@ -10,6 +10,8 @@ const ConnectButton = () => {
       {!connected? (
         <Button
           className="connect-wallet"
+          size="md"
+          m={10}
           onClick={connectWallet}
         >
           Connect Wallet
@@ -17,6 +19,8 @@ const ConnectButton = () => {
       ) : (
         <Button
           className="connect-wallet"
+          size="md"
+          m={10}
           onClick={disconnectWallet}
         >
           Disconnect wallet

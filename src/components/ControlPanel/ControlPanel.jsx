@@ -48,8 +48,14 @@ const ControlPanel = forwardRef((props, ref) => {
     })
   }
 
-  const handleConvertButton = () => {
+  const convert2code = () => {
     const code = BlocklyPy.workspaceToCode(props.workspace);
+    const index = code.indexOf('import');
+    return code.substring(index);
+  }
+
+  const handleConvertButton = () => {
+    const code = convert2code();
     dispatch(setCode(code));
     notify('Code Generated.')
   };
@@ -58,7 +64,7 @@ const ControlPanel = forwardRef((props, ref) => {
     console.log("Start compile.", contractName);
     setLoading(true);
 
-    const code = BlocklyPy.workspaceToCode(props.workspace);
+    const code = convert2code();
     const base64 = Buffer.from(code).toString("base64");
     api.compile(contractName, base64, sessionId)
       .then(result => {

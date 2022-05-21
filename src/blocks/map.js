@@ -95,40 +95,47 @@ import Blockly from "blockly/core";
   // Block for getting value from map
   {
     'type': 'map_variables_get',
-    'message0': 'get map value %1',
+    'message0': 'get value of map %1 with key %2',
     'args0': [
       {
         'type': 'field_variable',
         'name': 'VAR',
-        'variable': 'key',
+        'variable': '%{BKY_VARIABLES_DEFAULT_NAME}',
+      },
+      {
+        'type': 'input_value',
+        'name': 'KEY',
       },
     ],
     'output': null,
-    'style': 'variable_blocks',
+    'style': 'logic_blocks',
     'helpUrl': '%{BKY_VARIABLES_GET_HELPURL}',
     'tooltip': '%{BKY_VARIABLES_GET_TOOLTIP}',
-    'extensions': ['contextMenu_variableSetterGetter_contract'],
   },
   // Block for setting value to map
   {
     'type': 'map_variables_set',
-    'message0': 'set map %1 to value %2',
+    'message0': 'set map %1 with key %2 value %3',
     'args0': [
       {
         'type': 'field_variable',
         'name': 'VAR',
-        'variable': 'key',
+        'variable': '%{BKY_VARIABLES_DEFAULT_NAME}',
+      },
+      {
+        'type': 'input_value',
+        'name': 'KEY',
       },
       {
         'type': 'input_value',
         'name': 'VALUE',
       },
     ],
+    'inputsInline': true,
     'previousStatement': null,
     'nextStatement': null,
-    'style': 'variable_blocks',
+    'style': 'logic_blocks',
     'tooltip': '%{BKY_VARIABLES_SET_TOOLTIP}',
     'helpUrl': '%{BKY_VARIABLES_SET_HELPURL}',
-    'extensions': ['contextMenu_variableSetterGetter_contract'],
   },
 ]);

@@ -67,7 +67,7 @@ const BlockCategory = forwardRef((props, workspace) => {
         <Block type="map_variables_get" />
         <Block type="map_variables_set" />
       </Category>
-      <Category name="Mutez" colour="%{BKY_VARIABLES_HUE}">
+      <Category name="Mutez" colour="%{BKY_LOOPS_HUE}">
         <Block type="sp_mutez">
           <Value name="VALUE">
             <Shadow type="math_number">

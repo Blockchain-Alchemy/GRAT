@@ -18,6 +18,7 @@ Blockly.Python['test_react_date_field'] = function (block) {
 Blockly.Python['contract'] = function (block) {
   Python.construct = null;
   Python.entrypoints = {}
+  Python.contractVariables = [];
 
   for (let i = 0; i < block.itemCount_; i++) {
     Python.valueToCode(block, 'ADD' + i, Python.ORDER_NONE);
@@ -50,6 +51,8 @@ Blockly.Python['contract'] = function (block) {
     code += Python.prefixLines(construct, Python.INDENT);
     code += '\n';
   }
+
+  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~', Python.contractVariables)
 
   for (let key of Object.keys(Python.entrypoints)) {
     let entrypoint = Python.entrypoints[key];

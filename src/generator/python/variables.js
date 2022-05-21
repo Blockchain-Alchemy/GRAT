@@ -15,6 +15,7 @@ Python['contract_variables_get'] = function(block) {
   const usedVariables = Variables.allUsedVarModels(block.workspace) || [];
   const variable = usedVariables.find(it => it.id_ === varId);
   if (variable) {
+    Python.contractVariables.push(varId);
     varName = `self.data.${varName}`;
   }
 
@@ -30,6 +31,7 @@ Blockly.Python['contract_variables_set'] = function(block) {
   const usedVariables = Variables.allUsedVarModels(block.workspace) || [];
   const variable = usedVariables.find(it => it.id_ === varId);
   if (variable) {
+    Python.contractVariables.push(varId);
     varName = `self.data.${varName}`;
   }
 

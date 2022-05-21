@@ -285,7 +285,7 @@ Blockly.Python['sp_send'] = function(block) {
   const order = Python.ORDER_RELATIONAL;
   const arg1 = Python.valueToCode(block, 'A', order) || '0';
   const arg2 = Python.valueToCode(block, 'B', order) || '0';
-  return `sp.send(${arg1}, ${arg2})`;
+  return `sp.send(${arg2}, ${arg1})`;
 }
 
 Blockly.Python['sp_transfer'] = function(block) {

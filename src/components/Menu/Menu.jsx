@@ -20,7 +20,7 @@ const Menu = () => {
           size="md"
           m={10}
         >
-          Ideas
+          Recipes
         </Button>
         <Button
           leftIcon={<Help size={14} />}

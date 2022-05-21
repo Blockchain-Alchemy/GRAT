@@ -15,7 +15,7 @@ import {
   setContractNameAction,
 } from "../../store/actions";
 
-const Workspace = ({ loading }) => {
+const Workspace = ({ unityContext, loading }) => {
   const dispatch = useDispatch();
   const workspaceRef = useRef();
   const footerRef = useRef();
@@ -51,28 +51,32 @@ const Workspace = ({ loading }) => {
       if (event.type === Blockly.Events.BLOCK_CREATE) {
         if (event.json.type === "contract") {
           dispatch(updateLessonStateAction(0));
+          unityContext.send("GameManager", "XP"); 
         } else if (event.json.type === "entrypoint_defnoreturn") {
           dispatch(updateLessonStateAction(2));
+          unityContext.send("GameManager", "XP");
         }
       }
       if (event.type === Blockly.Events.BLOCK_CHANGE) {
         if (event.name === "NAME") {
           const block = workspace.getBlockById(event.blockId);
           if (block) {
-            if (block.type === "contract") {              
+            if (block.type === "contract") {
               dispatch(updateLessonStateAction(1));
               dispatch(setContractNameAction(event.newValue));
+              unityContext.send("GameManager", "XP"); 
             } else if (
               block.type === "entrypoint_defnoreturn" &&
               event.newValue.toLowerCase() === "deposit"
             ) {
               dispatch(updateLessonStateAction(3));
+              unityContext.send("GameManager", "XP"); 
             }
           }
         }
       }
     });
-  }, [dispatch]);
+  }, [unityContext, dispatch]);
 
   const handleSwitch = (tabIndex) => {
     setTabIndex(tabIndex);

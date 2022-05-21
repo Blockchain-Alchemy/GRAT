@@ -52,8 +52,6 @@ Blockly.Python['contract'] = function (block) {
     code += '\n';
   }
 
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~', Python.contractVariables)
-
   for (let key of Object.keys(Python.entrypoints)) {
     let entrypoint = Python.entrypoints[key];
     code += Python.prefixLines(entrypoint, Python.INDENT);

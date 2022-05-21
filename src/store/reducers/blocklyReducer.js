@@ -4,7 +4,7 @@ const initialState = {
   loading: false,
   code: '',
   messages: [],
-  contractName: 'untitled',
+  contractName: 'unnamed',
   sessionId: null,
   compiled: {},
 };

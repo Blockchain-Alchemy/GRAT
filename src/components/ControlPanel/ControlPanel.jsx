@@ -4,49 +4,20 @@ import { Title, Button, Container } from '@mantine/core';
 import { ArrowUpRight, ArrowsUpDown, CloudUpload, Code } from 'tabler-icons-react';
 import BlocklyPy from "blockly/python";
 import { setCode, setSessionIdAction, setCompiledContractAction } from "../../store/actions"
+import { notify, alertMessage, startNotification, finishNotification } from "components/Alert/Alert";
+import useTaquito from "hooks/useTaquito";
 import "../../generator/python";
 import * as api from "../../service"
-import { showNotification } from '@mantine/notifications';
-import useTaquito from "hooks/useTaquito";
+import useBeacon from "hooks/useBeacon";
 
 const ControlPanel = forwardRef((props, ref) => {
   const dispatch = useDispatch();
   const sessionId = useSelector(state => state.BlocklyState.sessionId)
   const contractName = useSelector(state => state.BlocklyState.contractName)
   const compiledContract = useSelector(state => state.BlocklyState.compiled)
-  const [compiled, setCompiled] = useState(false);
   const [loading, setLoading] = useState(false);
+  const {connected} = useBeacon();
   const {deployContract} = useTaquito();
-
-  const notify = (message) => {
-    showNotification({
-      title: 'GRAT Notification',
-      message: message,
-      styles: (theme) => ({
-        root: {
-          backgroundColor: theme.colors.blue[6],
-          borderColor: theme.colors.blue[6],
-
-          '&::before': { backgroundColor: theme.white },
-        },
-
-        title: { color: theme.white },
-        description: { color: theme.white },
-        closeButton: {
-          color: theme.white,
-          '&:hover': { backgroundColor: theme.colors.blue[7] },
-        },
-      }),
-    })
-  }
-
-  const alert = (message) => {
-    showNotification({
-      title: 'Error',
-      message: message,
-      color: 'red'
-    })
-  }
 
   const convert2code = () => {
     const code = BlocklyPy.workspaceToCode(props.workspace);
@@ -57,12 +28,17 @@ const ControlPanel = forwardRef((props, ref) => {
   const handleConvertButton = () => {
     const code = convert2code();
     dispatch(setCode(code));
-    notify('Code Generated.')
+    notify('Converted', 'Blocks converted to SmartPy.')
   };
 
   const handleCompileButton = () => {
     console.log("Start compile.", contractName);
+    if (!contractName || contractName.length <= 0) {
+      alertMessage('Please input contract name');
+      return;
+    }
     setLoading(true);
+    startNotification('Compiling', 'Compiling your smart contract to Michelson')
 
     const code = convert2code();
     const base64 = Buffer.from(code).toString("base64");
@@ -72,10 +48,9 @@ const ControlPanel = forwardRef((props, ref) => {
         if (result) {
           dispatch(setSessionIdAction(result.taqId));
           dispatch(setCompiledContractAction(result.contract, result.storage))
-          setCompiled(true);
-          notify('Contract compiled successfully')
+          finishNotification('Compiled');
         } else {
-          alert('Failed to compiled contract')
+          finishNotification('Failed to compile!', false)
         }
       })
       .finally(() => setLoading(false));
@@ -83,26 +58,32 @@ const ControlPanel = forwardRef((props, ref) => {
 
   const handleDeployButton = () => {
     console.log("Start Deploy.");
-    setLoading(true);
+    if (!connected) {
+      alertMessage('Please connect your wallet before deploy!');
+      return;
+    }
 
-    /*api.deploy(contractName, sessionId)
-      .then(result => {
-        if (result) {
-          notify('Contract deployed successfully')
-        } else {
-          alert('Failed to deploy contract')
-        }
-      })
-      .finally(() => setLoading(false));*/
+    if (!compiledContract.contract || !compiledContract.storage) {
+      alertMessage('Please compile first!');
+      return;
+    }
+
+    setLoading(true);
+    startNotification('Deploying', 'Deploying your smart contract to the blockchain')
+
     const contract = JSON.parse(compiledContract.contract);
     const storage = JSON.parse(compiledContract.storage);
     console.log('deply', contract, storage);
+
     deployContract(contract, storage)
       .then(address => {
-        console.log('~~~~~~~~~~~~~~~~~~~', address);
-        notify(`Origination completed for ${address}`);
-        setLoading(false);
+        if (address) {
+          finishNotification(`Origination completed for ${address}`);
+        } else {
+          finishNotification(`Failed to deploy!`, false);
+        }
       })
+      .finally(() => setLoading(false));
   }
 
   return (
@@ -138,7 +119,7 @@ const ControlPanel = forwardRef((props, ref) => {
           size="md"
           m={10}
           onClick={handleDeployButton}
-          disabled={!compiled || loading}
+          disabled={loading}
         >
           Deploy
         </Button>

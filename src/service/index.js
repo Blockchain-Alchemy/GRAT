@@ -13,6 +13,7 @@ export const compile = (name, code, taqId) => {
     })
     .catch((error) => {
       console.error(error);
+      console.error('Error:', error?.response?.data)
       return null;
     })
 }
@@ -25,6 +26,7 @@ export const deploy = (name, taqId) => {
     })
     .catch((error) => {
       console.error(error);
+      console.error('Error:', error?.response?.data)
       return null;
     })
 }

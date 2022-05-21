@@ -9,6 +9,7 @@
     "@mantine/hooks": "^4.2.5",
     "@mantine/notifications": "^4.2.5",
     "@mantine/prism": "^4.2.5",
+    "@modulz/radix-icons": "^4.0.0",
     "@reduxjs/toolkit": "^1.8.1",
     "@taquito/beacon-wallet": "^12.1.1",
     "@taquito/taquito": "^12.1.1",

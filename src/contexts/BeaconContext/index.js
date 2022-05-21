@@ -79,9 +79,9 @@ export const BeaconProvider = ({ children }) => {
       console.log("userAddress", address)
       setAddress(address)
 
-      const contract = await tezos.wallet.at(Network.contractAddress)
-      console.log("contract", contract);
-      setContract(contract);
+      //const contract = await tezos.wallet.at(Network.contractAddress)
+      //console.log("contract", contract);
+      //setContract(contract);
       
       setConnected(true);
     }

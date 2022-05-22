@@ -12,7 +12,7 @@ const ProjectView = ({ recipes }) => {
   }
 
   useEffect(() => {
-    lessonState.timeline >= 4 && scrollTo(lessonState.timeline * 70);
+    lessonState.timeline >= 4 && scrollTo(lessonState.timeline * 90);
   }, [lessonState.timeline])
 
   return (

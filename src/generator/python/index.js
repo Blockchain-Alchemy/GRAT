@@ -89,12 +89,12 @@ Blockly.Python['construct_defnoreturn'] = function (block) {
   if (Python.initStorage.length > 0) {
     branch = Python.initStorage.join(',\n');
     branch = Python.prefixLines(branch, Python.INDENT);
-    branch = 'self.init(\n' + branch + '\n)'
+    branch = 'self.init(\n' + branch + '\n)\n'
+    branch = Python.prefixLines(branch, Python.INDENT);
   }
   if (!branch) {
     branch = Python.PASS;
   }
-  console.log('branch', branch)
   Python.contractStorage = false;
 
   const args = ['self'];

@@ -32,7 +32,7 @@
     },
     {
         "text": "Add Set Contract Variable",
-        "hint": "That is the 5th block under Contract, attach it to the Contstruct",
+        "hint": "It's the 5th block under Contract, attach it to the Contstruct",
         "event": {
             "type": "BLOCK_CREATE"
         },

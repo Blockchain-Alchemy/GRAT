@@ -36,7 +36,6 @@
         "event": {
             "type": "BLOCK_CHANGE",
             "name": "NAME"
-
         },
         "block": {
             "type": "entrypoint",
@@ -47,14 +46,13 @@
         "id": 5,
         "text": "Add In Statement",
         "event": {
-            "type": "BLOCK_CHANGE",
+            "type": "BLOCK_MOVE",
             "name": "NAME"
-
         },
         "block": {
-            "type": "entrypoint",
-            "name": "Mint"
+            "parent": {
+                "type": "entrypoint"
+            }
         } 
     }
-
 ]

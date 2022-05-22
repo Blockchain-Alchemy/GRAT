@@ -27,7 +27,7 @@ const BlockCategory = forwardRef((props, workspace) => {
           ></Button> */}
         <Block type="contract" />
         <Block type="construct_defnoreturn" />
-        <Block type="entrypoint_defnoreturn" />
+        <Block type="entrypoint" />
         <Block type="functions_defnoreturn" />
         <Block type="contract_variables_set" />
         <Block type="contract_variables_get" />

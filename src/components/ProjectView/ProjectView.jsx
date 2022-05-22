@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Timeline, Text, Title, Group, Container } from '@mantine/core';
 
-const ProjectView = ({ recipe }) => {
+const ProjectView = ({ recipes }) => {
   const lessonState = useSelector((state) => state.LessonState);
 
   return (
@@ -20,7 +20,7 @@ const ProjectView = ({ recipe }) => {
         Follow these steps
       </Title>
       <Timeline active={lessonState.timeline}>
-        {recipe.map((item, index) => (
+        {recipes.map((item, index) => (
           <Timeline.Item key={index} title={item.text} />
         ))}
         {/* <Timeline.Item title="Add Contract"/>

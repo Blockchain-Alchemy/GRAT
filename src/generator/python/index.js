@@ -104,7 +104,7 @@ Blockly.Python['construct_defnoreturn'] = function (block) {
   return null;
 };
 
-Blockly.Python['entrypoint_defnoreturn'] = function (block) {
+Blockly.Python['entrypoint'] = function (block) {
   // Define a procedure with a return value.
   // First, add a 'global' statement for every variable that is not shadowed by
   // a local parameter.

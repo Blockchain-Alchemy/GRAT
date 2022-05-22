@@ -46,13 +46,13 @@ const App = () => {
               <Workspace
                 unityContext={unityContext}
                 loading={progression < 1.0}
-                recipe={Recipe}
+                recipes={Recipe}
               />
             </Grid.Col>
             <Grid.Col span={3}>
               <div id="Sidebar" ref={sideRef}>
                 <Unity unityContext={unityContext} />
-                <ProjectView recipe={Recipe} />
+                <ProjectView recipes={Recipe} />
               </div>
             </Grid.Col>
           </Grid>

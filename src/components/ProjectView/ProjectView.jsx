@@ -11,9 +11,9 @@ const ProjectView = ({ recipes }) => {
         Recipes
       </Title>
       <Group spacing={5} style={{ padding: 5 }}>
-        <Text size="lg">Buy Contract</Text>
+        <Text size="lg">Fundrasier Contract</Text>
         <Text size="md">
-          This contract will allow users to buy and send it to the user.{' '}
+          This contract will allow users to send Tezos to the contract and it will keep a ledger of donations.{' '}
         </Text>
       </Group>
       <Title order={5} style={{ padding: 10 }}>

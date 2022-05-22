@@ -1,6 +1,7 @@
 import React, { forwardRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Title, Button, Container } from '@mantine/core';
+import { Title, Button, Container, Dialog, Text, Group } from '@mantine/core';
+import { useClipboard } from '@mantine/hooks';
 import { ArrowUpRight, ArrowsUpDown, CloudUpload, Code } from 'tabler-icons-react';
 import BlocklyPy from "blockly/python";
 import { setCode, setSessionIdAction, setCompiledContractAction } from "../../store/actions"
@@ -16,6 +17,9 @@ const ControlPanel = forwardRef((props, ref) => {
   const contractName = useSelector(state => state.BlocklyState.contractName)
   const compiledContract = useSelector(state => state.BlocklyState.compiled)
   const [loading, setLoading] = useState(false);
+  const [dialogOpended, setDialogOpened] = useState(false);
+  const [contractAddress, setContractAddress] = useState('');
+  const clipboard = useClipboard({ timeout: 500 });
   const {connected} = useBeacon();
   const {deployContract} = useTaquito();
 
@@ -57,6 +61,12 @@ const ControlPanel = forwardRef((props, ref) => {
   };
 
   const handleDeployButton = () => {
+    /*setTimeout(() => {
+      setDialogOpened(true);
+      setContractAddress('KT1QAcfPEqnu35Z9PYTfBuNoPYDMaiJq4gwW');
+    }, 2000)
+    return;*/
+
     console.log("Start Deploy.");
     if (!connected) {
       alertMessage('Please connect your wallet before deploy!');
@@ -78,12 +88,18 @@ const ControlPanel = forwardRef((props, ref) => {
     deployContract(contract, storage)
       .then(address => {
         if (address) {
-          finishNotification(`Origination completed for ${address}`);
+          setContractAddress(address);
+          setDialogOpened(true);
+          //finishNotification(`Origination completed for ${address}`);
         } else {
           finishNotification(`Failed to deploy!`, false);
         }
       })
       .finally(() => setLoading(false));
+  }
+
+  const copyAddress = () => {
+    clipboard.copy(contractAddress);
   }
 
   return (
@@ -123,6 +139,26 @@ const ControlPanel = forwardRef((props, ref) => {
         >
           Deploy
         </Button>
+        <Dialog
+          opened={dialogOpended}
+          withCloseButton
+          onClose={() => setDialogOpened(false)}
+          size="lg"
+          radius="md"
+        >
+          <Text size="sm" style={{ marginBottom: 10 }} weight={500}>
+            Contract Deployed Successfully!
+          </Text>
+
+          <Group align="flex-end">
+            <Text size="sm" style={{ marginBottom: 10 }} weight={500}>
+              Address: {contractAddress}
+            </Text>
+            <Button onClick={() => copyAddress()}>
+              {clipboard.copied ? 'Copied' : 'Copy to Clipboard'}
+            </Button>
+          </Group>
+        </Dialog>        
       </Container>
     </div>
   );

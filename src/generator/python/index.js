@@ -280,6 +280,10 @@ Blockly.Python['sp_self'] = function(block) {
   return ['sp.self', Python.ORDER_ATOMIC];
 }
 
+Blockly.Python['sp_self_address'] = function(block) {
+  return ['sp.self_address', Python.ORDER_ATOMIC];
+}
+
 Blockly.Python['sp_sender'] = function(block) {
   return ['sp.sender', Python.ORDER_ATOMIC];
 }

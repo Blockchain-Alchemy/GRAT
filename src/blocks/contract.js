@@ -45,6 +45,15 @@ Blockly.defineBlocksWithJsonArray([
     'tooltip': '%{BKY_LOGIC_NULL_TOOLTIP}',
     'helpUrl': '%{BKY_LOGIC_NULL_HELPURL}',
   },
+  // Block for sp.self_address
+  {
+    'type': 'sp_self_address',
+    'message0': 'self address',
+    'output': null,
+    'style': 'loop_blocks',
+    'tooltip': '%{BKY_LOGIC_NULL_TOOLTIP}',
+    'helpUrl': '%{BKY_LOGIC_NULL_HELPURL}',
+  },
   // Block for sp.sender
   {
     'type': 'sp_sender',

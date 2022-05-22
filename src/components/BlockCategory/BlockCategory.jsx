@@ -56,6 +56,7 @@ const BlockCategory = forwardRef((props, workspace) => {
           </Value>
         </Block>
         <Block type="sp_self" />
+        <Block type="sp_self_address" />
         <Block type="sp_sender" />
         <Block type="sp_source" />
         <Block type="sp_to_address" />

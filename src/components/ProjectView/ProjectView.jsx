@@ -18,7 +18,7 @@ const ProjectView = ({ recipes }) => {
   return (
     <ScrollArea className="project-view" scrollbarSize={0} viewportRef={viewport}>
       <Title align="center" spacing={5} order={3} style={{ marginTop: 10 }}>
-        Recipes
+        RECIPES
       </Title>
       <Group position="center" spacing={5} style={{ padding: 5 }}>
         <Text className="fundrasier" size="lg" style={{ marginTop: 10 }}>Fundrasier Contract</Text>

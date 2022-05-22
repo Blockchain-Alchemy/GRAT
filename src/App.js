@@ -42,7 +42,7 @@ const App = () => {
         <Menu/>
         <Grid>
           <Grid.Col span={9}>
-            <Workspace loading={progression < 1.0} />
+            <Workspace unityContext={unityContext} loading={progression < 1.0} />
           </Grid.Col>
           <Grid.Col span={3}>
             <div id="Sidebar" ref={sideRef}>

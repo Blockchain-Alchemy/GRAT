@@ -21,7 +21,9 @@ const ProjectView = ({ recipes }) => {
       </Title>
       <Timeline active={lessonState.timeline}>
         {recipes.map((item, index) => (
-          <Timeline.Item key={index} title={item.text} />
+          <Timeline.Item key={index} title={item.text}>
+            <Text color="dimmed" size="sm">{item.hint}</Text>
+          </Timeline.Item>
         ))}
         {/* <Timeline.Item title="Add Contract"/>
         <Timeline.Item title="Rename Contract"/>

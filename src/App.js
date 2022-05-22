@@ -33,38 +33,30 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
-      <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-        theme={{ colorScheme: 'dark' }}
-      >
-        <NotificationsProvider>
-          <Menu />
-          <Grid>
-            <Grid.Col span={9}>
-              <Workspace
-                unityContext={unityContext}
-                loading={progression < 1.0}
-                recipes={Recipe}
-              />
-            </Grid.Col>
-            <Grid.Col span={3}>
-              <div id="Sidebar" ref={sideRef}>
-                <Unity unityContext={unityContext} />
-                <ProjectView recipes={Recipe} />
-              </div>
-            </Grid.Col>
-          </Grid>
-
-          <div
-            className="absolute bottom-0 right-0 w-1/4"
-            id="Sidebar"
-            ref={sideRef}
-          ></div>
-        </NotificationsProvider>
-      </MantineProvider>
-    </div>
+    <MantineProvider
+      withGlobalStyles
+      withNormalizeCSS
+      theme={{ colorScheme: 'dark' }}
+    >
+      <NotificationsProvider>
+        <Menu />
+        <Grid>
+          <Grid.Col span={9}>
+            <Workspace
+              unityContext={unityContext}
+              loading={progression < 1.0}
+              recipes={Recipe}
+            />
+          </Grid.Col>
+          <Grid.Col span={3}>
+            <div id="Sidebar" ref={sideRef}>
+              <Unity unityContext={unityContext} />
+              <ProjectView recipes={Recipe} />
+            </div>
+          </Grid.Col>
+        </Grid>
+      </NotificationsProvider>
+    </MantineProvider>
   );
 };
 

@@ -6,7 +6,13 @@ import ConnectButton from "components/ConnectWallet"
 const Menu = () => {
   return (
     <header className="App-header">
-      <Image src="grat.png" alt="Grat" height={60}/>
+      <div className="logo-wrapper">
+        <Image src="grat.png" alt="Grat" height={60}/>
+        <div className="logo-link">By <a className="blockchain-alchemy" href="https://www.google.com">Blockchain Alchemy</a></div>
+      </div>
+      <div className="">
+
+      </div>
       <div className="menu-buttons">
         <Button
           leftIcon={<Checkbox size={14} />}

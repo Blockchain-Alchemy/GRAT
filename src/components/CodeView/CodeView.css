@@ -1,15 +1,11 @@
 .codeview {
-  height: 90%;
+  height: 87%;
   width: 75%;
   position: absolute;
   bottom: 0;
   padding: 5px;
   padding-top: 0;
 }
-
-/* .codeview * {
-  height: 100%;
-} */
 
 #code-editor {
   width: 100%;

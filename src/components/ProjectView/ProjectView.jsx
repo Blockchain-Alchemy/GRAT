@@ -10,7 +10,7 @@ const ProjectView = ({ recipes }) => {
       <Title align="center" order={3}>
         Recipes
       </Title>
-      <Group spacing={5} style={{ padding: 5 }}>
+      <Group position="center" spacing={5} style={{ padding: 5 }}>
         <Text size="lg">Fundrasier Contract</Text>
         <Text size="md">
           This contract will allow users to send Tezos to the contract and it will keep a ledger of donations.{' '}

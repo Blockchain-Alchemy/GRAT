@@ -14,7 +14,7 @@ import {
   setContractNameAction,
 } from "../../store/actions";
 
-const Workspace = ({ unityContext, loading }) => {
+const Workspace = ({ unityContext, loading, recipes }) => {
   const dispatch = useDispatch();
   const workspaceRef = useRef();
   const footerRef = useRef();
@@ -49,40 +49,39 @@ const Workspace = ({ unityContext, loading }) => {
 
     const workspace = workspaceRef.current.workspace;
     workspace.addChangeListener((event) => {
-      if (event.type === Blockly.Events.BLOCK_CREATE) {
-        if (event.json.type === "contract") {
-          dispatch(updateLessonStateAction(0));
-        } else if (event.json.type === "entrypoint_defnoreturn") {
-          dispatch(updateLessonStateAction(2));
-        }
-      }
-      else if (event.type === Blockly.Events.BLOCK_CHANGE) {
-        if (event.name === "NAME") {
-          const block = workspace.getBlockById(event.blockId);
-          if (block) {
-            if (block.type === "contract") {
-              dispatch(updateLessonStateAction(1));
-              dispatch(setContractNameAction(event.newValue));
-            } else if (
-              block.type === "entrypoint_defnoreturn" &&
-              event.newValue.toLowerCase() === "mint"
-            ) {
-              dispatch(updateLessonStateAction(3));
+      const recipe = recipes.find(item => item.id - 1 === timeline + 1);
+      if (recipe) {
+        const exp = recipe.id - 1;
+        if (recipe.event.type === 'BLOCK_CREATE' && event.type === Blockly.Events.BLOCK_CREATE) {
+          if (event.json.type === recipe.block.type) {
+            dispatch(updateLessonStateAction(exp));
+          }
+        } else if (recipe.event.type === 'BLOCK_CHANGE' && event.type === Blockly.Events.BLOCK_CHANGE) {
+          if (event.name === recipe.event.name) {
+            const block = workspace.getBlockById(event.blockId);
+            if (block && block.type === recipe.block.type) {
+              if (!recipe.block.name || recipe.block.name.toLowerCase() === event.newValue.toLowerCase()) {
+                dispatch(updateLessonStateAction(exp));
+              }
+              if (recipe.block.type === 'contract') {
+                dispatch(setContractNameAction(event.newValue));
+              }
+            }
+          }
+        } else if (recipe.event.type === 'BLOCK_MOVE' && event.type === Blockly.Events.BLOCK_MOVE) {
+          if (recipe.block.parent) {
+            const parentId = event.newParentId;
+            if (parentId) {
+              const block = workspace.getBlockById(parentId);
+              if (block && block.type === recipe.block.parent.type) {
+                dispatch(updateLessonStateAction(exp));
+              }
             }
           }
         }
       }
-      else if (event.type === Blockly.Events.BLOCK_MOVE) {
-        const parentId = event.newParentId;
-        if (parentId) {
-          const block = workspace.getBlockById(parentId);
-          if (block && block.type === "entrypoint_defnoreturn") {
-            dispatch(updateLessonStateAction(4));
-          }
-        }
-      }
     });
-  }, [dispatch]);
+  }, [dispatch, recipes, timeline]);
 
   const handleSwitch = (tabIndex) => {
     setTabIndex(tabIndex);

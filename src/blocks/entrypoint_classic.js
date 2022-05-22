@@ -419,7 +419,7 @@ const PROCEDURE_DEF_COMMON = {
   },
 };
 
-Blockly.Blocks["entrypoint_defnoreturn"] = {
+Blockly.Blocks["entrypoint"] = {
   ...PROCEDURE_DEF_COMMON,
   /**
    * Block for defining a procedure with no return value.

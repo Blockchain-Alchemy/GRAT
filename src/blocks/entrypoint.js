@@ -23,13 +23,13 @@ Blockly.Msg['PROCEDURE_VARIABLE'] = 'variable:';
 
 // Delete original blocks because there's no way to unregister them:
 // https://github.com/google/blockly-samples/issues/768#issuecomment-885663394
-delete Blockly.Blocks['entrypoint_defnoreturn'];
+delete Blockly.Blocks['entrypoint'];
 delete Blockly.Blocks['entrypoint_defreturn'];
 
 /* eslint-disable quotes */
 Blockly.defineBlocksWithJsonArray([
   {
-    "type": "entrypoint_defnoreturn",
+    "type": "entrypoint",
     "message0": "entrypoint %1 %2",
     "message1": "%{BKY_PROCEDURES_DEFNORETURN_DO} %1",
     "args0": [

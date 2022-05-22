@@ -27,7 +27,7 @@ const BlockCategory = forwardRef((props, workspace) => {
           ></Button> */}
         <Block type="contract" />
         <Block type="construct_defnoreturn" />
-        <Block type="entrypoint_defnoreturn" />
+        <Block type="entrypoint" />
         <Block type="functions_defnoreturn" />
         <Block type="contract_variables_set" />
         <Block type="contract_variables_get" />
@@ -56,6 +56,7 @@ const BlockCategory = forwardRef((props, workspace) => {
           </Value>
         </Block>
         <Block type="sp_self" />
+        <Block type="sp_self_address" />
         <Block type="sp_sender" />
         <Block type="sp_source" />
         <Block type="sp_to_address" />

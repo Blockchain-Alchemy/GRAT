@@ -21,7 +21,6 @@ Blockly.Msg['PROCEDURE_VARIABLE'] = 'variable:';
 // Delete original blocks because there's no way to unregister them:
 // https://github.com/google/blockly-samples/issues/768#issuecomment-885663394
 delete Blockly.Blocks['construct_defnoreturn'];
-delete Blockly.Blocks['construct_defreturn'];
 
 /* eslint-disable quotes */
 Blockly.defineBlocksWithJsonArray([

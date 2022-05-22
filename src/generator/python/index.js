@@ -19,6 +19,7 @@ Blockly.Python['contract'] = function (block) {
   Python.construct = null;
   Python.entrypoints = {}
   Python.contractVariables = [];
+  Python.initStorage = [];
 
   for (let i = 0; i < block.itemCount_; i++) {
     Python.valueToCode(block, 'ADD' + i, Python.ORDER_NONE);
@@ -85,6 +86,12 @@ Blockly.Python['construct_defnoreturn'] = function (block) {
 
   Python.contractStorage = true;
   let branch = Python.statementToCode(block, 'STACK');
+  if (Python.initStorage.length > 0) {
+    branch = Python.initStorage.join(',\n');
+    branch = Python.prefixLines(branch, Python.INDENT);
+    branch = 'self.init(\n' + branch + '\n)\n'
+    branch = Python.prefixLines(branch, Python.INDENT);
+  }
   if (!branch) {
     branch = Python.PASS;
   }
@@ -104,7 +111,7 @@ Blockly.Python['construct_defnoreturn'] = function (block) {
   return null;
 };
 
-Blockly.Python['entrypoint_defnoreturn'] = function (block) {
+Blockly.Python['entrypoint'] = function (block) {
   // Define a procedure with a return value.
   // First, add a 'global' statement for every variable that is not shadowed by
   // a local parameter.
@@ -271,6 +278,10 @@ Blockly.Python['sp_address'] = function(block) {
 
 Blockly.Python['sp_self'] = function(block) {
   return ['sp.self', Python.ORDER_ATOMIC];
+}
+
+Blockly.Python['sp_self_address'] = function(block) {
+  return ['sp.self_address', Python.ORDER_ATOMIC];
 }
 
 Blockly.Python['sp_sender'] = function(block) {

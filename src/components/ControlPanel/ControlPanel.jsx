@@ -115,7 +115,7 @@ const ControlPanel = forwardRef((props, ref) => {
     startNotification(
       'deploy',
       'Deploying',
-      'Deploying your smart contract to the blockchain'
+      'Deploying your smart contract to the blockchain, this may take a few minutes.'
     );
 
     const contract = JSON.parse(compiledContract.contract);
@@ -195,7 +195,7 @@ const ControlPanel = forwardRef((props, ref) => {
               Copy Michelson Code to Clipboard?
             </Text>
             <Button onClick={() => copyMichelson()}>
-              {clipboard.copied ? 'Copied' : 'Copy Michelson'}
+              {clipboard.copied ? 'Michelson Copied' : 'Copy Michelson'}
             </Button>
           </Group>
         </Dialog>
@@ -216,7 +216,7 @@ const ControlPanel = forwardRef((props, ref) => {
               Address: {contractAddress}
             </Text>
             <Button onClick={() => copyAddress()}>
-              {clipboard.copied ? 'Copied' : 'Copy to Clipboard'}
+              {clipboard.copied ? 'Copied to Clipboar' : 'Copy to Clipboard'}
             </Button>
           </Group>
         </Dialog>

@@ -17,17 +17,17 @@ const ProjectView = ({ recipes }) => {
 
   return (
     <ScrollArea className="project-view" scrollbarSize={0} viewportRef={viewport}>
-      <Title align="center" order={3}>
+      <Title align="center" spacing={5} order={3} style={{ marginTop: 10 }}>
         Recipes
       </Title>
       <Group position="center" spacing={5} style={{ padding: 5 }}>
-        <Text className="fundrasier" size="lg">Fundrasier Contract</Text>
-        <Text size="md">
+        <Text className="fundrasier" size="lg" style={{ marginTop: 10 }}>Fundrasier Contract</Text>
+        <Text size="md" style={{ marginTop: 5 ,  padding: 10}} >
           This contract will allow users to send Tezos to the contract and it will keep a ledger of donations.{' '}
         </Text>
       </Group>
-      <Title order={5} style={{ padding: 10 }}>
-        Follow these steps
+      <Title order={5} spacing={5}  style={{ marginBottom: 20}}>
+        Follow these steps:
       </Title>
       <Timeline active={lessonState.timeline}>
         {recipes.map((item, index) => (

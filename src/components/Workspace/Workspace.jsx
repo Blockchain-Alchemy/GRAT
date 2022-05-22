@@ -49,9 +49,12 @@ const Workspace = ({ unityContext, loading, recipes }) => {
 
     const workspace = workspaceRef.current.workspace;
     workspace.addChangeListener((event) => {
-      const recipe = recipes.find(item => item.id - 1 === timeline + 1);
+      if (timeline + 1 >= recipes.length) {
+        return;
+      }
+      const recipe = recipes[timeline + 1];
       if (recipe) {
-        const exp = recipe.id - 1;
+        const exp = timeline + 1;
         if (recipe.event.type === 'BLOCK_CREATE' && event.type === Blockly.Events.BLOCK_CREATE) {
           if (event.json.type === recipe.block.type) {
             dispatch(updateLessonStateAction(exp));
@@ -60,7 +63,16 @@ const Workspace = ({ unityContext, loading, recipes }) => {
           if (event.name === recipe.event.name) {
             const block = workspace.getBlockById(event.blockId);
             if (block && block.type === recipe.block.type) {
-              if (!recipe.block.name || recipe.block.name.toLowerCase() === event.newValue.toLowerCase()) {
+              if (recipe.block.name) {
+                if (recipe.block.name.toLowerCase() === event.newValue.toLowerCase()) {
+                  dispatch(updateLessonStateAction(exp));
+                }
+              } else if (recipe.block.variable) {
+                const variable = Blockly.Variables.getVariable(workspace, event.newValue);
+                if (recipe.block.variable.toLowerCase() === variable.name.toLowerCase()) {
+                  dispatch(updateLessonStateAction(exp));
+                }
+              } else {
                 dispatch(updateLessonStateAction(exp));
               }
               if (recipe.block.type === 'contract') {
@@ -77,6 +89,10 @@ const Workspace = ({ unityContext, loading, recipes }) => {
                 dispatch(updateLessonStateAction(exp));
               }
             }
+          }
+        } else if (recipe.event.type === 'VAR_RENAME' && event.type === 'var_rename') {
+          if (recipe.block.name === event.newName) {
+            dispatch(updateLessonStateAction(exp));
           }
         }
       }

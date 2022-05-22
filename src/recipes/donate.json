@@ -1,6 +1,5 @@
 [
     {
-        "id": 1,
         "text": "Create Contract",
         "event": {
             "type": "BLOCK_CREATE"
@@ -10,7 +9,6 @@
         } 
     },
     {
-        "id": 2,
         "text": "Rename Contract",
         "event": {
             "type": "BLOCK_CHANGE",
@@ -21,50 +19,44 @@
         } 
     },
     {
-        "id": 3,
         "text": "Create Construct",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "construct"
+            "type": "construct_defnoreturn"
         } 
     },
     {
-        "id": 4,
         "text": "Add Set Contract Variable to Construct ",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "set_conrtact_variable"
+            "type": "contract_variables_set"
         } 
     },
     {
-        "id": 5,
         "text": "Rename Variable from Item to Ledger",
         "event": {
-            "type": "BLOCK_CHANGE",
+            "type": "VAR_RENAME",
             "name": "NAME"
-
         },
         "block": {
-            "type": "set_conrtact_variable",
+            "type": "contract_variables_set",
             "name": "ledger"
         } 
     },
     {
-        "id": 6,
         "text": "Add Big Map",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "big_map"
+            "type": "sp_big_map"
         } 
     },
     {
-        "id": 7,
         "text": "Add EntryPoint",
         "event": {
             "type": "BLOCK_CREATE"
@@ -74,118 +66,106 @@
         } 
     },
     {
-        "id": 8,
         "text": "Add Verify",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "verify"
+            "type": "sp_verify"
         } 
     },
     {
-        "id": 9,
         "text": "Insert into Verify sp.amount",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "sp.amount"
+            "type": "sp_amount"
         } 
     },
     {
-        "id": 10,
-        "text": "Add sm.mutez 0",
+        "text": "Add sp.mutez 0",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "sp.mutez"
+            "type": "sp_mutez"
         }
     },
     {
-        "id": 11,
         "text": "Set verify operator to >",
         "event": {
             "type": "BLOCK_CHANGE",
-            "name": "OPERATOR"
+            "name": "OP"
         },
         "block": {
-            "type": "verify"
+            "type": "sp_verify",
+            "name": "GT"
         } 
     }, 
     {
-        "id": 12,
         "text": "Add Set Map",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "set_map"
+            "type": "map_variables_set"
         }
     },
     {
-        "id": 13,
         "text": "Change Set Map to ledger ",
         "event": {
-            "type": "BLOCK_CHANGE"
-            
+            "type": "BLOCK_CHANGE",
+            "name": "VAR"
         },
         "block": {
-            "type": "sp.mutez"
+            "type": "map_variables_set",
+            "variable": "ledger"
         }
     },
     {
-        "id": 14,
         "text": "Add Sender Address in with key",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "sender_address"
+            "type": "sp_sender"
         }
     },
     {
-        "id": 15,
         "text": "Add sp.amount in value",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "sp.amount"
+            "type": "sp_amount"
         }
     },
     {
-        "id": 16,
         "text": "Add Send Block",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "send"
+            "type": "sp_send"
         }
     },
     {
-        "id": 17,
         "text": "Add sp.amount into Send",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "sp.amount"
+            "type": "sp_amount"
         }
     },
     {
-        "id": 18,
         "text": "Add Self Address into Send",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "self_address"
+            "type": "sp_self_address"
         }
     }
-
-
-
 ]

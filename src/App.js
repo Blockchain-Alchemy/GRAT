@@ -8,7 +8,7 @@ import Unity, { UnityContext } from 'react-unity-webgl';
 import { MantineProvider, Grid } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import Menu from './components/Menu/Menu';
-import Recipe from 'recipes/recipe.json';
+import Recipe from 'recipes/donate.json';
 
 const unityContext = new UnityContext({
   loaderUrl: 'Build/1.loader.js',

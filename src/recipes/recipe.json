@@ -1,6 +1,5 @@
 [
     {
-        "id": 1,
         "text": "Create Contract",
         "event": {
             "type": "BLOCK_CREATE"
@@ -10,7 +9,6 @@
         } 
     },
     {
-        "id": 2,
         "text": "Rename Contract",
         "event": {
             "type": "BLOCK_CHANGE",
@@ -21,7 +19,6 @@
         } 
     },
     {
-        "id": 3,
         "text": "Create Entrypoint",
         "event": {
             "type": "BLOCK_CREATE"
@@ -31,7 +28,6 @@
         } 
     },
     {
-        "id": 4,
         "text": "Rename Entrypoint to Mint",
         "event": {
             "type": "BLOCK_CHANGE",
@@ -43,7 +39,6 @@
         } 
     },
     {
-        "id": 5,
         "text": "Add In Statement",
         "event": {
             "type": "BLOCK_MOVE",

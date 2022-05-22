@@ -103,6 +103,8 @@ rect.blocklyMainBackground {
   position: absolute;
   bottom: 0;
   height: calc(60% - 7px);
+  overflow-y: scroll;
+  padding-bottom: 40px;
 }
 
 @keyframes App-logo-spin {

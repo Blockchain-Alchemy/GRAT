@@ -16,7 +16,7 @@ const ProjectView = ({ recipes }) => {
           This contract will allow users to buy and send it to the user.{' '}
         </Text>
       </Group>
-      <Title order={5} style={{ padding: 5 }}>
+      <Title order={5} style={{ padding: 10 }}>
         Follow these steps
       </Title>
       <Timeline active={lessonState.timeline}>

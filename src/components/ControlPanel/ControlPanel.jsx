@@ -115,7 +115,7 @@ const ControlPanel = forwardRef((props, ref) => {
     startNotification(
       'deploy',
       'Deploying',
-      'Deploying your smart contract to the blockchain, this may take a few minutes.'
+      'Deploying your smart contract to the blockchain. \n This may take a few minutes.'
     );
 
     const contract = JSON.parse(compiledContract.contract);

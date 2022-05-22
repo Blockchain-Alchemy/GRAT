@@ -14,7 +14,7 @@ import {
   setContractNameAction,
 } from "../../store/actions";
 
-const Workspace = ({ unityContext, loading }) => {
+const Workspace = ({ unityContext, loading, recipe }) => {
   const dispatch = useDispatch();
   const workspaceRef = useRef();
   const footerRef = useRef();
@@ -49,6 +49,7 @@ const Workspace = ({ unityContext, loading }) => {
 
     const workspace = workspaceRef.current.workspace;
     workspace.addChangeListener((event) => {
+      console.log('recipe', recipe)
       if (event.type === Blockly.Events.BLOCK_CREATE) {
         if (event.json.type === "contract") {
           dispatch(updateLessonStateAction(0));

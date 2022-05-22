@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Timeline, Text, Title, Group, Container } from '@mantine/core';
+import { Timeline, Text, Title, Group, ScrollArea } from '@mantine/core';
+import { useRef } from 'react';
 
 const ProjectView = ({ recipes }) => {
   const lessonState = useSelector((state) => state.LessonState);
+  const viewport = useRef();
+
+  const scrollTo = (top) => {
+    viewport.current.scrollTo({ top: top, behavior: 'smooth' });
+  }
+
+  useEffect(() => {
+    lessonState.timeline >= 4 && scrollTo(lessonState.timeline * 70);
+  }, [lessonState.timeline])
 
   return (
-    <Container className="project-view">
+    <ScrollArea className="project-view" scrollbarSize={0} viewportRef={viewport}>
       <Title align="center" order={3}>
         Recipes
       </Title>
       <Group position="center" spacing={5} style={{ padding: 5 }}>
-        <Text size="lg">Fundrasier Contract</Text>
+        <Text className="fundrasier" size="lg">Fundrasier Contract</Text>
         <Text size="md">
           This contract will allow users to send Tezos to the contract and it will keep a ledger of donations.{' '}
         </Text>
@@ -31,7 +41,7 @@ const ProjectView = ({ recipes }) => {
         <Timeline.Item title="Rename Entry Point to Mint"/>
         <Timeline.Item title="Add In Statement"/> */}
       </Timeline>
-    </Container>
+    </ScrollArea>
   );
 };
 

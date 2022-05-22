@@ -8,10 +8,10 @@ const Menu = () => {
     <header className="App-header">
       <div className="logo-wrapper">
         <Image src="grat.png" alt="Grat" height={60}/>
-        <div className="logo-link">By <a className="blockchain-alchemy" href="https://www.google.com">Blockchain Alchemy</a></div>
+        <div className="logo-link">By <a className="link" href="https://blockalc.com">Blockchain Alchemy</a></div>
       </div>
-      <div className="">
-
+      <div className="about-grat">
+        GRAT is a full-featured IDE where you make <a className="link" href="https://tezos.com">Tezos</a> Smart Contracts using visual blocks. 
       </div>
       <div className="menu-buttons">
         <Button

@@ -121,7 +121,7 @@ const Workspace = ({ unityContext, loading, recipes }) => {
           <BlockCategory />
         </BlocklyComponent>
         <div ref={footerRef} className="bg-gray-300 control-panel">
-          <ControlPanel workspace={workspaceRef.current?.workspace} />
+          <ControlPanel workspace={workspaceRef.current?.workspace} unityContext={unityContext}/>
           {/* <ConsoleView /> */}
         </div>
       </div>

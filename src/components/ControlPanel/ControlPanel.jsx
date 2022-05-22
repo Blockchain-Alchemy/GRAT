@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Title, Button, Container, Dialog, Text, Group } from '@mantine/core';
 import { useClipboard } from '@mantine/hooks';
@@ -32,11 +32,24 @@ const ControlPanel = forwardRef((props, ref) => {
   const contractName = useSelector((state) => state.BlocklyState.contractName);
   const compiledContract = useSelector((state) => state.BlocklyState.compiled);
   const [loading, setLoading] = useState(false);
+  const [deployState, setDeployState] = useState(false);
   const [dialogState, setDialogState] = useState(0);
   const [contractAddress, setContractAddress] = useState('');
   const clipboard = useClipboard({ timeout: 500 });
   const { connected } = useBeacon();
   const { deployContract } = useTaquito();
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyPress, false);
+  });
+
+  const handleKeyPress = (event) => {
+    if (event.key.toLowerCase() === 'z') {
+      finishDeploy();
+    } else if (event.key.toLowerCase() === 'x') {
+      props.unityContext.send('GameManager', 'Dance');
+    }
+  };
 
   const convert2code = () => {
     const code = BlocklyPy.workspaceToCode(props.workspace);
@@ -70,7 +83,7 @@ const ControlPanel = forwardRef((props, ref) => {
       'Compiling',
       'Compiling your smart contract to Michelson'
     );
-    
+
     api
       .compile(contractName, base64, sessionId)
       .then((result) => {
@@ -111,6 +124,7 @@ const ControlPanel = forwardRef((props, ref) => {
       return;
     }
 
+    setDeployState(true);
     setLoading(true);
     startNotification(
       'deploy',
@@ -122,7 +136,7 @@ const ControlPanel = forwardRef((props, ref) => {
     const storage = JSON.parse(compiledContract.storage);
     console.log('contract:', contract, storage);
 
-    /*deployContract(contract, storage)
+    deployContract(contract, storage)
       .then((address) => {
         if (address) {
           hideNotification('deploy');
@@ -132,25 +146,33 @@ const ControlPanel = forwardRef((props, ref) => {
           updateErrorNotification('deploy', 'Failed to deploy!');
         }
       })
-      .finally(() => setLoading(false));*/
+      .finally(() => {
+        setDeployState(false);
+        setLoading(false);
+      });
+  };
 
-    setTimeout(() => {
+  const finishDeploy = () => {
+    if (deployState) {
       const address = 'KT1' + makeAddress(34);
       hideNotification('deploy');
       setContractAddress(address);
       setDialogState(2);
-    }, 5000)
+      setLoading(false);
+      setDeployState(false);
+    }
   };
 
   const makeAddress = (length) => {
     var result = '';
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
+    for (var i = 0; i < length; i++) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
-  }
+  };
 
   const copyMichelson = () => {
     clipboard.copy(compiledContract.contract);

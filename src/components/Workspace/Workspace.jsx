@@ -23,7 +23,6 @@ const Workspace = ({ unityContext, loading, recipes }) => {
   const timeline = useSelector(state => state.LessonState.timeline);
 
   useEffect(() => {
-    console.log('timeline', timeline);
     timeline >= 0 && unityContext.send("GameManager", "XP"); 
   }, [unityContext, timeline])
 

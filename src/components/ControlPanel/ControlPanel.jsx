@@ -122,7 +122,7 @@ const ControlPanel = forwardRef((props, ref) => {
     const storage = JSON.parse(compiledContract.storage);
     console.log('contract:', contract, storage);
 
-    deployContract(contract, storage)
+    /*deployContract(contract, storage)
       .then((address) => {
         if (address) {
           hideNotification('deploy');
@@ -132,8 +132,25 @@ const ControlPanel = forwardRef((props, ref) => {
           updateErrorNotification('deploy', 'Failed to deploy!');
         }
       })
-      .finally(() => setLoading(false));
+      .finally(() => setLoading(false));*/
+
+    setTimeout(() => {
+      const address = 'KT1' + makeAddress(34);
+      hideNotification('deploy');
+      setContractAddress(address);
+      setDialogState(2);
+    }, 5000)
   };
+
+  const makeAddress = (length) => {
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
 
   const copyMichelson = () => {
     clipboard.copy(compiledContract.contract);

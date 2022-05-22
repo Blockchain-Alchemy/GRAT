@@ -58,5 +58,8 @@
       "build/index.html",
       "build/**/*"
     ]
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }

@@ -1,73 +1,106 @@
-import React, { forwardRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { forwardRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Title, Button, Container, Dialog, Text, Group } from '@mantine/core';
 import { useClipboard } from '@mantine/hooks';
-import { ArrowUpRight, ArrowsUpDown, CloudUpload, Code } from 'tabler-icons-react';
-import BlocklyPy from "blockly/python";
-import { setCode, setSessionIdAction, setCompiledContractAction } from "../../store/actions"
-import { notify, alertMessage, startNotification, finishNotification } from "components/Alert/Alert";
-import useTaquito from "hooks/useTaquito";
-import "../../generator/python";
-import * as api from "../../service"
-import useBeacon from "hooks/useBeacon";
+import {
+  ArrowUpRight,
+  ArrowsUpDown,
+  CloudUpload,
+  Code,
+} from 'tabler-icons-react';
+import BlocklyPy from 'blockly/python';
+import {
+  setCode,
+  setSessionIdAction,
+  setCompiledContractAction,
+} from '../../store/actions';
+import {
+  showNotification,
+  alertMessage,
+  startNotification,
+  updateErrorNotification,
+  hideNotification,
+} from 'components/Alert/Alert';
+import useTaquito from 'hooks/useTaquito';
+import '../../generator/python';
+import * as api from '../../service';
+import useBeacon from 'hooks/useBeacon';
 
 const ControlPanel = forwardRef((props, ref) => {
   const dispatch = useDispatch();
-  const sessionId = useSelector(state => state.BlocklyState.sessionId)
-  const contractName = useSelector(state => state.BlocklyState.contractName)
-  const compiledContract = useSelector(state => state.BlocklyState.compiled)
+  const sessionId = useSelector((state) => state.BlocklyState.sessionId);
+  const contractName = useSelector((state) => state.BlocklyState.contractName);
+  const compiledContract = useSelector((state) => state.BlocklyState.compiled);
   const [loading, setLoading] = useState(false);
-  const [dialogOpended, setDialogOpened] = useState(false);
+  const [dialogState, setDialogState] = useState(0);
   const [contractAddress, setContractAddress] = useState('');
   const clipboard = useClipboard({ timeout: 500 });
-  const {connected} = useBeacon();
-  const {deployContract} = useTaquito();
+  const { connected } = useBeacon();
+  const { deployContract } = useTaquito();
 
   const convert2code = () => {
     const code = BlocklyPy.workspaceToCode(props.workspace);
     const index = code.indexOf('import');
     return code.substring(index);
-  }
+  };
 
   const handleConvertButton = () => {
     const code = convert2code();
     dispatch(setCode(code));
-    notify('Converted', 'Blocks converted to SmartPy.')
+    showNotification('Converted', 'Blocks converted to SmartPy.');
   };
 
   const handleCompileButton = () => {
-    console.log("Start compile.", contractName);
+    console.log('Start compile.', contractName);
     if (!contractName || contractName.length <= 0) {
-      alertMessage('Please input contract name');
+      alertMessage('Please input contract name!');
       return;
     }
-    setLoading(true);
-    startNotification('Compiling', 'Compiling your smart contract to Michelson')
 
     const code = convert2code();
-    const base64 = Buffer.from(code).toString("base64");
-    api.compile(contractName, base64, sessionId)
-      .then(result => {
-        console.log('compile-result', result)
+    if (!code || code.length <= 0) {
+      alertMessage('There is no blocks to compile!');
+      return;
+    }
+    const base64 = Buffer.from(code).toString('base64');
+
+    setLoading(true);
+    startNotification(
+      'compile',
+      'Compiling',
+      'Compiling your smart contract to Michelson'
+    );
+    
+    api
+      .compile(contractName, base64, sessionId)
+      .then((result) => {
+        console.log('compile-result', result);
         if (result) {
           dispatch(setSessionIdAction(result.taqId));
-          dispatch(setCompiledContractAction(result.contract, result.storage))
-          finishNotification('Compiled');
+          dispatch(setCompiledContractAction(result.contract, result.storage));
+          hideNotification('compile');
+          setDialogState(1);
         } else {
-          finishNotification('Failed to compile!', false)
+          updateErrorNotification('compile', 'Failed to compile!');
         }
       })
       .finally(() => setLoading(false));
   };
 
   const handleDeployButton = () => {
-    /*setTimeout(() => {
-      setDialogOpened(true);
+    /*startNotification(
+      'deploy',
+      'Deploying',
+      'Deploying your smart contract to the blockchain'
+    );
+    setTimeout(() => {
+      hideNotification('deploy');
       setContractAddress('KT1QAcfPEqnu35Z9PYTfBuNoPYDMaiJq4gwW');
-    }, 2000)
+      setDialogState(2);
+    }, 2000);
     return;*/
 
-    console.log("Start Deploy.");
+    console.log('Start Deploy.');
     if (!connected) {
       alertMessage('Please connect your wallet before deploy!');
       return;
@@ -79,32 +112,42 @@ const ControlPanel = forwardRef((props, ref) => {
     }
 
     setLoading(true);
-    startNotification('Deploying', 'Deploying your smart contract to the blockchain')
+    startNotification(
+      'deploy',
+      'Deploying',
+      'Deploying your smart contract to the blockchain'
+    );
 
     const contract = JSON.parse(compiledContract.contract);
     const storage = JSON.parse(compiledContract.storage);
-    console.log('deply', contract, storage);
+    console.log('contract:', contract, storage);
 
     deployContract(contract, storage)
-      .then(address => {
+      .then((address) => {
         if (address) {
+          hideNotification('deploy');
           setContractAddress(address);
-          setDialogOpened(true);
-          //finishNotification(`Origination completed for ${address}`);
+          setDialogState(2);
         } else {
-          finishNotification(`Failed to deploy!`, false);
+          updateErrorNotification('deploy', 'Failed to deploy!');
         }
       })
       .finally(() => setLoading(false));
-  }
+  };
+
+  const copyMichelson = () => {
+    clipboard.copy(compiledContract.contract);
+  };
 
   const copyAddress = () => {
     clipboard.copy(contractAddress);
-  }
+  };
 
   return (
     <div>
-      <Title align="center" order={4}>Contract Control Panel</Title>
+      <Title align="center" order={4}>
+        Contract Control Panel
+      </Title>
       <Container align="center">
         <Button
           leftIcon={<ArrowsUpDown size={14} />}
@@ -114,11 +157,7 @@ const ControlPanel = forwardRef((props, ref) => {
         >
           Convert
         </Button>
-        <Button
-          leftIcon={<CloudUpload size={14} />}
-          size="md"
-          m={10}
-        >
+        <Button leftIcon={<CloudUpload size={14} />} size="md" m={10}>
           Save
         </Button>
         <Button
@@ -139,10 +178,32 @@ const ControlPanel = forwardRef((props, ref) => {
         >
           Deploy
         </Button>
+
         <Dialog
-          opened={dialogOpended}
+          opened={dialogState === 1}
           withCloseButton
-          onClose={() => setDialogOpened(false)}
+          onClose={() => setDialogState(0)}
+          size="lg"
+          radius="md"
+        >
+          <Text size="sm" style={{ marginBottom: 10 }} weight={500}>
+            Contract Compiled: Successfully!
+          </Text>
+
+          <Group align="flex-end">
+            <Text size="sm" style={{ marginBottom: 10 }} weight={500}>
+              Copy Michelson Code to Clipboard?
+            </Text>
+            <Button onClick={() => copyMichelson()}>
+              {clipboard.copied ? 'Copied' : 'Copy Michelson'}
+            </Button>
+          </Group>
+        </Dialog>
+
+        <Dialog
+          opened={dialogState === 2}
+          withCloseButton
+          onClose={() => setDialogState(0)}
           size="lg"
           radius="md"
         >
@@ -158,7 +219,7 @@ const ControlPanel = forwardRef((props, ref) => {
               {clipboard.copied ? 'Copied' : 'Copy to Clipboard'}
             </Button>
           </Group>
-        </Dialog>        
+        </Dialog>
       </Container>
     </div>
   );

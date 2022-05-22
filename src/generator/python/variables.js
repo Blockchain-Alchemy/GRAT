@@ -32,9 +32,10 @@ Blockly.Python['contract_variables_set'] = function(block) {
   const variable = usedVariables.find(it => it.id_ === varId);
   if (variable) {
     Python.contractVariables.push(varId);
-    varName = `self.data.${varName}`;
+    //varName = `self.data.${varName}`;
   }
 
   const argument = Python.valueToCode(block, 'VALUE', Python.ORDER_NONE) || '0';
+  Python.initStorage.push(varName + ' = ' + argument);
   return varName + ' = ' + argument + '\n';
 };

@@ -19,6 +19,7 @@ Blockly.Python['contract'] = function (block) {
   Python.construct = null;
   Python.entrypoints = {}
   Python.contractVariables = [];
+  Python.initStorage = [];
 
   for (let i = 0; i < block.itemCount_; i++) {
     Python.valueToCode(block, 'ADD' + i, Python.ORDER_NONE);
@@ -65,7 +66,7 @@ Blockly.Python['contract'] = function (block) {
   return code;
 };
 
-Blockly.Python['construct'] = function (block) {
+Blockly.Python['construct_defnoreturn'] = function (block) {
   let xfix1 = '';
   if (Python.STATEMENT_PREFIX) {
     xfix1 += Python.injectId(Python.STATEMENT_PREFIX, block);
@@ -85,9 +86,15 @@ Blockly.Python['construct'] = function (block) {
 
   Python.contractStorage = true;
   let branch = Python.statementToCode(block, 'STACK');
+  if (Python.initStorage.length > 0) {
+    branch = Python.initStorage.join(',\n');
+    branch = Python.prefixLines(branch, Python.INDENT);
+    branch = 'self.init(\n' + branch + '\n)'
+  }
   if (!branch) {
     branch = Python.PASS;
   }
+  console.log('branch', branch)
   Python.contractStorage = false;
 
   const args = ['self'];

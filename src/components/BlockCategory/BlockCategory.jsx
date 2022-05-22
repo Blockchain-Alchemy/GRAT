@@ -26,7 +26,7 @@ const BlockCategory = forwardRef((props, workspace) => {
             callbackKey="CREATE_CONTRACT_VARIABLE"
           ></Button> */}
         <Block type="contract" />
-        <Block type="construct_defnoreturn" />
+        <Block type="construct" />
         <Block type="entrypoint" />
         <Block type="functions_defnoreturn" />
         <Block type="contract_variables_set" />

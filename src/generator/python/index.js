@@ -65,7 +65,7 @@ Blockly.Python['contract'] = function (block) {
   return code;
 };
 
-Blockly.Python['construct_defnoreturn'] = function (block) {
+Blockly.Python['construct'] = function (block) {
   let xfix1 = '';
   if (Python.STATEMENT_PREFIX) {
     xfix1 += Python.injectId(Python.STATEMENT_PREFIX, block);

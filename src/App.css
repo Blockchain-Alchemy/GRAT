@@ -40,7 +40,13 @@
 
 .link {
   color: #2b69e8;
+  text-decoration: none;
 }
+
+a:hover {
+  color: #64a8f8;
+}
+
 
 .menu-buttons {
   margin-top: 10px;

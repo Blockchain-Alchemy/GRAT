@@ -1,13 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import Blockly from "blockly/core";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import BlocklyComponent from "../Blockly";
 import "./Workspace.css";
 import Switch from "../Switch/Switch";
 import BlockCategory from "../BlockCategory/BlockCategory";
 import ControlPanel from "../ControlPanel/ControlPanel";
-//import ConsoleView from '../ConsoleView/ConsoleView';
 import CodeView from "../CodeView/CodeView";
 import Loader from "../Loader/Loader";
 import {
@@ -21,10 +20,12 @@ const Workspace = ({ unityContext, loading }) => {
   const footerRef = useRef();
   const controlRef = useRef();
   const [tabIndex, setTabIndex] = useState(1);
+  const timeline = useSelector(state => state.LessonState.timeline);
 
-  /*useEffect(() => {
-    api.compile().then(result => console.log(result));
-  }, [])*/
+  useEffect(() => {
+    console.log('timeline', timeline);
+    timeline >= 0 && unityContext.send("GameManager", "XP"); 
+  }, [unityContext, timeline])
 
   useEffect(() => {
     const height = footerRef.current.clientHeight;
@@ -51,32 +52,37 @@ const Workspace = ({ unityContext, loading }) => {
       if (event.type === Blockly.Events.BLOCK_CREATE) {
         if (event.json.type === "contract") {
           dispatch(updateLessonStateAction(0));
-          unityContext.send("GameManager", "XP"); 
         } else if (event.json.type === "entrypoint_defnoreturn") {
           dispatch(updateLessonStateAction(2));
-          unityContext.send("GameManager", "XP");
         }
       }
-      if (event.type === Blockly.Events.BLOCK_CHANGE) {
+      else if (event.type === Blockly.Events.BLOCK_CHANGE) {
         if (event.name === "NAME") {
           const block = workspace.getBlockById(event.blockId);
           if (block) {
             if (block.type === "contract") {
               dispatch(updateLessonStateAction(1));
               dispatch(setContractNameAction(event.newValue));
-              unityContext.send("GameManager", "XP"); 
             } else if (
               block.type === "entrypoint_defnoreturn" &&
-              event.newValue.toLowerCase() === "deposit"
+              event.newValue.toLowerCase() === "mint"
             ) {
               dispatch(updateLessonStateAction(3));
-              unityContext.send("GameManager", "XP"); 
             }
           }
         }
       }
+      else if (event.type === Blockly.Events.BLOCK_MOVE) {
+        const parentId = event.newParentId;
+        if (parentId) {
+          const block = workspace.getBlockById(parentId);
+          if (block && block.type === "entrypoint_defnoreturn") {
+            dispatch(updateLessonStateAction(4));
+          }
+        }
+      }
     });
-  }, [unityContext, dispatch]);
+  }, [dispatch]);
 
   const handleSwitch = (tabIndex) => {
     setTabIndex(tabIndex);

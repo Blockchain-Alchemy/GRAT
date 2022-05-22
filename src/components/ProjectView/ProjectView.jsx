@@ -21,8 +21,8 @@ const ProjectView = ({ recipes }) => {
         Recipe
       </Title>
       <Group position="center" spacing={5} style={{ padding: 5 }}>
-        <Text className="fundrasier" size="lg" style={{ marginTop: 10 }}>Fundrasier Contract</Text>
-        <Text size="md" style={{ marginTop: 5 ,  padding: 8}} >
+        <Text className="fundrasier" size="large" style={{ marginTop: 10, fontWeight: 600 }}>Fundrasier Contract</Text>
+        <Text size="md" style={{ marginTop: 5 ,  padding: 6}} >
           This contract will allow users to send Tezos to the contract and it will keep a ledger of donations.{' '}
         </Text>
       </Group>

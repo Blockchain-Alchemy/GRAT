@@ -1,7 +1,7 @@
 ![grat_header](https://user-images.githubusercontent.com/2120817/169413899-ce543bc4-e52e-46d9-ae02-e242a3780678.png)
 # GRAT
 
-### **GRAT** is a full-featured IDE where you make [Tezos](https://Tezos.com/) Smart Contracts using visual blocks. 
+### **GRAT** is a full-featured IDE where you make [Tezos](https://Tezos.com/) Smart Contracts using visual blocks. 
 
 ## What is GRAT
 ![](https://user-images.githubusercontent.com/2120817/169377598-3e3e5c73-0e0e-4bff-a321-3302c5a5727a.png)
@@ -12,13 +12,13 @@ GRAT is an online IDE (Integrated Development Environment) meant to disrupt Web3
 In 2022, a unique series of events lead to the birth of GRAT!
 
 1. [Encode Club](https://Encode.club/) held a workshop in partnership with the [Tezos Foundation](https://Tezos.foundation/).
-    - [Lex](https://github.com/Dreitser) of [Blockchain Alchemy](https://BlockAlc.com/) was inspired to start something truly massive and dirsuptive - creating a better future for all. 
+    - [Lex](https://github.com/Dreitser) of [Blockchain Alchemy](https://BlockAlc.com/) was inspired to start something truly massive and disruptive - creating a better future for all. 
 2. [Scratch](https://scratch.mit.edu/) - an open-source project from MIT has become the world’s largest coding community for children, it allows young people to create digital stories, games, and animations.
     - Young people are the future. [Blockchain Alchemy](https://BlockAlc.com/) decided to invest in our future by building a tool that makes smart contract development accessible for all. 
 
 ![Grat_Hi_sm](https://user-images.githubusercontent.com/2120817/169384681-09fd28aa-f04c-4281-94f4-03470bc1401e.gif)
 
-The name **GRAT** is based on the French verb for Scratch - **Gratter**. It combines the French origins of [Tezos](https://Tezos.com/) with the philosphy of [Scratch](https://scratch.mit.edu/) to be an inclusive tool for all ages and skill levels.
+The name **GRAT** is based on the French verb for Scratch - **Gratter**. It combines the French origins of [Tezos](https://Tezos.com/) with the philosophy of [Scratch](https://scratch.mit.edu/) to be an inclusive tool for all ages and skill levels.
 
 ![arthur1](https://user-images.githubusercontent.com/2120817/169395567-51933599-278c-4c37-972f-d7ed511522bc.png)
 
@@ -35,7 +35,7 @@ Writing smart contract code the "old-fashioned" way is prohibitively complex and
 ### Before GRAT:
 - Errors from typos
 - Syntax Errors
-- Looking up Opeartions, Types & Variables
+- Looking up Operations, Types & Variables
 - Steep Learning Curve
 - Much Typing
 
@@ -44,7 +44,7 @@ Writing smart contract code the "old-fashioned" way is prohibitively complex and
 ### Now with GRAT:
 - Code is free from typos
 - Perfect Syntax
-- Opeartions, Types & Variables all easily visable
+- Operations, Types & Variables all easily visible
 - So Easy to Learn
 - No Typing Required (not everybody can type)
 
@@ -58,20 +58,21 @@ It runs [Taqueria](https://github.com/ecadlabs/taqueria) from [Taquito](https://
 
 ## What's Next
 
-Grat is already so awesomem, but it can be even more Awesome!
-There is still so much that needs to be done before we realease GRAT into the wild.
+Grat is already so awesome, but it can be even more Awesome!
+There is still so much that needs to be done before we release GRAT into the wild.
 
 - [ ] Create **Tutorial**
 - [ ] Build **Recipes** Library
-- [ ] Add more medthods
+- [ ] Add more methods
 - [ ] Add more variable types
 - [ ] Add sp.failwith framework
-- [ ] Build Out BigMap Opeartions
+- [X] Build Out BigMap Operations
 - [ ] Testing
 - [ ] Promotion
 - [ ] Marketing
 - [ ] Press Release and Educator Packet
 - [ ] Release into the wild :tada:
+
 
 
 

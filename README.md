@@ -5,7 +5,7 @@
 
 ## What is GRAT
 ![](https://user-images.githubusercontent.com/2120817/169377598-3e3e5c73-0e0e-4bff-a321-3302c5a5727a.png)
-GRAT is an online IDE (Integrated Development Environment) meant to disrupt Web3. This is a major [Tezos](https://Tezos.com/) based project that allows developers of all ages and skill levels to participate in the blockchain ecosystem as smart contract builders. Smart contracts are the basis of Web3 and blockchain intearcation - GRAT simplifies smart contract development and makes it super inclusive.
+GRAT is an online IDE (Integrated Development Environment) meant to disrupt Web3. This is a major [Tezos](https://Tezos.com/) based project that allows developers of all ages and skill levels to participate in the blockchain ecosystem as smart contract builders. Smart contracts are the basis of Web3 and blockchain interaction - GRAT simplifies smart contract development and makes it super inclusive.
 
 
 ## Origin Story

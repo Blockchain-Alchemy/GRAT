@@ -12,27 +12,27 @@ const ProjectView = ({ recipes }) => {
   }
 
   useEffect(() => {
-    lessonState.timeline >= 4 && scrollTo(lessonState.timeline * 90);
+    lessonState.timeline >= 4 && scrollTo(lessonState.timeline * 70);
   }, [lessonState.timeline])
 
   return (
     <ScrollArea className="project-view" scrollbarSize={0} viewportRef={viewport}>
-      <Title align="center" spacing={5} order={3} style={{ marginTop: 10 }}>
-        Recipe
+      <Title align="center" order={3}>
+        Recipes
       </Title>
       <Group position="center" spacing={5} style={{ padding: 5 }}>
-        <Text className="fundrasier" size="large" style={{ marginTop: 10, fontWeight: 600 }}>Fundrasier Contract</Text>
-        <Text size="md" style={{ marginTop: 5 ,  padding: 6}} >
+        <Text className="fundrasier" size="lg">Fundrasier Contract</Text>
+        <Text size="md">
           This contract will allow users to send Tezos to the contract and it will keep a ledger of donations.{' '}
         </Text>
       </Group>
-      <Title order={5} spacing={5}  style={{padding: 10 }}>
-        Follow these steps:
+      <Title order={5} style={{ padding: 10 }}>
+        Follow these steps
       </Title>
-      <Timeline active={lessonState.timeline} style={{ padding: 20 }}>
+      <Timeline active={lessonState.timeline}>
         {recipes.map((item, index) => (
-          <Timeline.Item key={index} title={item.text} >
-            <Text color="dimmed" size="sm">{item.hint} </Text>
+          <Timeline.Item key={index} title={item.text}>
+            <Text color="dimmed" size="sm">{item.hint}</Text>
           </Timeline.Item>
         ))}
         {/* <Timeline.Item title="Add Contract"/>

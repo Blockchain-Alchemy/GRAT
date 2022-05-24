@@ -31,7 +31,7 @@ const Workspace = ({ unityContext, loading, recipes }) => {
     const workspaceHtml = ReactDOM.findDOMNode(
       document.querySelector("rect.blocklyMainBackground")
     );
-    workspaceHtml.style.height = `calc(100% - ${height}px)`;
+    workspaceHtml.style.height = `calc(100% - ${height -10}px)`;
     const trash = ReactDOM.findDOMNode(
       document.querySelector("g.blocklyTrash image")
     );

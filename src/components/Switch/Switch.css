@@ -5,3 +5,8 @@
   z-index: 1;
 }
 
+@media screen and (max-width: 462px) {
+  .switch-container .mantine-Button-label {
+    display: none;
+  }
+}

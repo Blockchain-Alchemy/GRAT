@@ -14,3 +14,9 @@
   padding: 16px;
   overflow-y: auto;
 }
+
+@media screen and (max-width: 936px) {
+  .codeview {
+    width: 100%;
+  }
+}

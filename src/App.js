@@ -40,21 +40,19 @@ const App = () => {
     >
       <NotificationsProvider>
         <Menu />
-        <Grid>
-          <Grid.Col span={9}>
-            <Workspace
-              unityContext={unityContext}
-              loading={progression < 1.0}
-              recipes={Recipe}
-            />
-          </Grid.Col>
-          <Grid.Col span={3}>
-            <div id="Sidebar" ref={sideRef}>
-              <Unity unityContext={unityContext} />
-              <ProjectView recipes={Recipe} />
-            </div>
-          </Grid.Col>
-        </Grid>
+        <div className='workBar' >
+          <Workspace
+            unityContext={unityContext}
+            loading={progression < 1.0}
+            recipes={Recipe}
+          />
+        </div>
+        <div className='Sidebar'>
+          <div id="Sidebar" ref={sideRef}>
+            <Unity unityContext={unityContext} />
+            <ProjectView recipes={Recipe} />
+          </div>
+        </div>
       </NotificationsProvider>
     </MantineProvider>
   );

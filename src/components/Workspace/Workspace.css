@@ -6,3 +6,27 @@
   width: 63.8%;
   background-color: #1A1B1E;
 }
+
+@media screen and (max-width: 936px) {
+  .control-panel {
+    z-index: 1000;
+    left: 0%;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .control-panel {
+    bottom: -450px;
+  }
+
+  .switch-container {
+    top: 460px!important;
+  }
+
+  .control-panel .mantine-Button-root {
+    width: calc(100% - 68px);
+    margin-left: 34px;
+    margin-right: 34px;
+  }
+}

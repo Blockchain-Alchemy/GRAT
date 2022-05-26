@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import Blockly from "blockly/core";
+import { UnityContext } from "react-unity-webgl";
 import { useDispatch, useSelector } from "react-redux";
 import BlocklyComponent from "../Blockly";
 import "./Workspace.css";
@@ -8,17 +9,35 @@ import Switch from "../Switch/Switch";
 import BlockCategory from "../BlockCategory/BlockCategory";
 import ControlPanel from "../ControlPanel/ControlPanel";
 import CodeView from "../CodeView/CodeView";
-import Loader from "../Loader/Loader";
 import {
   updateLessonStateAction,
   setContractNameAction,
 } from "../../store/actions";
+import Recipe from '../../recipes/donate.json';
 
-const Workspace = ({ unityContext, loading, recipes }) => {
+const unityContext = new UnityContext({
+  loaderUrl: 'Build/1.loader.js',
+  dataUrl: 'Build/1.data',
+  frameworkUrl: 'Build/1.framework.js',
+  codeUrl: 'Build/1.wasm',
+});
+
+const Workspace = () => {
+
+  useEffect(function () {
+    unityContext.on('progress', (progression) => {
+      console.log('progression', progression);
+    });
+
+    unityContext.on('Converted', () => {
+      console.log('converted');
+    });
+  }, []);
+
+  const recipes = Recipe;
   const dispatch = useDispatch();
   const workspaceRef = useRef();
   const footerRef = useRef();
-  const controlRef = useRef();
   const [tabIndex, setTabIndex] = useState(1);
   const timeline = useSelector(state => state.LessonState.timeline);
 
@@ -27,25 +46,6 @@ const Workspace = ({ unityContext, loading, recipes }) => {
   }, [unityContext, timeline])
 
   useEffect(() => {
-    const height = footerRef.current.clientHeight;
-    const workspaceHtml = ReactDOM.findDOMNode(
-      document.querySelector("rect.blocklyMainBackground")
-    );
-    workspaceHtml.style.height = `calc(100% - ${height}px)`;
-    const trash = ReactDOM.findDOMNode(
-      document.querySelector("g.blocklyTrash image")
-    );
-    const trash1 = ReactDOM.findDOMNode(
-      document.querySelector("g.blocklyTrash image:last-child")
-    );
-    trash.style.transform = `translate(20px, -${height}px)`;
-    trash1.style.transform = `translate(20px, -${height}px)`;
-
-    if (controlRef.current) {
-      controlRef.current.style.bottom = `${height}px`;
-      controlRef.current.style.transform = `translate(-130%, -20px)`;
-    }
-
     const workspace = workspaceRef.current.workspace;
     workspace.addChangeListener((event) => {
       if (timeline + 1 >= recipes.length) {
@@ -127,8 +127,6 @@ const Workspace = ({ unityContext, loading, recipes }) => {
       </div>
 
       {tabIndex === 2 && <CodeView />}
-
-      {loading && <Loader />}
     </div>
   );
 };

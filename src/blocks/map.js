@@ -14,9 +14,10 @@ import Blockly from "blockly/core";
         'type': 'field_dropdown',
         'name': 'KEY1',
         'options': [
-          ['address', 'Address'],
           ['integer', 'TInt'],
           ['unsigned integer', 'TNat'],
+          ['address', 'Address'],
+          ['mutez', 'TMutez'],
         ],
       },
       {
@@ -26,6 +27,38 @@ import Blockly from "blockly/core";
           ['integer', 'TInt'],
           ['unsigned integer', 'TNat'],
           ['address', 'Address'],
+          ['mutez', 'TMutez'],
+        ],
+      },
+    ],
+    'output': null,
+    'style': 'logic_blocks',
+    'tooltip': '%{BKY_LOGIC_NULL_TOOLTIP}',
+    'helpUrl': '%{BKY_LOGIC_NULL_HELPURL}',
+  },
+  // Block for sp.record
+  {
+    'type': 'sp_record',
+    'message0': 'Pair of %1 and %2',
+    'args0': [
+      {
+        'type': 'field_dropdown',
+        'name': 'KEY1',
+        'options': [
+          ['integer', 'TInt'],
+          ['unsigned integer', 'TNat'],
+          ['address', 'Address'],
+          ['mutez', 'TMutez'],
+        ],
+      },
+      {
+        'type': 'field_dropdown',
+        'name': 'KEY2',
+        'options': [
+          ['integer', 'TInt'],
+          ['unsigned integer', 'TNat'],
+          ['address', 'Address'],
+          ['mutez', 'TMutez'],
         ],
       },
     ],
@@ -43,20 +76,20 @@ import Blockly from "blockly/core";
         'type': 'field_dropdown',
         'name': 'KEY1',
         'options': [
-          ['address', 'sp.TAddress'],
-          ['mutez', 'sp.TMutez'],
           ['integer', 'sp.TInt'],
           ['unsigned integer', 'sp.TNat'],
+          ['address', 'sp.TAddress'],
+          ['mutez', 'sp.TMutez'],
         ],
       },
       {
         'type': 'field_dropdown',
         'name': 'KEY2',
         'options': [
-          ['mutez', 'sp.TMutez'],
           ['integer', 'sp.TInt'],
           ['unsigned integer', 'sp.TNat'],
           ['address', 'sp.TAddress'],
+          ['mutez', 'sp.TMutez'],
         ],
       },
     ],
@@ -74,20 +107,20 @@ import Blockly from "blockly/core";
         'type': 'field_dropdown',
         'name': 'KEY1',
         'options': [
-          ['address', 'sp.TAddress'],
-          ['mutez', 'sp.TMutez'],
           ['integer', 'sp.TInt'],
           ['unsigned integer', 'sp.TNat'],
+          ['address', 'sp.TAddress'],
+          ['mutez', 'sp.TMutez'],
         ],
       },
       {
         'type': 'field_dropdown',
         'name': 'KEY2',
         'options': [
-          ['mutez', 'sp.TMutez'],
           ['integer', 'sp.TInt'],
           ['unsigned integer', 'sp.TNat'],
           ['address', 'sp.TAddress'],
+          ['mutez', 'sp.TMutez'],
         ],
       },
     ],

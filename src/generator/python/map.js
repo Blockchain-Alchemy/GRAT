@@ -10,8 +10,8 @@ Blockly.Python['sp_map'] = function(block) {
 }
 
 Blockly.Python['sp_big_map'] = function(block) {
-  const tkey = block.getFieldValue('KEY1')
-  const tvalue = block.getFieldValue('KEY2')
+  const tkey = Python.valueToCode(block, 'KEY1', Python.ORDER_RELATIONAL) || '';
+  const tvalue = Python.valueToCode(block, 'KEY2', Python.ORDER_RELATIONAL) || '';
   return [`sp.big_map(tkey = ${tkey}, tvalue = ${tvalue})`, Python.ORDER_ATOMIC];
 }
 

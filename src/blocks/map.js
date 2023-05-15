@@ -70,7 +70,7 @@ import Blockly from "blockly/core";
   // Block for sp.map
   {
     'type': 'sp_map',
-    'message0': 'map with %1 and %2',
+    'message0': 'map %1 ~ %2',
     'args0': [
       {
         'type': 'field_dropdown',
@@ -101,35 +101,21 @@ import Blockly from "blockly/core";
   // Block for sp.big_map
   {
     'type': 'sp_big_map',
-    'message0': 'big map with %1 and %2',
+    'message0': 'bigmap %1 ~ %2',
     'args0': [
       {
-        'type': 'field_dropdown',
+        'type': 'input_value',
         'name': 'KEY1',
-        'options': [
-          ['integer', 'sp.TInt'],
-          ['unsigned integer', 'sp.TNat'],
-          ['address', 'sp.TAddress'],
-          ['mutez', 'sp.TMutez'],
-          ['string', 'sp.string'],
-        ],
       },
       {
-        'type': 'field_dropdown',
+        'type': 'input_value',
         'name': 'KEY2',
-        'options': [
-          ['integer', 'sp.TInt'],
-          ['unsigned integer', 'sp.TNat'],
-          ['address', 'sp.TAddress'],
-          ['mutez', 'sp.TMutez'],
-          ['string', 'sp.string'],
-        ],
-      },
+      }
     ],
     'output': null,
+    'inputsInline': true,
     'style': 'logic_blocks',
-    'tooltip': '%{BKY_LOGIC_NULL_TOOLTIP}',
-    'helpUrl': '%{BKY_LOGIC_NULL_HELPURL}',
+    'helpUrl': '%{BKY_LOGIC_COMPARE_HELPURL}',
   },
   // Block for getting value from map
   {

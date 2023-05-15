@@ -27,7 +27,7 @@ Blockly.defineBlocksWithJsonArray([
     args0: [
       {
         type: 'field_dropdown',
-        name: 'KEY1',
+        name: 'KEY',
         options: [
           ['integer', 'sp.TInt'],
           ['unsigned integer', 'sp.TNat'],

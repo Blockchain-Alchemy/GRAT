@@ -68,7 +68,18 @@ const BlockCategory = forwardRef((props, workspace) => {
         <Block type="sp_pair" />
         <Block type="sp_record" />
         <Block type="sp_map" />
-        <Block type="sp_big_map" />
+        <Block type="sp_big_map">
+          <Value name="KEY1">
+            <Shadow type="builtin_types">
+              <Field name="KEY">integer</Field>
+            </Shadow>
+          </Value>
+          <Value name="KEY2">
+            <Shadow type="builtin_types">
+              <Field name="KEY">integer</Field>
+            </Shadow>
+          </Value>
+        </Block>
         <Block type="map_variables_get" />
         <Block type="map_variables_set" />
       </Category>

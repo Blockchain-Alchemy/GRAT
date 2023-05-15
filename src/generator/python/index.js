@@ -305,3 +305,8 @@ Blockly.Python['sp_transfer'] = function(block) {
   const arg2 = Python.valueToCode(block, 'B', order) || '0';
   return `sp.sp_transfer(${arg1}, ${arg2})`;
 }
+
+Blockly.Python['builtin_types'] = function(block) {
+  const type = block.getFieldValue('KEY')
+  return [type, Python.ORDER_ATOMIC];
+}

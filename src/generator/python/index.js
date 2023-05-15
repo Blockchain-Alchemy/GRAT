@@ -2,6 +2,7 @@ import * as Blockly from 'blockly/core';
 import 'blockly/python';
 import './mutez';
 import './map';
+import './record';
 import './timestamps';
 import './variables';
 const Python = Blockly.Python;

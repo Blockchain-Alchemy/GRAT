@@ -18,28 +18,22 @@ Blockly.defineBlocksWithJsonArray([
     output: null,
     style: 'list_blocks',
     helpUrl: '%{BKY_LISTS_CREATE_WITH_HELPURL}',
-    tooltip: 'Add an entry point.',
+    tooltip: 'Add an record.',
     mutator: 'sp_record_mutator',
   },
   // Block for sp.record_pair
   {
     type: 'sp_record_element',
-    message0: 'field %1 = %2',
+    message0: 'add field %1 = %2',
     args0: [
       {
         type: 'input_value',
         name: 'KEY',
       },
       {
-        type: 'field_dropdown',
-        name: 'KEY2',
-        options: [
-          ['integer', 'TInt'],
-          ['unsigned integer', 'TNat'],
-          ['address', 'Address'],
-          ['mutez', 'sp.TMutez'],
-        ],
-      },
+        'type': 'input_value',
+        'name': 'VALUE',
+      }
     ],
     inputsInline: true,
     output: null,

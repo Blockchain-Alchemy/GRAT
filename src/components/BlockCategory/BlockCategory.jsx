@@ -88,7 +88,7 @@ const BlockCategory = forwardRef((props, workspace) => {
         <Block type="sp_record_element">
           <Value name="KEY">
             <Shadow type="text">
-              <Field name="TEXT">name</Field>
+              <Field name="TEXT">seller</Field>
             </Shadow>
           </Value>
         </Block>

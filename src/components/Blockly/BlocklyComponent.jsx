@@ -41,6 +41,11 @@ class BlocklyComponent extends React.Component {
     );
   }
 
+  clearWorkspace = () => {
+    console.log('clearWorkspace');
+    this.workspace.clear();
+  }
+
   render() {
     const { children } = this.props;
 

@@ -26,7 +26,7 @@ Python['contract_variables_get'] = function(block) {
 Blockly.Python['contract_variables_set'] = function(block) {
   // Variable setter.
   const varId = block.getFieldValue('VAR');
-  let varName = Python.nameDB_.getName(block.getFieldValue('VAR'), NameType.VARIABLE)
+  const varName = Python.nameDB_.getName(block.getFieldValue('VAR'), NameType.VARIABLE)
   
   const usedVariables = Variables.allUsedVarModels(block.workspace) || [];
   const variable = usedVariables.find(it => it.id_ === varId);

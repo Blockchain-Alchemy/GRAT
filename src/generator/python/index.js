@@ -293,6 +293,13 @@ Blockly.Python['sp_source'] = function(block) {
   return ['sp.source', Python.ORDER_ATOMIC];
 }
 
+Blockly.Python['sp_hash'] = function(block) {
+  const order = Python.ORDER_RELATIONAL;
+  const arg1 = Python.valueToCode(block, 'A', order) || '0';
+  const arg2 = Python.valueToCode(block, 'B', order) || '0';
+  return [`sp.hash(${arg2}, ${arg1})`, Python.ORDER_ATOMIC];
+}
+
 Blockly.Python['sp_send'] = function(block) {
   const order = Python.ORDER_RELATIONAL;
   const arg1 = Python.valueToCode(block, 'A', order) || '0';

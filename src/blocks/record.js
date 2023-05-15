@@ -1,38 +1,39 @@
-import Blockly from "blockly/core";
-import {createPlusField} from './field_plus';
-import {createMinusField} from './field_minus';
+import Blockly from 'blockly/core';
+import { createPlusField } from './field_plus';
+import { createMinusField } from './field_minus';
 
 delete Blockly.Blocks['sp_record'];
 
 /* eslint-disable quotes */
 Blockly.defineBlocksWithJsonArray([
   {
-    type: "sp_record",
-    message0: "record %1",
+    type: 'sp_record',
+    message0: 'record %1',
     args0: [
       {
-        type: "input_dummy",
-        name: "EMPTY",
+        type: 'input_dummy',
+        name: 'EMPTY',
       },
     ],
-    style: "list_blocks",
-    helpUrl: "%{BKY_LISTS_CREATE_WITH_HELPURL}",
-    tooltip: "Add an entry point.",
-    mutator: "sp_record_mutator",
+    output: null,
+    style: 'list_blocks',
+    helpUrl: '%{BKY_LISTS_CREATE_WITH_HELPURL}',
+    tooltip: 'Add an entry point.',
+    mutator: 'sp_record_mutator',
   },
   // Block for sp.record_pair
   {
-    'type': 'sp_record_element',
-    'message0': 'field %1 = %2',
-    'args0': [
+    type: 'sp_record_element',
+    message0: 'field %1 = %2',
+    args0: [
       {
-        'type': 'input_value',
-        'name': 'KEY',
+        type: 'input_value',
+        name: 'KEY',
       },
       {
-        'type': 'field_dropdown',
-        'name': 'KEY2',
-        'options': [
+        type: 'field_dropdown',
+        name: 'KEY2',
+        options: [
           ['integer', 'TInt'],
           ['unsigned integer', 'TNat'],
           ['address', 'Address'],
@@ -40,11 +41,11 @@ Blockly.defineBlocksWithJsonArray([
         ],
       },
     ],
-    'inputsInline': true,
-    'output': null,
-    'style': 'logic_blocks',
-    'tooltip': '%{BKY_LOGIC_NULL_TOOLTIP}',
-    'helpUrl': '%{BKY_LOGIC_NULL_HELPURL}',
+    inputsInline: true,
+    output: null,
+    style: 'logic_blocks',
+    tooltip: '%{BKY_LOGIC_NULL_TOOLTIP}',
+    helpUrl: '%{BKY_LOGIC_NULL_HELPURL}',
   },
 ]);
 /* eslint-enable quotes */
@@ -62,8 +63,8 @@ const contractMutator = {
    * @this {Blockly.Block}
    */
   mutationToDom: function () {
-    const container = Blockly.utils.xml.createElement("mutation");
-    container.setAttribute("items", this.itemCount_);
+    const container = Blockly.utils.xml.createElement('mutation');
+    container.setAttribute('items', this.itemCount_);
     return container;
   },
   /**
@@ -72,7 +73,7 @@ const contractMutator = {
    * @this {Blockly.Block}
    */
   domToMutation: function (xmlElement) {
-    const targetCount = parseInt(xmlElement.getAttribute("items"), 10);
+    const targetCount = parseInt(xmlElement.getAttribute('items'), 10);
     this.updateShape_(targetCount);
   },
 
@@ -91,7 +92,7 @@ const contractMutator = {
    * @param {*} state The state to apply to this block, ie the item count.
    */
   loadExtraState: function (state) {
-    this.updateShape_(state["itemCount"]);
+    this.updateShape_(state['itemCount']);
   },
 
   /**
@@ -143,13 +144,12 @@ const contractMutator = {
    */
   addPart_: function () {
     if (this.itemCount_ === 0) {
-      this.removeInput("EMPTY");
-      this.topInput_ = this.appendValueInput("ADD" + this.itemCount_)
-        .appendField(createPlusField(), "PLUS")
-        .appendField("sp.TRecord")
-        .appendField(new Blockly.FieldTextInput('unnamed'), 'NAME');
+      this.removeInput('EMPTY');
+      this.topInput_ = this.appendValueInput('ADD' + this.itemCount_)
+        .appendField(createPlusField(), 'PLUS')
+        .appendField('record');
     } else {
-      this.appendValueInput("ADD" + this.itemCount_);
+      this.appendValueInput('ADD' + this.itemCount_);
     }
     this.itemCount_++;
   },
@@ -162,12 +162,11 @@ const contractMutator = {
    */
   removePart_: function () {
     this.itemCount_--;
-    this.removeInput("ADD" + this.itemCount_);
+    this.removeInput('ADD' + this.itemCount_);
     if (this.itemCount_ === 0) {
-      this.topInput_ = this.appendDummyInput("EMPTY")
-        .appendField(createPlusField(), "PLUS")
-        .appendField("sp.TRecord")
-        .appendField(new Blockly.FieldTextInput('unnamed'), 'NAME');
+      this.topInput_ = this.appendDummyInput('EMPTY')
+        .appendField(createPlusField(), 'PLUS')
+        .appendField('record');
     }
   },
 
@@ -176,11 +175,11 @@ const contractMutator = {
    * @private
    */
   updateMinus_: function () {
-    const minusField = this.getField("MINUS");
+    const minusField = this.getField('MINUS');
     if (!minusField && this.itemCount_ > 0) {
-      this.topInput_.insertFieldAt(1, createMinusField(), "MINUS");
+      this.topInput_.insertFieldAt(1, createMinusField(), 'MINUS');
     } else if (minusField && this.itemCount_ < 1) {
-      this.topInput_.removeField("MINUS");
+      this.topInput_.removeField('MINUS');
     }
   },
 };
@@ -190,12 +189,12 @@ const contractMutator = {
  * @this {Blockly.Block}
  */
 const contractHelper = function () {
-  this.getInput("EMPTY").insertFieldAt(0, createPlusField(), "PLUS");
+  this.getInput('EMPTY').insertFieldAt(0, createPlusField(), 'PLUS');
   this.updateShape_(3);
 };
 
 Blockly.Extensions.registerMutator(
-  "sp_record_mutator",
+  'sp_record_mutator',
   contractMutator,
   contractHelper
 );

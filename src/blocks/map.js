@@ -39,7 +39,7 @@ import Blockly from "blockly/core";
   // Block for sp.record
   {
     'type': 'sp_record',
-    'message0': 'Pair of %1 and %2',
+    'message0': 'record of %1 and %2',
     'args0': [
       {
         'type': 'field_dropdown',

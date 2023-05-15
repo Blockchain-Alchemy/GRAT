@@ -14,7 +14,7 @@ import "../../blocks/procedures";
 import "../../blocks/variables";
 import "../../blocks/mutez";
 import "../../blocks/map";
-import "../../blocks/types";
+import "../../blocks/record";
 import "../../blocks/timestamps";
 import "../../blocks/utils";
 
@@ -66,7 +66,7 @@ const BlockCategory = forwardRef((props, workspace) => {
       </Category>
       <Category name="Maps" colour="%{BKY_LOGIC_HUE}">
         <Block type="sp_pair" />
-        <Block type="sp_record" />
+        {/* <Block type="sp_record" /> */}
         <Block type="sp_map" />
         <Block type="sp_big_map">
           <Value name="KEY1">
@@ -83,9 +83,9 @@ const BlockCategory = forwardRef((props, workspace) => {
         <Block type="map_variables_get" />
         <Block type="map_variables_set" />
       </Category>
-      <Category name="Types" colour="%{BKY_VARIABLES_HUE}">
-        <Block type="sp_trecord" />
-        <Block type="sp_record_pair">
+      <Category name="Record" colour="%{BKY_VARIABLES_HUE}">
+        <Block type="sp_record" />
+        <Block type="sp_record_element">
           <Value name="KEY">
             <Shadow type="text">
               <Field name="TEXT">name</Field>

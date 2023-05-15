@@ -2,13 +2,13 @@ import Blockly from "blockly/core";
 import {createPlusField} from './field_plus';
 import {createMinusField} from './field_minus';
 
-delete Blockly.Blocks['sp_trecord'];
+delete Blockly.Blocks['sp_record'];
 
 /* eslint-disable quotes */
 Blockly.defineBlocksWithJsonArray([
   {
-    type: "sp_trecord",
-    message0: "sp.TRecord %1",
+    type: "sp_record",
+    message0: "record %1",
     args0: [
       {
         type: "input_dummy",
@@ -18,11 +18,11 @@ Blockly.defineBlocksWithJsonArray([
     style: "list_blocks",
     helpUrl: "%{BKY_LISTS_CREATE_WITH_HELPURL}",
     tooltip: "Add an entry point.",
-    mutator: "sp_trecord_mutator",
+    mutator: "sp_record_mutator",
   },
   // Block for sp.record_pair
   {
-    'type': 'sp_record_pair',
+    'type': 'sp_record_element',
     'message0': 'field %1 = %2',
     'args0': [
       {
@@ -195,7 +195,7 @@ const contractHelper = function () {
 };
 
 Blockly.Extensions.registerMutator(
-  "sp_trecord_mutator",
+  "sp_record_mutator",
   contractMutator,
   contractHelper
 );

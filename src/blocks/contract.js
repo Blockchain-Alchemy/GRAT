@@ -124,9 +124,8 @@ Blockly.defineBlocksWithJsonArray([
         'name': 'B',
       }
     ],
+    'output': null,
     'inputsInline': true,
-    'previousStatement': null,
-    'nextStatement': null,
     'style': 'logic_blocks',
     'helpUrl': '%{BKY_LOGIC_COMPARE_HELPURL}',
     'extensions': ['sp_logic_compare', 'sp_logic_op_tooltip'],

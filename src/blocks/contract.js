@@ -20,6 +20,28 @@ Blockly.defineBlocksWithJsonArray([
     tooltip: "Add an entry point.",
     mutator: "contract_mutator",
   },
+  // Block for built-in types
+  {
+    type: 'builtin_types',
+    message0: '%1',
+    args0: [
+      {
+        type: 'field_dropdown',
+        name: 'KEY1',
+        options: [
+          ['integer', 'sp.TInt'],
+          ['unsigned integer', 'sp.TNat'],
+          ['address', 'sp.TAddress'],
+          ['mutez', 'sp.TMutez'],
+          ['string', 'sp.string'],
+        ],
+      },
+    ],
+    output: null,
+    style: 'logic_blocks',
+    tooltip: '%{BKY_LOGIC_NULL_TOOLTIP}',
+    helpUrl: '%{BKY_LOGIC_NULL_HELPURL}',
+  },
   // Block for sp.address
   {
     'type': 'sp_address',
@@ -87,6 +109,27 @@ Blockly.defineBlocksWithJsonArray([
     'style': 'loop_blocks',
     'tooltip': '%{BKY_LOGIC_NULL_TOOLTIP}',
     'helpUrl': '%{BKY_LOGIC_NULL_HELPURL}',
+  },
+  // Block for sp.hash
+  {
+    'type': 'sp_hash',
+    'message0': 'hash %1 and %2',
+    'args0': [
+      {
+        'type': 'input_value',
+        'name': 'A',
+      },
+      {
+        'type': 'input_value',
+        'name': 'B',
+      }
+    ],
+    'inputsInline': true,
+    'previousStatement': null,
+    'nextStatement': null,
+    'style': 'logic_blocks',
+    'helpUrl': '%{BKY_LOGIC_COMPARE_HELPURL}',
+    'extensions': ['sp_logic_compare', 'sp_logic_op_tooltip'],
   },
   // Block for sp.send
   {

@@ -111,6 +111,7 @@ import Blockly from "blockly/core";
           ['unsigned integer', 'sp.TNat'],
           ['address', 'sp.TAddress'],
           ['mutez', 'sp.TMutez'],
+          ['string', 'sp.string'],
         ],
       },
       {
@@ -121,6 +122,7 @@ import Blockly from "blockly/core";
           ['unsigned integer', 'sp.TNat'],
           ['address', 'sp.TAddress'],
           ['mutez', 'sp.TMutez'],
+          ['string', 'sp.string'],
         ],
       },
     ],

@@ -259,6 +259,10 @@ Blockly.Python['functions_defnoreturn'] = function (block) {
   return null;
 };
 
+Blockly.Python['sp_verify_admin'] = function (block) {
+  return `sp.verify(sp.sender == self.data.admin, "NOT_ADMIN")\n`;
+};
+
 Blockly.Python['sp_verify'] = function (block) {
   // Comparison operator.
   const OPERATORS = {'EQ': '==', 'NEQ': '!=', 'LT': '<', 'LTE': '<=', 'GT': '>', 'GTE': '>='};

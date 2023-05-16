@@ -6,6 +6,15 @@ import Blockly from "blockly/core";
  */
  Blockly.defineBlocksWithJsonArray([
   {
+    'type': 'sp_verify_admin',
+    'message0': 'verify_admin',
+    'previousStatement': null,
+    'nextStatement': null,
+    'style': 'logic_blocks',
+    'helpUrl': '%{BKY_LOGIC_COMPARE_HELPURL}',
+    'extensions': ['sp_logic_compare', 'sp_logic_op_tooltip'],
+  },
+  {
     'type': 'sp_verify',
     'message0': 'verify %1 %2 %3',
     'args0': [

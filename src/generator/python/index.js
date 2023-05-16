@@ -87,18 +87,19 @@ Blockly.Python['construct_defnoreturn'] = function (block) {
 
   Python.contractStorage = true;
   let branch = Python.statementToCode(block, 'STACK');
-  if (Python.initStorage.length > 0) {
-    branch = Python.initStorage.join(',\n');
-    branch = Python.prefixLines(branch, Python.INDENT);
-    branch = 'self.init(\n' + branch + '\n)\n'
-    branch = Python.prefixLines(branch, Python.INDENT);
-  }
+  
+  let initStorage = [...Python.initStorage].concat('admin = admin');
+  branch = initStorage.join(',\n');
+  branch = Python.prefixLines(branch, Python.INDENT);
+  branch = 'self.init(\n' + branch + '\n)\n'
+  branch = Python.prefixLines(branch, Python.INDENT);
+
   if (!branch) {
     branch = Python.PASS;
   }
   Python.contractStorage = false;
 
-  const args = ['self'];
+  const args = ['self', 'admin'];
   const variables = block.getVars();
   for (let i = 0; i < variables.length; i++) {
     const varg = Python.nameDB_.getName(variables[i], NameType.VARIABLE);

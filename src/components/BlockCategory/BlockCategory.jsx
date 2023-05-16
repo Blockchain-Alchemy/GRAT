@@ -43,10 +43,12 @@ const BlockCategory = forwardRef((props, workspace) => {
           </Value>
         </Block>
       </Category>
-      <Category name="Transfer" colour="%{BKY_LOOPS_HUE}">
+      <Category name="FA 1.2" colour="%{BKY_LOOPS_HUE}">
         <Block type="sp_hash" />
         <Block type="sp_send" />
+        <Block type="sp_get_balance" />
         <Block type="sp_transfer" />
+        <Block type="sp_transfer_token" />
       </Category>
       <Category
         name="Variables"

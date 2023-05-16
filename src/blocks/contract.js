@@ -151,6 +151,22 @@ Blockly.defineBlocksWithJsonArray([
     'helpUrl': '%{BKY_LOGIC_COMPARE_HELPURL}',
     'extensions': ['sp_logic_compare', 'sp_logic_op_tooltip'],
   },
+  // Block for sp.get_balance
+  {
+    'type': 'sp_get_balance',
+    'message0': 'balance of %1',
+    'args0': [
+      {
+        'type': 'input_value',
+        'name': 'A',
+      }
+    ],
+    'output': null,
+    'inputsInline': true,
+    'style': 'logic_blocks',
+    'helpUrl': '%{BKY_LOGIC_COMPARE_HELPURL}',
+    'extensions': ['sp_logic_compare', 'sp_logic_op_tooltip'],
+  },
   // Block for sp.transfer
   {
     'type': 'sp_transfer',
@@ -163,6 +179,31 @@ Blockly.defineBlocksWithJsonArray([
       {
         'type': 'input_value',
         'name': 'B',
+      }
+    ],
+    'inputsInline': true,
+    'previousStatement': null,
+    'nextStatement': null,
+    'style': 'logic_blocks',
+    'helpUrl': '%{BKY_LOGIC_COMPARE_HELPURL}',
+    'extensions': ['sp_logic_compare', 'sp_logic_op_tooltip'],
+  },
+  // Block for sp.transfer
+  {
+    'type': 'sp_transfer_token',
+    'message0': 'transfer amount of %1 tokens from %2 to %3',
+    'args0': [
+      {
+        'type': 'input_value',
+        'name': 'A',
+      },
+      {
+        'type': 'input_value',
+        'name': 'B',
+      },
+      {
+        'type': 'input_value',
+        'name': 'C',
       }
     ],
     'inputsInline': true,

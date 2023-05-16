@@ -271,7 +271,7 @@ Blockly.Python['sp_verify'] = function (block) {
   const order = Python.ORDER_RELATIONAL;
   const arg1 = Python.valueToCode(block, 'A', order) || '0';
   const arg2 = Python.valueToCode(block, 'B', order) || '0';
-  const code = `sp.verify(${arg1} ${operator} ${arg2}\n`;
+  const code = `sp.verify(${arg1} ${operator} ${arg2})\n`;
   return code;
 };
 
@@ -328,6 +328,33 @@ Blockly.Python['sp_transfer'] = function(block) {
   const arg1 = Python.valueToCode(block, 'A', order) || '0';
   const arg2 = Python.valueToCode(block, 'B', order) || '0';
   return `sp.sp_transfer(${arg1}, ${arg2})`;
+}
+
+Blockly.Python['sp_get_balance'] = function(block) {
+  const order = Python.ORDER_RELATIONAL;
+  const address = Python.valueToCode(block, 'A', order) || '0';
+
+  const code = `sp.view("getBalance", token_contract, ${address}, sp.TNat).open_some("Invalid view");`
+  return [code, Python.ORDER_ATOMIC];
+
+  /*const codes = [
+    `c = sp.contract(balance_of_param, token_contract, entry_point = "getBalance").open_some()`,
+    `sp.transfer(sp.record(address_ = ${address}), sp.mutez(0), c)`
+  ];
+  return [codes.join('\n'), Python.ORDER_ATOMIC];*/
+}
+
+Blockly.Python['sp_transfer_token'] = function(block) {
+  const order = Python.ORDER_RELATIONAL;
+  const value = Python.valueToCode(block, 'A', order) || '0';
+  const from = Python.valueToCode(block, 'B', order) || '0';
+  const to = Python.valueToCode(block, 'C', order) || '0';
+
+  const codes = [
+    `c = sp.contract(transfer_param, token_contract, entry_point = "transfer").open_some()`,
+    `sp.transfer(sp.record(from_ = ${from}, to_ = ${to}, value = ${value}), sp.mutez(0), c)`
+  ];
+  return codes.join('\n');
 }
 
 Blockly.Python['builtin_types'] = function(block) {

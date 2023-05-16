@@ -37,5 +37,5 @@ Blockly.Python['contract_variables_set'] = function(block) {
 
   const argument = Python.valueToCode(block, 'VALUE', Python.ORDER_NONE) || '0';
   Python.initStorage.push(varName + ' = ' + argument);
-  return varName + ' = ' + argument + '\n';
+  return `self.data.${varName} = ${argument}\n`;
 };

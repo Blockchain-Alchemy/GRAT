@@ -22,7 +22,7 @@ Blockly.Python['map_variables_get'] = function(block) {
     varName = `self.data.${varName}`;
   }
   const key = Python.valueToCode(block, 'KEY', Python.ORDER_RELATIONAL) || '0';
-  return [`${varName}[${key}])`, Python.ORDER_ATOMIC];
+  return [`${varName}[${key}]`, Python.ORDER_ATOMIC];
 }
 
 Blockly.Python['map_variables_set'] = function(block) {

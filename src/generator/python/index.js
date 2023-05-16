@@ -271,8 +271,19 @@ Blockly.Python['sp_verify'] = function (block) {
   const order = Python.ORDER_RELATIONAL;
   const arg1 = Python.valueToCode(block, 'A', order) || '0';
   const arg2 = Python.valueToCode(block, 'B', order) || '0';
+  const code = `sp.verify(${arg1} ${operator} ${arg2}\n`;
+  return code;
+};
+
+Blockly.Python['sp_verify_message'] = function (block) {
+  // Comparison operator.
+  const OPERATORS = {'EQ': '==', 'NEQ': '!=', 'LT': '<', 'LTE': '<=', 'GT': '>', 'GTE': '>='};
+  const operator = OPERATORS[block.getFieldValue('OP')];
+  const order = Python.ORDER_RELATIONAL;
+  const arg1 = Python.valueToCode(block, 'A', order) || '0';
+  const arg2 = Python.valueToCode(block, 'B', order) || '0';
   const message = Python.valueToCode(block, 'MESSAGE', order);
-  const msg = message? `, ${message}` : '';
+  const msg = message? `, ${message.replace("'", '"').replace("'", '"')}` : '';
   const code = `sp.verify(${arg1} ${operator} ${arg2}${msg})\n`;
   return code;
 };

@@ -34,14 +34,16 @@ const BlockCategory = forwardRef((props, workspace) => {
         <Block type="contract_variables_get" />
         <Block type="builtin_types" />
         <Block type="sp_verify_admin" />
-        {/* <Block type="sp_verify" />
+        <Block type="sp_verify" />
         <Block type="sp_verify_message">
           <Value name="MESSAGE">
             <Shadow type="text">
               <Field name="TEXT">abc</Field>
             </Shadow>
           </Value>
-        </Block> */}
+        </Block>
+      </Category>
+      <Category name="Transfer" colour="%{BKY_LOOPS_HUE}">
         <Block type="sp_hash" />
         <Block type="sp_send" />
         <Block type="sp_transfer" />

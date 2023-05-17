@@ -32,8 +32,6 @@ const BlockCategory = forwardRef((props, workspace) => {
         <Block type="functions_defnoreturn" />
         <Block type="contract_variables_set" />
         <Block type="contract_variables_get" />
-        <Block type="builtin_types" />
-        <Block type="sp_verify_admin" />
         <Block type="sp_verify" />
         <Block type="sp_verify_message">
           <Value name="MESSAGE">
@@ -42,6 +40,8 @@ const BlockCategory = forwardRef((props, workspace) => {
             </Shadow>
           </Value>
         </Block>
+        <Block type="sp_verify_admin" />
+        <Block type="builtin_types" />
       </Category>
       <Category name="FA 1.2" colour="%{BKY_LOOPS_HUE}">
         <Block type="sp_hash" />

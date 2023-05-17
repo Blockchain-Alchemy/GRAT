@@ -53,7 +53,7 @@
         } 
     },
     {
-        "text": "Add Tez",
+        "text": "Add tez",
         "hint": "It's the second block under Mutez, attach it to the Set Contract Variable",
         "event": {
             "type": "BLOCK_CREATE"
@@ -61,6 +61,16 @@
         "block": {
             "type": "sp_tez"
         } 
+    },
+    {
+        "text": "Add sp.tez 1",
+        "hint": "It's the second block under Mutez, attach it into the second verify slot, change the amount to 1",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "sp_tez"
+        }
     },
     {
         "text": "Add EntryPoint",
@@ -73,46 +83,25 @@
         } 
     },
     {
-        "text": "Add Verify",
-        "hint": "It's the 7th block under Contract, attach it to the Entrypoint",
-        "event": {
-            "type": "BLOCK_CREATE"
-        },
-        "block": {
-            "type": "sp_verify"
-        } 
-    },
-    {
-        "text": "Insert into sp.amount",
-        "hint": "It's the third block under Mutez, attach it into the first verify slot",
-        "event": {
-            "type": "BLOCK_CREATE"
-        },
-        "block": {
-            "type": "sp_amount"
-        } 
-    },
-    {
-        "text": "Set verify operator to >",
-        "hint": "Click the = in Verify and change it to >",
+        "text": "Rename EntryPoint",
+        "hint": "Click unnamed and rename the entrypoint setPrice",
         "event": {
             "type": "BLOCK_CHANGE",
-            "name": "OP"
+            "name": "NAME"
         },
         "block": {
-            "type": "sp_verify",
-            "name": "GT"
+            "type": "entrypoint"
         } 
-    }, 
+    },
     {
-        "text": "Add sp.mutez 0",
-        "hint": "It's the first block under Mutez, attach it into the second verify slot, change the amount to 0",
+        "text": "Add Verify Admin",
+        "hint": "It's the 9th block under Contract, attach it to the Entrypoint",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "sp_mutez"
-        }
+            "type": "sp_verify_admin"
+        } 
     },
     {
         "text": "Add Set Map",

@@ -4,7 +4,7 @@ const initialState = {
   loading: false,
   timeline: -1,
   showRecipesDialog: false,
-  recipeName: 'donate',
+  recipeName: 'marketplace',
 };
 
 function LessonState(state = initialState, action) {

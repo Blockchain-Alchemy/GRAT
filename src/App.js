@@ -8,7 +8,8 @@ import Unity, { UnityContext } from 'react-unity-webgl';
 import { MantineProvider, Grid } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import Menu from './components/Menu/Menu';
-import Recipe from 'recipes/donate.json';
+import { loadRecipe } from './recipes';
+import { useSelector } from 'react-redux';
 
 const unityContext = new UnityContext({
   loaderUrl: 'Build/1.loader.js',
@@ -19,7 +20,9 @@ const unityContext = new UnityContext({
 
 const App = () => {
   const sideRef = useRef();
+  const { recipeName } = useSelector((state) => state.LessonState);
   const [progression, setProgression] = useState(0);
+  const [recipe, setRecipe] = useState({});
 
   useEffect(function () {
     unityContext.on('progress', (progression) => {
@@ -31,6 +34,14 @@ const App = () => {
       console.log('converted');
     });
   }, []);
+
+  useEffect(() => {
+    if (recipeName) {
+      const recipe = loadRecipe[recipeName]();    
+      console.log('recipe, recipe', recipe);
+      setRecipe(recipe);  
+    }
+  }, [recipeName]);
 
   return (
     <MantineProvider
@@ -45,13 +56,13 @@ const App = () => {
             <Workspace
               unityContext={unityContext}
               loading={progression < 1.0}
-              recipes={Recipe}
+              recipes={recipe.recipes || []}
             />
           </Grid.Col>
           <Grid.Col span={3}>
             <div id="Sidebar" ref={sideRef}>
               <Unity unityContext={unityContext} />
-              <ProjectView recipes={Recipe} />
+              <ProjectView recipe={recipe} />
             </div>
           </Grid.Col>
         </Grid>

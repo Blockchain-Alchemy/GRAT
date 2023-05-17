@@ -24,7 +24,6 @@ const RecipesDialog = ({ opened, onClose }) => {
           data={[
             { value: 'donate', label: 'Donate' },
             { value: 'marketplace', label: 'Marketplace contract' },
-            { value: 'fundrasier', label: 'Fundrasier Contract' },
           ]}
         />
         <Group mt="xl" position="right">

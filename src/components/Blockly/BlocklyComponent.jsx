@@ -30,6 +30,12 @@ class BlocklyComponent extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.recipe !== this.props.recipe) {
+      this.clearWorkspace();
+    }
+  }
+
   get workspace() {
     return this.primaryWorkspace;
   }

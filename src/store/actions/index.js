@@ -22,6 +22,13 @@ export const updateLessonStateAction = (timeline) => {
   };
 };
 
+export const resetLessonStateAction = (payload) => {
+  return {
+    type: ApiConstants.RESET_LESSON_STATE,
+    payload,
+  };
+};
+
 export const setSessionIdAction = (sessionId) => {
   return {
     type: ApiConstants.SET_SESSION_ID,

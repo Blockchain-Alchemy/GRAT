@@ -9,7 +9,8 @@ import { MantineProvider, Grid } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import Menu from './components/Menu/Menu';
 import { loadRecipe } from './recipes';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetLessonStateAction } from 'store/actions';
 
 const unityContext = new UnityContext({
   loaderUrl: 'Build/1.loader.js',
@@ -19,6 +20,7 @@ const unityContext = new UnityContext({
 });
 
 const App = () => {
+  const dispatch = useDispatch();
   const sideRef = useRef();
   const { recipeName } = useSelector((state) => state.LessonState);
   const [progression, setProgression] = useState(0);
@@ -37,11 +39,13 @@ const App = () => {
 
   useEffect(() => {
     if (recipeName) {
-      const recipe = loadRecipe[recipeName]();    
+      const recipe = loadRecipe[recipeName]();
       console.log('recipe, recipe', recipe);
-      setRecipe(recipe);  
+      setRecipe(recipe);
+
+      dispatch(resetLessonStateAction(-1));
     }
-  }, [recipeName]);
+  }, [dispatch, recipeName]);
 
   return (
     <MantineProvider
@@ -56,7 +60,7 @@ const App = () => {
             <Workspace
               unityContext={unityContext}
               loading={progression < 1.0}
-              recipes={recipe.recipes || []}
+              recipe={recipe}
             />
           </Grid.Col>
           <Grid.Col span={3}>

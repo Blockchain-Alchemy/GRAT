@@ -15,6 +15,12 @@ function LessonState(state = initialState, action) {
       }
       return state;
 
+    case ApiConstants.RESET_LESSON_STATE:
+      return {
+        ...state,
+        timeline: action.payload,
+      }
+
     case ApiConstants.SET_RECIPES_DIALOG_VISIBILITY:
       return {
         ...state,

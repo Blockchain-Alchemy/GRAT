@@ -1,6 +1,7 @@
 [
     {
         "text": "Create Contract",
+        "hint": "Contract is the first block under Contract",
         "event": {
             "type": "BLOCK_CREATE"
         },
@@ -10,6 +11,7 @@
     },
     {
         "text": "Rename Contract",
+        "hint": "Click unnamed and rename the contract Marketplace",
         "event": {
             "type": "BLOCK_CHANGE",
             "name": "NAME"
@@ -19,7 +21,50 @@
         } 
     },
     {
-        "text": "Create Entrypoint",
+        "text": "Create Construct",
+        "hint": "Construct is the second block under Contract, attach it to the Contract",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "construct_defnoreturn"
+        } 
+    },
+    {
+        "text": "Add Set Contract Variable",
+        "hint": "It's the 5th block under Contract, attach it to the Contstruct",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "contract_variables_set"
+        } 
+    },
+    {
+        "text": "Rename Variable from item to price",
+        "hint": "Click the word item and select Rename Variable.. then enter price ",
+        "event": {
+            "type": "VAR_RENAME",
+            "name": "NAME"
+        },
+        "block": {
+            "type": "contract_variables_set",
+            "name": "price"
+        } 
+    },
+    {
+        "text": "Add Tez",
+        "hint": "It's the second block under Mutez, attach it to the Set Contract Variable",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "sp_tez"
+        } 
+    },
+    {
+        "text": "Add EntryPoint",
+        "hint": "It's the third block under Contract, attach it to the Contract",
         "event": {
             "type": "BLOCK_CREATE"
         },
@@ -28,26 +73,119 @@
         } 
     },
     {
-        "text": "Rename Entrypoint to Mint",
+        "text": "Add Verify",
+        "hint": "It's the 7th block under Contract, attach it to the Entrypoint",
         "event": {
-            "type": "BLOCK_CHANGE",
-            "name": "NAME"
+            "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "entrypoint",
-            "name": "Mint"
+            "type": "sp_verify"
         } 
     },
     {
-        "text": "Add In Statement",
+        "text": "Insert into sp.amount",
+        "hint": "It's the third block under Mutez, attach it into the first verify slot",
         "event": {
-            "type": "BLOCK_MOVE",
-            "name": "NAME"
+            "type": "BLOCK_CREATE"
         },
         "block": {
-            "parent": {
-                "type": "entrypoint"
-            }
+            "type": "sp_amount"
         } 
+    },
+    {
+        "text": "Set verify operator to >",
+        "hint": "Click the = in Verify and change it to >",
+        "event": {
+            "type": "BLOCK_CHANGE",
+            "name": "OP"
+        },
+        "block": {
+            "type": "sp_verify",
+            "name": "GT"
+        } 
+    }, 
+    {
+        "text": "Add sp.mutez 0",
+        "hint": "It's the first block under Mutez, attach it into the second verify slot, change the amount to 0",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "sp_mutez"
+        }
+    },
+    {
+        "text": "Add Set Map",
+        "hint": "It's the fifth block under Maps, attach it under the verify block",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "map_variables_set"
+        }
+    },
+    {
+        "text": "Change Set Map to ledger ",
+        "hint": "Click item and select ledger",
+        "event": {
+            "type": "BLOCK_CHANGE",
+            "name": "VAR"
+        },
+        "block": {
+            "type": "map_variables_set",
+            "variable": "ledger"
+        }
+    },
+    {
+        "text": "Add Sender Address",
+        "hint": "It's the 4th block under Address, attach it into the first Set Map slot (with key)",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "sp_sender"
+        }
+    },
+    {
+        "text": "Add sp.amount in value",
+        "hint": "It's the third block under Mutez, attach it into second Set Map slot (value)",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "sp_amount"
+        }
+    },
+    {
+        "text": "Add Send Block",
+        "hint": "It's the 9th block under Contract, attach it into under the Set Map block",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "sp_send"
+        }
+    },
+    {
+        "text": "Add sp.amount into Send",
+        "hint": "It's the third block under Mutez, attach it into first Send slot (send)",
+      
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "sp_amount"
+        }
+    },
+    {
+        "text": "Add Self Address into Send",
+        "hint": "It's the 4th block under Address, attach it into second Send slot (to)",
+      
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "sp_self_address"
+        }
     }
 ]

@@ -1,7 +1,6 @@
 import * as Blockly from 'blockly/core';
 import 'blockly/python';
 const Python = Blockly.Python;
-const { NameType } = Blockly.Names;
 
 Blockly.Python['sp_record'] = function (block) {
   const params = [];

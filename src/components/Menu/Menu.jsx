@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Image } from "@mantine/core";
 import { Help, Aperture, Checkbox } from 'tabler-icons-react';
 import ConnectButton from "components/ConnectWallet"
+import RecipesDialog from "components/RecipesDialog"
 
 const Menu = () => {
+  const [showRecipes, setShowRecipes] = useState(false);
+
   return (
     <header className="App-header">
       <div className="logo-wrapper">
@@ -25,6 +28,7 @@ const Menu = () => {
           leftIcon={<Aperture size={14} />}
           size="md"
           m={10}
+          onClick={() => setShowRecipes(true)}
         >
           Recipes
         </Button>
@@ -37,6 +41,7 @@ const Menu = () => {
         </Button>
         <ConnectButton />
       </div>
+      <RecipesDialog opened={showRecipes} onClose={() => setShowRecipes(false)} />
     </header>
   );
 };

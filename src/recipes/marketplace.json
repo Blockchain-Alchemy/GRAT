@@ -1,0 +1,53 @@
+[
+    {
+        "text": "Create Contract",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "contract"
+        } 
+    },
+    {
+        "text": "Rename Contract",
+        "event": {
+            "type": "BLOCK_CHANGE",
+            "name": "NAME"
+        },
+        "block": {
+            "type": "contract"
+        } 
+    },
+    {
+        "text": "Create Entrypoint",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "entrypoint"
+        } 
+    },
+    {
+        "text": "Rename Entrypoint to Mint",
+        "event": {
+            "type": "BLOCK_CHANGE",
+            "name": "NAME"
+        },
+        "block": {
+            "type": "entrypoint",
+            "name": "Mint"
+        } 
+    },
+    {
+        "text": "Add In Statement",
+        "event": {
+            "type": "BLOCK_MOVE",
+            "name": "NAME"
+        },
+        "block": {
+            "parent": {
+                "type": "entrypoint"
+            }
+        } 
+    }
+]

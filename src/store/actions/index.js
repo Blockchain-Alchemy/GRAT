@@ -1,53 +1,58 @@
 import ApiConstants from '../../constants';
 
 // Get the common year list reference
-function setCode(code) {
+export const setCode = (code) => {
   return {
     type: ApiConstants.SET_CODE,
     code,
   };
-}
+};
 
-function consoleLog(log) {
+export const consoleLog = (log) => {
   return {
     type: ApiConstants.ADD_CONSOLE_LOG,
     log,
   };
-}
+};
 
-function updateLessonStateAction(timeline) {
+export const updateLessonStateAction = (timeline) => {
   return {
     type: ApiConstants.UPDATE_LESSON_STATE,
     timeline,
   };
-}
+};
 
-function setSessionIdAction(sessionId) {
+export const setSessionIdAction = (sessionId) => {
   return {
     type: ApiConstants.SET_SESSION_ID,
     sessionId,
   };
-}
+};
 
-function setContractNameAction(contractName) {
+export const setContractNameAction = (contractName) => {
   return {
     type: ApiConstants.SET_CONTRACT_NAME,
     contractName,
   };
-}
+};
 
-function setCompiledContractAction(contract, storage) {
+export const setCompiledContractAction = (contract, storage) => {
   return {
     type: ApiConstants.SET_COMPILED_CONTRACT,
     payload: { contract, storage },
   };
+};
+
+export const setRecipesDialogVisibilityAction = (value) => {
+  return {
+    type: ApiConstants.SET_RECIPES_DIALOG_VISIBILITY,
+    payload: value,
+  }
 }
 
-export {
-  setCode,
-  consoleLog,
-  updateLessonStateAction,
-  setSessionIdAction,
-  setContractNameAction,
-  setCompiledContractAction,
+export const setRecipeName = (value) => {
+  return {
+    type: ApiConstants.SET_RECIPE_NAME,
+    payload: value,
+  }
 }

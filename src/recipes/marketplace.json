@@ -1,5 +1,37 @@
 [
     {
+        "text": "Add tez",
+        "hint": "It's the second block under Mutez, attach it to the Set Contract Variable",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "sp_tez"
+        } 
+    },
+    {
+        "text": "Add sp.tez 1",
+        "hint": "It's the second block under Mutez, attach it into the second verify slot, change the amount to 1",
+        "event": {
+            "type": "BLOCK_CHANGE",
+            "name": "NUM"
+        },
+        "block": {
+            "type": "math_number"
+        } 
+    },
+
+
+
+
+
+
+
+
+
+
+
+    {
         "text": "Create Contract",
         "hint": "Contract is the first block under Contract",
         "event": {
@@ -66,11 +98,12 @@
         "text": "Add sp.tez 1",
         "hint": "It's the second block under Mutez, attach it into the second verify slot, change the amount to 1",
         "event": {
-            "type": "BLOCK_CREATE"
+            "type": "BLOCK_CHANGE",
+            "name": "NUM"
         },
         "block": {
-            "type": "sp_tez"
-        }
+            "type": "math_number"
+        } 
     },
     {
         "text": "Add EntryPoint",
@@ -94,6 +127,29 @@
         } 
     },
     {
+        "text": "Add EntryPoint Argument",
+        "hint": "Click plus button in the entrypoint block",
+        "event": {
+            "type": "BLOCK_CHANGE",
+            "name": "NAME"
+        },
+        "block": {
+            "type": "entrypoint"
+        } 
+    },
+    {
+        "text": "Rename Variable from x to value",
+        "hint": "Click the word item and select Rename Variable.. then enter value ",
+        "event": {
+            "type": "VAR_RENAME",
+            "name": "NAME"
+        },
+        "block": {
+            "type": "contract_variables_set",
+            "name": "value"
+        } 
+    },
+    {
         "text": "Add Verify Admin",
         "hint": "It's the 9th block under Contract, attach it to the Entrypoint",
         "event": {
@@ -104,77 +160,89 @@
         } 
     },
     {
-        "text": "Add Set Map",
-        "hint": "It's the fifth block under Maps, attach it under the verify block",
+        "text": "Add Set Contract Variable",
+        "hint": "It's the 5th block under Contract, attach it to the Contstruct",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "map_variables_set"
-        }
+            "type": "contract_variables_set"
+        } 
     },
     {
-        "text": "Change Set Map to ledger ",
-        "hint": "Click item and select ledger",
+        "text": "Rename Variable from item to price",
+        "hint": "Click the word item and select Rename Variable.. then enter price ",
+        "event": {
+            "type": "VAR_RENAME",
+            "name": "NAME"
+        },
+        "block": {
+            "type": "contract_variables_set",
+            "name": "price"
+        } 
+    },
+    {
+        "text": "Set value to price",
+        "hint": "Select value block under variables, attach it to the Set Contract Variable",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "sp_tez"
+        } 
+    },
+    {
+        "text": "Add EntryPoint",
+        "hint": "It's the third block under Contract, attach it to the Contract",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "entrypoint"
+        } 
+    },
+    {
+        "text": "Rename EntryPoint",
+        "hint": "Click unnamed and rename the entrypoint buy",
         "event": {
             "type": "BLOCK_CHANGE",
-            "name": "VAR"
+            "name": "NAME"
         },
         "block": {
-            "type": "map_variables_set",
-            "variable": "ledger"
-        }
+            "type": "entrypoint"
+        } 
     },
     {
-        "text": "Add Sender Address",
-        "hint": "It's the 4th block under Address, attach it into the first Set Map slot (with key)",
+        "text": "Add EntryPoint Argument",
+        "hint": "Click plus button in the entrypoint block",
+        "event": {
+            "type": "BLOCK_CHANGE",
+            "name": "NAME"
+        },
+        "block": {
+            "type": "entrypoint"
+        } 
+    },
+    {
+        "text": "Rename Variable from x to value",
+        "hint": "Click the word item and select Rename Variable.. then enter amount ",
+        "event": {
+            "type": "VAR_RENAME",
+            "name": "NAME"
+        },
+        "block": {
+            "type": "contract_variables_set",
+            "name": "amount"
+        } 
+    },
+    {
+        "text": "Add Verify",
+        "hint": "It's the 7th block under Contract, attach it to the Entrypoint",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "sp_sender"
-        }
-    },
-    {
-        "text": "Add sp.amount in value",
-        "hint": "It's the third block under Mutez, attach it into second Set Map slot (value)",
-        "event": {
-            "type": "BLOCK_CREATE"
-        },
-        "block": {
-            "type": "sp_amount"
-        }
-    },
-    {
-        "text": "Add Send Block",
-        "hint": "It's the 9th block under Contract, attach it into under the Set Map block",
-        "event": {
-            "type": "BLOCK_CREATE"
-        },
-        "block": {
-            "type": "sp_send"
-        }
-    },
-    {
-        "text": "Add sp.amount into Send",
-        "hint": "It's the third block under Mutez, attach it into first Send slot (send)",
-      
-        "event": {
-            "type": "BLOCK_CREATE"
-        },
-        "block": {
-            "type": "sp_amount"
-        }
-    },
-    {
-        "text": "Add Self Address into Send",
-        "hint": "It's the 4th block under Address, attach it into second Send slot (to)",
-      
-        "event": {
-            "type": "BLOCK_CREATE"
-        },
-        "block": {
-            "type": "sp_self_address"
-        }
+            "type": "sp_verify_admin"
+        } 
     }
 ]

@@ -28,6 +28,7 @@ const Workspace = ({ unityContext, loading, recipe }) => {
 
   const handleBlockUpdate = useCallback(
     (event) => {
+      console.log('~~~~~~~~~~~~~', event);
       if (!recipe || !recipe.recipes || timeline + 1 >= recipe.recipes.length) {
         return;
       }
@@ -35,66 +36,78 @@ const Workspace = ({ unityContext, loading, recipe }) => {
       const recipeItem = recipe.recipes[timeline + 1];
       if (recipeItem) {
         const exp = timeline + 1;
-        if (
-          recipeItem.event.type === 'BLOCK_CREATE' &&
-          event.type === Blockly.Events.BLOCK_CREATE
-        ) {
-          if (event.json.type === recipeItem.block.type) {
-            dispatch(updateLessonStateAction(exp));
-          }
-        } else if (
-          recipeItem.event.type === 'BLOCK_CHANGE' &&
-          event.type === Blockly.Events.BLOCK_CHANGE
-        ) {
-          if (event.name === recipeItem.event.name) {
-            const block = workspace.getBlockById(event.blockId);
-            if (block && block.type === recipeItem.block.type) {
-              if (recipeItem.block.name) {
-                if (
-                  recipeItem.block.name.toLowerCase() ===
-                  event.newValue.toLowerCase()
-                ) {
-                  dispatch(updateLessonStateAction(exp));
-                }
-              } else if (recipeItem.block.variable) {
-                const variable = Blockly.Variables.getVariable(
-                  workspace,
-                  event.newValue
-                );
-                if (
-                  recipeItem.block.variable.toLowerCase() ===
-                  variable.name.toLowerCase()
-                ) {
-                  dispatch(updateLessonStateAction(exp));
-                }
-              } else {
-                dispatch(updateLessonStateAction(exp));
-              }
-              if (recipeItem.block.type === 'contract') {
-                dispatch(setContractNameAction(event.newValue));
-              }
-            }
-          }
-        } else if (
-          recipeItem.event.type === 'BLOCK_MOVE' &&
-          event.type === Blockly.Events.BLOCK_MOVE
-        ) {
-          if (recipeItem.block.parent) {
-            const parentId = event.newParentId;
-            if (parentId) {
-              const block = workspace.getBlockById(parentId);
-              if (block && block.type === recipeItem.block.parent.type) {
+        switch (recipeItem.event.type) {
+          case 'BLOCK_CREATE': {
+            if (event.type === Blockly.Events.BLOCK_CREATE) {
+              if (event.json.type === recipeItem.block.type) {
                 dispatch(updateLessonStateAction(exp));
               }
             }
+            break;
           }
-        } else if (
-          recipeItem.event.type === 'VAR_RENAME' &&
-          event.type === 'var_rename'
-        ) {
-          if (recipeItem.block.name === event.newName) {
-            dispatch(updateLessonStateAction(exp));
+
+          case 'BLOCK_CHANGE': {
+            if (event.type === Blockly.Events.BLOCK_CHANGE) {
+              if (event.name === recipeItem.event.name) {
+                const block = workspace.getBlockById(event.blockId);
+                console.log('block.type', block.type);
+                if (block && block.type === recipeItem.block.type) {
+                  if (recipeItem.block.name) {
+                    if (
+                      recipeItem.block.name.toLowerCase() ===
+                      event.newValue.toLowerCase()
+                    ) {
+                      dispatch(updateLessonStateAction(exp));
+                    }
+                  } else if (recipeItem.block.variable) {
+                    const variable = Blockly.Variables.getVariable(
+                      workspace,
+                      event.newValue
+                    );
+                    if (
+                      recipeItem.block.variable.toLowerCase() ===
+                      variable.name.toLowerCase()
+                    ) {
+                      dispatch(updateLessonStateAction(exp));
+                    }
+                  } else {
+                    dispatch(updateLessonStateAction(exp));
+                  }
+                  if (recipeItem.block.type === 'contract') {
+                    dispatch(setContractNameAction(event.newValue));
+                  }
+                }
+              }
+            }
+            break;
           }
+
+          case 'BLOCK_MOVE': {
+            if (event.type === Blockly.Events.BLOCK_MOVE) {
+              if (recipeItem.block.parent) {
+                const parentId = event.newParentId;
+                if (parentId) {
+                  const block = workspace.getBlockById(parentId);
+                  if (block && block.type === recipeItem.block.parent.type) {
+                    dispatch(updateLessonStateAction(exp));
+                  }
+                }
+              }
+            }
+            break;
+          }
+
+          case 'VAR_RENAME': {
+            if (event.type === 'var_rename') {
+              if (recipeItem.block.name === event.newName) {
+                dispatch(updateLessonStateAction(exp));
+              }
+            }
+            break;
+          }
+
+          default:
+            break;
         }
       }
     },

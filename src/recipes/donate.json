@@ -101,7 +101,7 @@
         },
         "block": {
             "type": "sp_verify",
-            "name": "GT"
+            "newValue": "GT"
         } 
     }, 
     {

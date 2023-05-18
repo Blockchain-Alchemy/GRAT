@@ -28,7 +28,7 @@ const Workspace = ({ unityContext, loading, recipe }) => {
 
   const handleBlockUpdate = useCallback(
     (event) => {
-      console.log('~~~~~~~~~~~~~', event);
+      console.log('event', event);
       if (!recipe || !recipe.recipes || timeline + 1 >= recipe.recipes.length) {
         return;
       }
@@ -47,38 +47,42 @@ const Workspace = ({ unityContext, loading, recipe }) => {
           }
 
           case 'BLOCK_CHANGE': {
-            if (event.type === Blockly.Events.BLOCK_CHANGE) {
-              if (recipeItem.event.name && recipeItem.event.name === event.name) {
-                const block = workspace.getBlockById(event.blockId);
-                if (block && block.type === recipeItem.block.type) {
-                  if (recipeItem.block.name) {
-                    if (
-                      recipeItem.block.name.toLowerCase() ===
-                      event.newValue.toLowerCase()
-                    ) {
-                      dispatch(updateLessonStateAction(exp));
-                    }
-                  } else if (recipeItem.block.variable) {
-                    const variable = Blockly.Variables.getVariable(
-                      workspace,
-                      event.newValue
-                    );
-                    if (variable && variable.name.toLowerCase() === recipeItem.block.variable.toLowerCase()) {
-                      dispatch(updateLessonStateAction(exp));
-                    }
-                  } else {
-                    dispatch(updateLessonStateAction(exp));
-                  }
-                  if (recipeItem.block.type === 'contract') {
-                    dispatch(setContractNameAction(event.newValue));
-                  }
-                }
-              } else if (recipeItem.event.element && recipeItem.event.element === event.element) {
-                const block = workspace.getBlockById(event.blockId);
-                if (block && block.type === recipeItem.block.type) {
-                  if (recipeItem.block.variable && recipeItem.block.variable === event.newValue) {
-                    dispatch(updateLessonStateAction(exp));
-                  }
+            if (event.type !== Blockly.Events.BLOCK_CHANGE) {
+              break;
+            }
+
+            if (recipeItem.event.name && recipeItem.event.name === event.name) {
+              const block = workspace.getBlockById(event.blockId);
+              if (!block || block.type !== recipeItem.block.type) {
+                break;
+              }
+              if (recipeItem.block.newValue && recipeItem.block.newValue !== event.newValue) {
+                break;
+              }
+              if (recipeItem.block.variable) {
+                const variable = Blockly.Variables.getVariable(
+                  workspace,
+                  event.newValue
+                );
+                if (!variable?.name) break;
+                if (variable.name !== recipeItem.block.variable) break;
+              }
+
+              dispatch(updateLessonStateAction(exp));
+              if (recipeItem.block.type === 'contract') {
+                dispatch(setContractNameAction(event.newValue));
+              }
+              break;
+            }
+
+            if (recipeItem.event.element && recipeItem.event.element === event.element) {
+              const block = workspace.getBlockById(event.blockId);
+              if (block && block.type === recipeItem.block.type) {
+                if (
+                  recipeItem.block.variable &&
+                  recipeItem.block.variable === event.newValue
+                ) {
+                  dispatch(updateLessonStateAction(exp));
                 }
               }
             }
@@ -86,14 +90,21 @@ const Workspace = ({ unityContext, loading, recipe }) => {
           }
 
           case 'BLOCK_MOVE': {
-            if (event.type === Blockly.Events.BLOCK_MOVE) {
-              if (recipeItem.block.parent) {
-                const parentId = event.newParentId;
-                if (parentId) {
-                  const block = workspace.getBlockById(parentId);
-                  if (block && block.type === recipeItem.block.parent.type) {
-                    dispatch(updateLessonStateAction(exp));
-                  }
+            if (event.type !== Blockly.Events.BLOCK_MOVE) {
+              break;
+            }
+            if (recipeItem.block.type) {
+              const block = workspace.getBlockById(event.blockId);
+              if (block && block.type !== recipeItem.block.type) {
+                break;
+              }
+            }
+            if (recipeItem.block.parent) {
+              const parentId = event.newParentId;
+              if (parentId) {
+                const block = workspace.getBlockById(parentId);
+                if (block && block.type === recipeItem.block.parent.type) {
+                  dispatch(updateLessonStateAction(exp));
                 }
               }
             }
@@ -110,6 +121,22 @@ const Workspace = ({ unityContext, loading, recipe }) => {
           case 'VAR_RENAME': {
             if (event.type === 'var_rename') {
               if (recipeItem.block.name === event.newName) {
+                dispatch(updateLessonStateAction(exp));
+              }
+            }
+            break;
+          }
+
+          case 'VAR_CHANGE': {
+            if (event.type === 'change') {
+              const variable = Blockly.Variables.getVariable(
+                workspace,
+                event.newValue
+              );
+              if (
+                variable &&
+                variable.name?.toLowerCase() === recipeItem.block.name
+              ) {
                 dispatch(updateLessonStateAction(exp));
               }
             }

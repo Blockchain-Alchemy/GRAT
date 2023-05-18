@@ -1,45 +1,56 @@
 [
     {
-        "text": "Add EntryPoint",
-        "hint": "It's the third block under Contract, attach it to the Contract",
+        "text": "Add Math Arithmetic",
+        "hint": "It's the 2th block under Math",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "entrypoint"
+            "type": "math_arithmetic"
         } 
     },
     {
-        "text": "Rename EntryPoint",
-        "hint": "Click unnamed and rename the entrypoint setPrice",
+        "text": "Add Get Contract Variable",
+        "hint": "It's the 6th block under Contract",
         "event": {
-            "type": "BLOCK_CHANGE",
-            "name": "NAME"
+            "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "entrypoint"
+            "type": "contract_variables_get"
         } 
     },
     {
-        "text": "Add EntryPoint Argument",
-        "hint": "Click plus button in the entrypoint block",
+        "text": "Select contract variable price",
+        "hint": "Click the word item and select price variable.",
         "event": {
-            "type": "VAR_CREATE"
+            "type": "VAR_CHANGE",
+            "name": "VAR"
         },
         "block": {
-            "type": "entrypoint"
+            "name": "price"
         } 
     },
     {
-        "text": "Rename Variable from x to value",
-        "hint": "Click the word item and select Rename Variable.. then enter value ",
+        "text": "Attach Get Contract Variable to Math Arithmetic",
+        "hint": "Drag Get Contract Variable block and drop in the first slot of Match Arithmetic.",
         "event": {
-            "type": "BLOCK_CHANGE",
-            "element": "field"
+            "type": "BLOCK_MOVE"
         },
         "block": {
-            "type": "entrypoint",
-            "variable": "value"
+            "type": "contract_variables_get",
+            "parent": {
+                "type": "math_arithmetic"
+            }
+        } 
+    },
+    {
+        "text": "Add Verify",
+        "hint": "It's the 7th block under Contract, attach it to the Entrypoint",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "sp_verify"
         } 
     },
 
@@ -145,7 +156,8 @@
             "name": "NAME"
         },
         "block": {
-            "type": "entrypoint"
+            "type": "entrypoint",
+            "newValue": "setPrice"
         } 
     },
     {
@@ -191,35 +203,27 @@
         } 
     },
     {
-        "text": "Rename Variable from item to price",
-        "hint": "Click the word item and select Rename Variable.. then enter price ",
+        "text": "Select contract variable price",
+        "hint": "Click the word item and select price variable.",
         "event": {
-            "type": "VAR_RENAME",
-            "name": "NAME"
+            "type": "VAR_CHANGE",
+            "name": "VAR"
         },
         "block": {
-            "type": "contract_variables_set",
             "name": "price"
         } 
     },
     {
-        "text": "Set value to price",
+        "text": "Attach value to price",
         "hint": "Select value block under variables, attach it to the Set Contract Variable",
         "event": {
-            "type": "BLOCK_CREATE"
+            "type": "BLOCK_MOVE"
         },
         "block": {
-            "type": "sp_tez"
-        } 
-    },
-    {
-        "text": "Add EntryPoint",
-        "hint": "It's the third block under Contract, attach it to the Contract",
-        "event": {
-            "type": "BLOCK_CREATE"
-        },
-        "block": {
-            "type": "entrypoint"
+            "type": "variables_get",
+            "parent": {
+                "type": "contract_variables_set"
+            }
         } 
     },
     {
@@ -230,30 +234,105 @@
             "name": "NAME"
         },
         "block": {
-            "type": "entrypoint"
+            "type": "entrypoint",
+            "newValue": "buy"
         } 
     },
     {
         "text": "Add EntryPoint Argument",
         "hint": "Click plus button in the entrypoint block",
         "event": {
-            "type": "BLOCK_CHANGE",
-            "name": "NAME"
+            "type": "VAR_CREATE"
         },
         "block": {
             "type": "entrypoint"
         } 
     },
     {
-        "text": "Rename Variable from x to value",
+        "text": "Rename Variable from x to amount",
         "hint": "Click the word item and select Rename Variable.. then enter amount ",
+        "event": {
+            "type": "BLOCK_CHANGE",
+            "element": "field"
+        },
+        "block": {
+            "type": "entrypoint",
+            "variable": "amount"
+        } 
+    },
+    {
+        "text": "Add Set Variable",
+        "hint": "Set Variable is the first block under Variables",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "variables_set"
+        } 
+    },
+    {
+        "text": "Rename Variable from item to itemPrice",
+        "hint": "Click the word item and select Rename Variable.. then enter itemPrice ",
         "event": {
             "type": "VAR_RENAME",
             "name": "NAME"
         },
         "block": {
             "type": "contract_variables_set",
-            "name": "amount"
+            "name": "itemPrice"
+        } 
+    },
+
+
+
+
+
+
+
+
+
+    {
+        "text": "Add Math Arithmetic",
+        "hint": "It's the 2th block under Math",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "math_arithmetic"
+        } 
+    },
+    {
+        "text": "Add Get Contract Variable",
+        "hint": "It's the 6th block under Contract",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "contract_variables_get"
+        } 
+    },
+    {
+        "text": "Select contract variable price",
+        "hint": "Click the word item and select price variable.",
+        "event": {
+            "type": "VAR_CHANGE",
+            "name": "VAR"
+        },
+        "block": {
+            "name": "price"
+        } 
+    },
+    {
+        "text": "Attach Get Contract Variable to Math Arithmetic",
+        "hint": "Drag Get Contract Variable block and drop in the first slot of Match Arithmetic.",
+        "event": {
+            "type": "BLOCK_MOVE"
+        },
+        "block": {
+            "type": "contract_variables_get",
+            "parent": {
+                "type": "math_arithmetic"
+            }
         } 
     },
     {
@@ -263,7 +342,7 @@
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "sp_verify_admin"
+            "type": "sp_verify"
         } 
     }
 ]

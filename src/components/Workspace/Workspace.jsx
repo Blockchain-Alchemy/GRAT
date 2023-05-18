@@ -14,6 +14,10 @@ import {
   setContractNameAction,
 } from '../../store/actions';
 
+const Python = Blockly.Python;
+const Variables = Blockly.Variables;
+const {NameType} = Blockly.Names;
+
 const Workspace = ({ unityContext, loading, recipe }) => {
   const dispatch = useDispatch();
   const workspaceRef = useRef();
@@ -95,8 +99,18 @@ const Workspace = ({ unityContext, loading, recipe }) => {
             }
             if (recipeItem.block.type) {
               const block = workspace.getBlockById(event.blockId);
-              if (block && block.type !== recipeItem.block.type) {
+              if (!block || block.type !== recipeItem.block.type) {
                 break;
+              }
+              if (recipeItem.block.varName) {
+                const varId = block.getFieldValue('VAR');
+                if (!varId) break;
+
+                const usedVariables = Variables.allUsedVarModels(workspace) || [];
+                const variable = usedVariables.find(i => i.id_ === varId);
+                if (!variable || variable.name !== recipeItem.block.varName) {
+                  break;
+                }
               }
             }
             if (recipeItem.block.parent) {

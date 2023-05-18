@@ -1,12 +1,52 @@
 [
     {
-        "text": "Add Verify",
-        "hint": "It's the 7th block under Contract, attach it to the Entrypoint",
+        "text": "Create Transfer Amount",
+        "hint": "Transfer Amount is 5th block under FA 1.2",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "sp_verify"
+            "type": "sp_transfer_token"
+        } 
+    },
+    {
+        "text": "Attach amount variable to Transfer block",
+        "hint": "The variables are under Variables.",
+        "event": {
+            "type": "BLOCK_MOVE"
+        },
+        "block": {
+            "type": "variables_get",
+            "varName": "amount",
+            "parent": {
+                "type": "sp_transfer_token"
+            }
+        } 
+    },
+    {
+        "text": "Attach Self Address to Transfer block",
+        "hint": "Self Address is the third block under Address",
+        "event": {
+            "type": "BLOCK_MOVE"
+        },
+        "block": {
+            "type": "sp_self_address",
+            "parent": {
+                "type": "sp_transfer_token"
+            }
+        } 
+    },
+    {
+        "text": "Attach Sender Address to Transfer block",
+        "hint": "Sender Address is the 4th block under Address",
+        "event": {
+            "type": "BLOCK_MOVE"
+        },
+        "block": {
+            "type": "sp_sender",
+            "parent": {
+                "type": "sp_transfer_token"
+            }
         } 
     },
 
@@ -177,6 +217,7 @@
         },
         "block": {
             "type": "variables_get",
+            "varName": "price",
             "parent": {
                 "type": "contract_variables_set"
             }
@@ -290,14 +331,12 @@
         },
         "block": {
             "type": "variables_get",
+            "varName": "amount",
             "parent": {
                 "type": "math_arithmetic"
             }
         } 
     },
-
-
-
     {
         "text": "Add Verify",
         "hint": "It's the 7th block under Contract, attach it to the Entrypoint",
@@ -306,6 +345,83 @@
         },
         "block": {
             "type": "sp_verify"
+        } 
+    },
+    {
+        "text": "Attach sp.amount to Math Arithmetic",
+        "hint": "The sp.amount is the third block under Mutez",
+        "event": {
+            "type": "BLOCK_MOVE"
+        },
+        "block": {
+            "type": "sp_amount",
+            "parent": {
+                "type": "sp_verify"
+            }
+        } 
+    },
+    {
+        "text": "Attach itemPrice variable to Verify block",
+        "hint": "the itemPrice variable is under Variables.",
+        "event": {
+            "type": "BLOCK_MOVE"
+        },
+        "block": {
+            "type": "variables_get",
+            "varName": "itemPrice",
+            "parent": {
+                "type": "sp_verify"
+            }
+        } 
+    },
+    {
+        "text": "Create Transfer Amount",
+        "hint": "Transfer Amount is 5th block under FA 1.2",
+        "event": {
+            "type": "BLOCK_CREATE"
+        },
+        "block": {
+            "type": "sp_transfer_token"
+        } 
+    },
+    {
+        "text": "Attach amount variable to Transfer block",
+        "hint": "The variables are under Variables.",
+        "event": {
+            "type": "BLOCK_MOVE"
+        },
+        "block": {
+            "type": "variables_get",
+            "varName": "amount",
+            "parent": {
+                "type": "sp_transfer_token"
+            }
+        } 
+    },
+    {
+        "text": "Attach Self Address to Transfer block",
+        "hint": "Self Address is the third block under Address",
+        "event": {
+            "type": "BLOCK_MOVE"
+        },
+        "block": {
+            "type": "sp_self_address",
+            "parent": {
+                "type": "sp_transfer_token"
+            }
+        } 
+    },
+    {
+        "text": "Attach Sender Address to Transfer block",
+        "hint": "Sender Address is the 4th block under Address",
+        "event": {
+            "type": "BLOCK_MOVE"
+        },
+        "block": {
+            "type": "sp_sender",
+            "parent": {
+                "type": "sp_transfer_token"
+            }
         } 
     }
 ]

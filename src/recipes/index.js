@@ -1,5 +1,5 @@
 import donate from './donate.json';
-import marketpalce from './marketplace.json';
+import { marketplace } from './market';
 
 export const loadRecipe = {
   donate: () => {
@@ -16,7 +16,7 @@ export const loadRecipe = {
       id: 'marketplace',
       name: 'Marketplace Contract',
       description: 'This contract will allow users to send Tezos to the contract and it will keep a ledger of donations.',
-      recipes: marketpalce,
+      recipes: marketplace,
     };
   },
 };

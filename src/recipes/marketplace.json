@@ -1,23 +1,45 @@
 [
     {
-        "text": "Add tez",
-        "hint": "It's the second block under Mutez, attach it to the Set Contract Variable",
+        "text": "Add EntryPoint",
+        "hint": "It's the third block under Contract, attach it to the Contract",
         "event": {
             "type": "BLOCK_CREATE"
         },
         "block": {
-            "type": "sp_tez"
+            "type": "entrypoint"
         } 
     },
     {
-        "text": "Add sp.tez 1",
-        "hint": "It's the second block under Mutez, attach it into the second verify slot, change the amount to 1",
+        "text": "Rename EntryPoint",
+        "hint": "Click unnamed and rename the entrypoint setPrice",
         "event": {
             "type": "BLOCK_CHANGE",
-            "name": "NUM"
+            "name": "NAME"
         },
         "block": {
-            "type": "math_number"
+            "type": "entrypoint"
+        } 
+    },
+    {
+        "text": "Add EntryPoint Argument",
+        "hint": "Click plus button in the entrypoint block",
+        "event": {
+            "type": "VAR_CREATE"
+        },
+        "block": {
+            "type": "entrypoint"
+        } 
+    },
+    {
+        "text": "Rename Variable from x to value",
+        "hint": "Click the word item and select Rename Variable.. then enter value ",
+        "event": {
+            "type": "BLOCK_CHANGE",
+            "element": "field"
+        },
+        "block": {
+            "type": "entrypoint",
+            "variable": "value"
         } 
     },
 
@@ -130,8 +152,7 @@
         "text": "Add EntryPoint Argument",
         "hint": "Click plus button in the entrypoint block",
         "event": {
-            "type": "BLOCK_CHANGE",
-            "name": "NAME"
+            "type": "VAR_CREATE"
         },
         "block": {
             "type": "entrypoint"
@@ -141,12 +162,12 @@
         "text": "Rename Variable from x to value",
         "hint": "Click the word item and select Rename Variable.. then enter value ",
         "event": {
-            "type": "VAR_RENAME",
-            "name": "NAME"
+            "type": "BLOCK_CHANGE",
+            "element": "field"
         },
         "block": {
-            "type": "contract_variables_set",
-            "name": "value"
+            "type": "entrypoint",
+            "variable": "value"
         } 
     },
     {

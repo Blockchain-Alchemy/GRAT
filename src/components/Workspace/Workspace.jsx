@@ -48,9 +48,8 @@ const Workspace = ({ unityContext, loading, recipe }) => {
 
           case 'BLOCK_CHANGE': {
             if (event.type === Blockly.Events.BLOCK_CHANGE) {
-              if (event.name === recipeItem.event.name) {
+              if (recipeItem.event.name && recipeItem.event.name === event.name) {
                 const block = workspace.getBlockById(event.blockId);
-                console.log('block.type', block.type);
                 if (block && block.type === recipeItem.block.type) {
                   if (recipeItem.block.name) {
                     if (
@@ -64,10 +63,7 @@ const Workspace = ({ unityContext, loading, recipe }) => {
                       workspace,
                       event.newValue
                     );
-                    if (
-                      recipeItem.block.variable.toLowerCase() ===
-                      variable.name.toLowerCase()
-                    ) {
+                    if (variable && variable.name.toLowerCase() === recipeItem.block.variable.toLowerCase()) {
                       dispatch(updateLessonStateAction(exp));
                     }
                   } else {
@@ -75,6 +71,13 @@ const Workspace = ({ unityContext, loading, recipe }) => {
                   }
                   if (recipeItem.block.type === 'contract') {
                     dispatch(setContractNameAction(event.newValue));
+                  }
+                }
+              } else if (recipeItem.event.element && recipeItem.event.element === event.element) {
+                const block = workspace.getBlockById(event.blockId);
+                if (block && block.type === recipeItem.block.type) {
+                  if (recipeItem.block.variable && recipeItem.block.variable === event.newValue) {
+                    dispatch(updateLessonStateAction(exp));
                   }
                 }
               }
@@ -93,6 +96,13 @@ const Workspace = ({ unityContext, loading, recipe }) => {
                   }
                 }
               }
+            }
+            break;
+          }
+
+          case 'VAR_CREATE': {
+            if (event.type === 'var_create') {
+              dispatch(updateLessonStateAction(exp));
             }
             break;
           }

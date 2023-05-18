@@ -1,49 +1,5 @@
 [
     {
-        "text": "Add Math Arithmetic",
-        "hint": "It's the 2th block under Math",
-        "event": {
-            "type": "BLOCK_CREATE"
-        },
-        "block": {
-            "type": "math_arithmetic"
-        } 
-    },
-    {
-        "text": "Add Get Contract Variable",
-        "hint": "It's the 6th block under Contract",
-        "event": {
-            "type": "BLOCK_CREATE"
-        },
-        "block": {
-            "type": "contract_variables_get"
-        } 
-    },
-    {
-        "text": "Select contract variable price",
-        "hint": "Click the word item and select price variable.",
-        "event": {
-            "type": "VAR_CHANGE",
-            "name": "VAR"
-        },
-        "block": {
-            "name": "price"
-        } 
-    },
-    {
-        "text": "Attach Get Contract Variable to Math Arithmetic",
-        "hint": "Drag Get Contract Variable block and drop in the first slot of Match Arithmetic.",
-        "event": {
-            "type": "BLOCK_MOVE"
-        },
-        "block": {
-            "type": "contract_variables_get",
-            "parent": {
-                "type": "math_arithmetic"
-            }
-        } 
-    },
-    {
         "text": "Add Verify",
         "hint": "It's the 7th block under Contract, attach it to the Entrypoint",
         "event": {
@@ -282,15 +238,6 @@
             "name": "itemPrice"
         } 
     },
-
-
-
-
-
-
-
-
-
     {
         "text": "Add Math Arithmetic",
         "hint": "It's the 2th block under Math",
@@ -335,6 +282,22 @@
             }
         } 
     },
+    {
+        "text": "Attach amount variable to Math Arithmetic",
+        "hint": "Attach amount variable to the second slot of Match Arithmetic.",
+        "event": {
+            "type": "BLOCK_MOVE"
+        },
+        "block": {
+            "type": "variables_get",
+            "parent": {
+                "type": "math_arithmetic"
+            }
+        } 
+    },
+
+
+
     {
         "text": "Add Verify",
         "hint": "It's the 7th block under Contract, attach it to the Entrypoint",

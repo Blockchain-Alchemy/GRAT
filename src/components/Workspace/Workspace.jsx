@@ -14,9 +14,7 @@ import {
   setContractNameAction,
 } from '../../store/actions';
 
-const Python = Blockly.Python;
 const Variables = Blockly.Variables;
-const {NameType} = Blockly.Names;
 
 const Workspace = ({ unityContext, loading, recipe }) => {
   const dispatch = useDispatch();
@@ -32,7 +30,6 @@ const Workspace = ({ unityContext, loading, recipe }) => {
 
   const handleBlockUpdate = useCallback(
     (event) => {
-      console.log('event', event);
       if (!recipe || !recipe.recipes || timeline + 1 >= recipe.recipes.length) {
         return;
       }

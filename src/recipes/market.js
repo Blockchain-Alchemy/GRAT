@@ -1,4 +1,12 @@
 export const marketplace = [
+  
+
+
+
+
+
+
+
   // #region Create Smart Contract Block.
   {
     text: 'Create Contract',
@@ -216,7 +224,6 @@ export const marketplace = [
       variable: 'amount',
     },
   },
-
   {
     text: 'Add Set Variable',
     hint: 'Set Variable is the first block under Variables',
@@ -228,15 +235,23 @@ export const marketplace = [
     },
   },
   {
-    text: 'Rename Variable from item to itemPrice',
-    hint: 'Click the word item and select Rename Variable.. then enter itemPrice ',
+    text: 'Create Variable itemPrice',
+    hint: 'Click Create variable under the Variables then enter itemPrice',
     event: {
-      type: 'VAR_RENAME',
-      name: 'NAME',
+      type: 'VAR_CREATE',
+      name: 'itemPrice',
+    },
+  },
+  {
+    text: 'Change Variable to itemPrice',
+    hint: 'Click the word item and select itemPrice',
+    event: {
+      type: 'BLOCK_CHANGE',
+      name: 'VAR',
     },
     block: {
       type: 'variables_set',
-      name: 'itemPrice',
+      variable: 'itemPrice',
     },
   },
   {
@@ -286,7 +301,7 @@ export const marketplace = [
     },
   },
   {
-    text: 'Select variable price',
+    text: 'Select variable price in the Get Contract variable',
     hint: 'Click the word item and select price variable.',
     event: {
       type: 'VAR_CHANGE',
@@ -371,7 +386,7 @@ export const marketplace = [
     },
   },
   {
-    text: 'Attach amount variable to Transfer block',
+    text: 'Attach amount variable to the first slot in Transfer block',
     hint: 'The variables are under Variables.',
     event: {
       type: 'BLOCK_MOVE',
@@ -385,7 +400,7 @@ export const marketplace = [
     },
   },
   {
-    text: 'Attach Self Address to Transfer block',
+    text: 'Attach Self Address to the second slot in Transfer block',
     hint: 'Self Address is the third block under Address',
     event: {
       type: 'BLOCK_MOVE',
@@ -398,7 +413,7 @@ export const marketplace = [
     },
   },
   {
-    text: 'Attach Sender Address to Transfer block',
+    text: 'Attach Sender Address to the third slot in Transfer block',
     hint: 'Sender Address is the 4th block under Address',
     event: {
       type: 'BLOCK_MOVE',
@@ -469,15 +484,23 @@ export const marketplace = [
     },
   },
   {
-    text: 'Rename Variable from balance',
-    hint: 'Click the word item and select Rename Variable.. then enter balance ',
+    text: 'Create Variable balance',
+    hint: 'Click Create variable under the Variables then enter balance',
     event: {
-      type: 'VAR_RENAME',
-      name: 'NAME',
+      type: 'VAR_CREATE',
+      name: 'balance',
+    },
+  },
+  {
+    text: 'Change Variable to balance',
+    hint: 'Click the word item and select balance',
+    event: {
+      type: 'BLOCK_CHANGE',
+      name: 'VAR',
     },
     block: {
       type: 'variables_set',
-      name: 'balance',
+      variable: 'balance',
     },
   },
   {
@@ -760,7 +783,7 @@ export const marketplace = [
       type: 'BLOCK_MOVE',
     },
     block: {
-      type: 'variables_get',
+      type: 'sp_balance',
       varName: 'balance',
       parent: {
         type: 'sp_verify',

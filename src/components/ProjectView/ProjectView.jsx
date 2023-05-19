@@ -12,8 +12,10 @@ const ProjectView = ({ recipe }) => {
   };
 
   useEffect(() => {
-    lessonState.timeline >= 3 && scrollTo(lessonState.timeline * 80);
+    lessonState.timeline >= 3 && scrollTo(lessonState.timeline * 40);
   }, [lessonState.timeline]);
+
+  useEffect(() => scrollTo(0), [recipe]);
 
   return (
     <ScrollArea

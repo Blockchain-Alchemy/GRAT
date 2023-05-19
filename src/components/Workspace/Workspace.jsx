@@ -33,6 +33,7 @@ const Workspace = ({ unityContext, loading, recipe }) => {
       if (!recipe || !recipe.recipes || timeline + 1 >= recipe.recipes.length) {
         return;
       }
+      console.log('event', event)
       const workspace = workspaceRef.current.workspace;
       const recipeItem = recipe.recipes[timeline + 1];
       if (recipeItem) {
@@ -123,9 +124,14 @@ const Workspace = ({ unityContext, loading, recipe }) => {
           }
 
           case 'VAR_CREATE': {
-            if (event.type === 'var_create') {
-              dispatch(updateLessonStateAction(exp));
+            if (event.type !== 'var_create') {
+              break;
             }
+            if (recipeItem.event.name && recipeItem.event.name !== event.varName) {
+              break;
+            }
+
+            dispatch(updateLessonStateAction(exp));
             break;
           }
 

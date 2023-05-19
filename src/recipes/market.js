@@ -156,14 +156,14 @@ export const marketplace = [
     },
   },
   {
-    text: 'Attach value to price',
+    text: 'Attach value to Set Contract Variable',
     hint: 'Select value block under variables, attach it to the Set Contract Variable',
     event: {
       type: 'BLOCK_MOVE',
     },
     block: {
       type: 'variables_get',
-      varName: 'price',
+      varName: 'value',
       parent: {
         type: 'contract_variables_set',
       },

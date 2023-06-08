@@ -12,7 +12,7 @@ const ProjectView = ({ recipe }) => {
   };
 
   useEffect(() => {
-    lessonState.timeline >= 3 && scrollTo(lessonState.timeline * 40);
+    lessonState.timeline >= 2 && scrollTo((lessonState.timeline + 2) * 90);
   }, [lessonState.timeline]);
 
   useEffect(() => scrollTo(0), [recipe]);
@@ -43,7 +43,11 @@ const ProjectView = ({ recipe }) => {
       </Title>
       <Timeline active={lessonState.timeline} style={{ padding: 20 }}>
         {(recipe.recipes || []).map((item, index) => (
-          <Timeline.Item key={index} title={item.text}>
+          <Timeline.Item
+            key={index}
+            title={item.text}
+            style={{ minHeight: '66px' }}
+          >
             <Text color="dimmed" size="sm">
               {item.hint}{' '}
             </Text>

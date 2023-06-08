@@ -784,7 +784,6 @@ export const marketplace = [
     },
     block: {
       type: 'sp_balance',
-      varName: 'balance',
       parent: {
         type: 'sp_verify',
       },
@@ -852,7 +851,7 @@ export const marketplace = [
       type: 'variables_get',
       varName: 'itemPrice',
       parent: {
-        type: 'sp_verify',
+        type: 'sp_send',
       },
     },
   },

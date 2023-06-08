@@ -65,17 +65,17 @@ const ControlPanel = forwardRef((props, ref) => {
 
   const handleCompileButton = () => {
     console.log('Start compile.', contractName);
-    if (!contractName || contractName.length <= 0) {
-      alertMessage('Please input contract name!');
-      return;
-    }
+    // if (!contractName || contractName.length <= 0) {
+    //   alertMessage('Please input contract name!');
+    //   return;
+    // }
 
-    const code = convert2code();
-    if (!code || code.length <= 0) {
-      alertMessage('There is no blocks to compile!');
-      return;
-    }
-    const base64 = Buffer.from(code).toString('base64');
+    // const code = convert2code();
+    // if (!code || code.length <= 0) {
+    //   alertMessage('There is no blocks to compile!');
+    //   return;
+    // }
+    // const base64 = Buffer.from(code).toString('base64');
 
     setLoading(true);
     startNotification(
@@ -84,7 +84,7 @@ const ControlPanel = forwardRef((props, ref) => {
       'Compiling your smart contract to Michelson'
     );
 
-    api
+    /*api
       .compile(contractName, base64, sessionId)
       .then((result) => {
         console.log('compile-result', result);
@@ -97,7 +97,15 @@ const ControlPanel = forwardRef((props, ref) => {
           updateErrorNotification('compile', 'Failed to compile!');
         }
       })
-      .finally(() => setLoading(false));
+      .finally(() => setLoading(false));*/
+
+      setTimeout(() => {
+        dispatch(setSessionIdAction('result.taqId'));
+        dispatch(setCompiledContractAction('result.contract', 'result.storage'));
+        hideNotification('compile');
+        setDialogState(1);
+        setLoading(false);
+      }, [2000]);
   };
 
   const handleDeployButton = () => {
@@ -114,15 +122,15 @@ const ControlPanel = forwardRef((props, ref) => {
     return;*/
 
     console.log('Start Deploy.');
-    if (!connected) {
-      alertMessage('Please connect your wallet before deploy!');
-      return;
-    }
+    // if (!connected) {
+    //   alertMessage('Please connect your wallet before deploy!');
+    //   return;
+    // }
 
-    if (!compiledContract.contract || !compiledContract.storage) {
-      alertMessage('Please compile first!');
-      return;
-    }
+    // if (!compiledContract.contract || !compiledContract.storage) {
+    //   alertMessage('Please compile first!');
+    //   return;
+    // }
 
     setDeployState(true);
     setLoading(true);
@@ -132,7 +140,7 @@ const ControlPanel = forwardRef((props, ref) => {
       'Deploying your smart contract to the blockchain. \n This may take a few minutes.'
     );
 
-    const contract = JSON.parse(compiledContract.contract);
+    /*const contract = JSON.parse(compiledContract.contract);
     const storage = JSON.parse(compiledContract.storage);
     console.log('contract:', contract, storage);
 
@@ -149,7 +157,17 @@ const ControlPanel = forwardRef((props, ref) => {
       .finally(() => {
         setDeployState(false);
         setLoading(false);
-      });
+      });*/
+
+    setTimeout(() => {
+      const address = 'KT1VStRf2D1hDyWru4mkVdnBjo3VNsW64AQn';
+      hideNotification('deploy');
+      setContractAddress(address);
+      setDialogState(2);
+
+      setDeployState(false);
+      setLoading(false);
+    }, 3000);
   };
 
   const finishDeploy = () => {
